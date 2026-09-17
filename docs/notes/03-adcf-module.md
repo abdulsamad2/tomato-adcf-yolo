@@ -40,9 +40,9 @@ The receptive field of 11×11 cells is 88 px at P3 (stride 8) and 352 px at P5
 
 | Piece | Purpose | What would break without it | Ablation run |
 |---|---|---|---|
-| 1×1 reduce | Makes the branches cheap (fewer channels) | cost grows ~4× | `-wide` (e=0.9) |
+| 1×1 reduce | Makes the branches cheap (fewer channels) | cost grows ~4× | — (`e` option) |
 | Depthwise 3×3 | Local texture at ~9 params/channel | detail branch can't see neighbours | `-context` (no detail) |
-| High-pass `x − blur(x)` | Explicitly amplifies small spots and edges, which are easily washed out by the upsample + concat | small lesions blend into leaf colour | — (candidate extra ablation) |
+| High-pass `x − blur(x)` | Explicitly amplifies small spots and edges, which are easily washed out by the upsample + concat | small lesions blend into leaf colour | `-nohighpass` |
 | Dilated cascade | Wide receptive field at depthwise cost | context branch no wider than detail | `-detail` (no context) |
 | Global channel attention | Image-level cue ("this leaf is generally yellow"), which helps separate deficiency from disease | only local context | — |
 | Gate α | Location-dependent choice | fixed 50/50 mix everywhere | `-add`, `-concat` |
@@ -69,13 +69,32 @@ nearly free because they are depthwise.
 
 **Two consequences to understand before writing:**
 
-1. ADCF is *smaller* than what it replaces. If accuracy improves, capacity isn't the
-   reason. If it doesn't, capacity might be, which is why `yolo11s-adcf-wide`
-   (e = 0.9, ≈ baseline size) exists.
+1. In replace mode ADCF is *smaller* than what it replaces, *and* starts from random
+   weights while the baseline neck is pretrained. That's why residual mode exists
+   (next section).
 2. **Fewer FLOPs does not guarantee faster.** Depthwise convs and element-wise ops
    (multiply, sigmoid, subtraction) are *memory-bound*: GPUs spend their time moving
    data, not multiplying. FLOP counters (thop) also ignore most element-wise ops. So
    measure latency (note 05) and report both. Never claim "faster" from GFLOPs alone.
+
+## Two ways to insert it: replace vs residual
+
+| | `mode: replace` | `mode: residual` (default final) |
+|---|---|---|
+| What happens | C3k2 → ADCF | `out = C3k2(x) + γ · ADCF(C3k2(x))` |
+| Pretrained neck weights | lost | kept |
+| At training step 0 | a different, untrained network | ≈ the pretrained baseline (γ = 0.01) |
+| YOLO11s size | 8.11 M, 18.6 GFLOPs | 10.36 M, 23.3 GFLOPs |
+| Risk | may lose just from worse initialisation | "more parameters" objection → CBAM control |
+
+**γ (LayerScale, per channel).** A learnable scale on the refinement. Starting it
+small makes the new branch a gentle correction the network can grow into, instead
+of a random perturbation that first damages the pretrained features. Code:
+`ResidualRefine` in `modules.py`.
+
+The ladder runs both; val decides (note 08). In a P2 neck (6 fusion nodes) the slots
+are `p4_td, p3_td, p2_out, p3_out, p4_out, p5_out`, and placement `fine` means the three
+high-resolution ones.
 
 ## Related designs you must cite and distinguish (reviewers will ask)
 

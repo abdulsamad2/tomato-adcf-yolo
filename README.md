@@ -5,7 +5,8 @@ through a learned per-pixel gate, evaluated on
 [Tomato-Village](https://github.com/mamta-joshi-gehlot/Tomato-Village) (Variant-c,
 object detection) with a **leakage-free re-split**.
 
-> **New here? Read [`docs/notes/00-roadmap.md`](docs/notes/00-roadmap.md) first.**
+> **New here? Read [`docs/notes/00-roadmap.md`](docs/notes/00-roadmap.md) first.** The critical review
+> ([07](docs/notes/07-critical-review.md)) and publication plan ([08](docs/notes/08-publication-plan.md)) explain the experiment strategy.
 > The notes explain the dataset issue, YOLO, the module, the experiment design,
 > the metrics and how to write the paper, in that order.
 
@@ -33,19 +34,23 @@ uv run pytest -q                    # ~1 min: unit tests + end-to-end smoke test
 # 1. Data (downloads only Variant-c)
 uv run tv-download
 uv run tv-prepare                   # leakage-free split → data/tomato_village/
+uv run tv-prepare --cv-folds 5      # 5-fold grouped CV → data/tomato_village_cv/
 uv run tv-stats                     # tables + results/dataset/label_preview.png (look at it!)
 mkdir -p splits && cp data/tomato_village/split_manifest.csv splits/   # commit this
 
 # 2. Experiments (resumable; re-run the same command after any interruption)
 uv run adcf-run --dry-run
-uv run adcf-run --tier 1 --seeds 0 --device 0      # first pass, check curves + timing
+uv run adcf-run --tier 1 --seeds 0 --device 0      # improvement ladder, first pass
 uv run adcf-run --tier 1 --device 0
-uv run adcf-run --tier 2 --device 0
+uv run adcf-collect                                 # decide from results/tables_val.md, set adcf_final
+uv run adcf-run --tier 2 --device 0                 # baselines, controls, resolution/P2, ablations
 
-# 3. Analysis
+# 3. Confirm and analyse (after the design is frozen)
+uv run adcf-compare --a yolo11s --b yolo11s-adcf    # paired bootstrap 95% CI on test
+uv run adcf-run --cv --device 0 && uv run adcf-collect --cv
 uv run adcf-bench                                   # all models, one session, idle GPU
 uv run adcf-gates --weights runs/yolo11s-adcf/seed0/weights/best.pt
-uv run adcf-collect                                 # → results/tables_test.md
+uv run adcf-collect                                 # → results/tables_val.md, tables_test.md
 ```
 
 Long runs: use `tmux` or `nohup uv run adcf-run --tier 2 --device 0 > tier2.log 2>&1 &`
@@ -55,14 +60,16 @@ so a dropped SSH session doesn't kill training.
 
 | Path | What |
 |---|---|
-| `src/adcf_yolo/modules.py` | the ADCF block |
-| `src/adcf_yolo/build.py` | inserts ADCF into YOLOv8/11/26 necks; custom trainer |
+| `src/adcf_yolo/modules.py` | the ADCF block, `ResidualRefine` wrapper |
+| `src/adcf_yolo/build.py` | inserts ADCF (replace/residual) or a CBAM control into YOLOv8/11/26 necks, incl. P2; custom trainer |
+| `configs/models/yolo11-p2.yaml` | YOLO11 with a stride-4 head (not shipped by Ultralytics) |
 | `src/adcf_yolo/data/` | `download`, `prepare` (grouping, dedup, stratified split), `stats` |
 | `src/adcf_yolo/experiments.py` | train → test-eval runner (`adcf-run`) |
-| `src/adcf_yolo/eval/` | COCO size-AP, params/GFLOPs/latency |
+| `src/adcf_yolo/eval/` | cached predictions, COCO size-AP, params/GFLOPs/latency |
+| `src/adcf_yolo/compare.py` | paired bootstrap CI between two runs (`adcf-compare`) |
 | `src/adcf_yolo/gates.py` | gate α maps + inside/outside-box statistics |
-| `src/adcf_yolo/collect.py` | paper tables, mean ± std, Welch t-test |
-| `configs/experiments.yaml` | every run in the paper, with tiers |
+| `src/adcf_yolo/collect.py` | paper tables (val/test/CV), improvement ladder, mean ± std, t-tests |
+| `configs/experiments.yaml` | every run in the paper: ladder, tiers, CV |
 | `docs/notes/` | learning notes |
 | `tests/` | unit tests + end-to-end pipeline test on synthetic data |
 

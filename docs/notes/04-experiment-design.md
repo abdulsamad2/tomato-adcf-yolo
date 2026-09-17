@@ -9,17 +9,20 @@ A paper is a chain of claims. Each claim needs an experiment that could have
 
 | Claim | Evidence | Runs (table) |
 |---|---|---|
-| C1. ADCF improves detection on field images | YOLO11s + ADCF vs YOLO11s, same everything else | `yolo11s`, `yolo11s-adcf` (main) |
-| C2. The result is competitive with current YOLOs | YOLOv8s, YOLO26s baselines | `yolov8s`, `yolo26s` (main) |
-| C3. ADCF is a general plug-in | the gain also appears on other YOLO versions | `yolov8s-adcf`, `yolo26s-adcf` (main) |
-| C4. Both branches are needed | detail-only and context-only are worse than both | `-detail`, `-context` (fusion) |
-| C5. *Adaptive* fusion beats fixed fusion | gated > add and concat | `-add`, `-concat` (fusion) |
-| C6. The gain isn't just capacity | ADCF at baseline size is still better/equal | `-wide` (fusion) |
-| C7. Placement choice is justified | all 4 slots vs P3 only / top-down / bottom-up | `-p3`, `-topdown`, `-bottomup` (placement) |
-| C8. It helps small lesions specifically | AP_small improves more than AP_large | every run's COCO breakdown |
-| C9. The gate learns something meaningful | α differs inside vs outside lesions, figures | `adcf-gates` |
-| C10. It stays efficient | params, GFLOPs, **measured** latency | `adcf-bench` |
-| C11. It works across model sizes | n and m variants | tier 3 (scale) |
+| C1. ADCF improves detection on field images | ADCF vs YOLO11s, same everything else; bootstrap CI; 5-fold CV | `yolo11s`, `yolo11s-adcf` (ladder, main, cv) |
+| C2. The improvements add up | each ladder step's gain on val | ladder |
+| C3. The result is competitive with current YOLOs | YOLOv8s, YOLO26s baselines | `yolov8s`, `yolo26s` (main) |
+| C4. ADCF is a general plug-in | the gain also appears on other YOLO versions | `yolov8s-adcf`, `yolo26s-adcf` (main) |
+| C5. It isn't just "any attention module" or "more parameters" | beats CBAM in the same slots, same residual form | `yolo11s-cbam` (control) |
+| C6. It isn't replaced by resolution or a P2 head | gain over the **matched** 960 / P2 baselines | resolution |
+| C7. Both branches are needed | detail-only and context-only are worse | `-detail`, `-context` (fusion) |
+| C8. *Adaptive* fusion beats fixed fusion | gated > add and concat (≈ same params) | `-add`, `-concat` (fusion) |
+| C9. The high-pass detail cue matters | full > `-nohighpass` | fusion |
+| C10. Placement choice is justified | all slots vs P3 only / top-down / bottom-up | placement |
+| C11. It helps small lesions specifically | AP_small improves more than AP_large | every run's COCO breakdown |
+| C12. The gate learns something meaningful | α differs inside vs outside lesions, figures | `adcf-gates` |
+| C13. It stays efficient | params, GFLOPs, **measured** latency | `adcf-bench` |
+| C14. It works across model sizes | n and m variants | tier 3 (scale) |
 
 If an experiment contradicts a claim, **drop or rewrite the claim**. Don't drop
 the experiment.
@@ -35,7 +38,8 @@ the experiment.
 4. **Same budget.** Same epochs and patience. (ADCF has fresh layers and might want
    longer. If you test that, give the baseline the same longer schedule.)
 5. **Model selection on val, reporting on test.** `best.pt` is picked by val
-   fitness; `adcf-run` evaluates it on test once.
+   fitness. Design decisions (replace vs residual, P2, resolution) are made from
+   `tables_val.md`; `tables_test.md` is opened only after `adcf_final` is frozen.
 6. **Multiple seeds.** Training is noisy. Two runs of the *same* model can differ
    by several tenths of mAP. We use 3 seeds and report mean ± std.
 
@@ -49,8 +53,9 @@ numbers are made up to illustrate the reasoning.)*
 
 ## Budget: estimate before you commit
 
-Counts in the config: tier 1 = 4 runs, tier 2 = 11 runs, tier 3 = 6 runs;
-× 3 seeds = **63 trainings** (`adcf-run --dry-run` prints the exact count).
+Counts in the config: tier 1 = 4 runs, tier 2 = 19 runs, tier 3 = 6 runs; × 3 seeds =
+**87 trainings**, plus **10** for 5-fold CV (`adcf-run --dry-run` prints exact counts).
+Note 08 has the recommended order.
 
 Run `adcf-run --tier 1 --seeds 0` first, read `train_hours` in
 `runs/*/seed0/train_done.json`, and multiply. If it's too much:
@@ -60,7 +65,7 @@ Run `adcf-run --tier 1 --seeds 0` first, read `train_hours` in
 - lower `epochs` for **all** runs (never for only some), e.g. 100 with patience 30;
 - try `cache: ram` if the machine has the memory (faster data loading).
 
-## Order of work
+## Order of work (details and decision rules in note 08)
 
 1. `adcf-run --tier 1 --seeds 0`. **Look at the curves** (`runs/*/seed0/results.png`):
    losses should fall, val mAP should rise and plateau. If the ADCF curve is much
@@ -77,6 +82,8 @@ Run `adcf-run --tier 1 --seeds 0` first, read `train_hours` in
 adcf-run --dry-run                           # see what's left
 adcf-run --tier 1 --seeds 0 --device 0       # first pass
 adcf-run --only yolo11s-adcf-add             # a single run, all seeds
+adcf-run --cv                                # 5-fold CV jobs from the cv: section
+adcf-compare --a yolo11s --b yolo11s-adcf    # paired bootstrap CI on test
 adcf-run --reeval                            # recompute test metrics (e.g. after fixing eval code)
 ```
 

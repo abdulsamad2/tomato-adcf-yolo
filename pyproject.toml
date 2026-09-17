@@ -21,6 +21,7 @@ tv-stats = "adcf_yolo.data.stats:main"
 adcf-run = "adcf_yolo.experiments:main"
 adcf-bench = "adcf_yolo.eval.efficiency:main"
 adcf-collect = "adcf_yolo.collect:main"
+adcf-compare = "adcf_yolo.compare:main"
 adcf-gates = "adcf_yolo.gates:main"
 
 [dependency-groups]

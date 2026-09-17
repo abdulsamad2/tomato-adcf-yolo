@@ -10,6 +10,8 @@ Read the notes in order. Each one explains *why* before *how*.
 | 04 | [Experiment design](04-experiment-design.md) | Baselines, ablations, seeds, fairness rules |
 | 05 | [Metrics](05-metrics.md) | IoU, AP, mAP50 vs mAP50-95, AP_small, FPS done right, significance |
 | 06 | [Writing the paper](06-writing-the-paper.md) | Structure, which result goes in which table/figure, related work |
+| 07 | [Critical review](07-critical-review.md) | Weak points a reviewer would attack, and what was changed because of them |
+| 08 | [Publication plan](08-publication-plan.md) | The improvement ladder, model adjustments, decision rules, what we publish |
 
 ## The checklist
 
@@ -22,20 +24,23 @@ Tick these off in order. Don't skip ahead: later steps rely on earlier ones bein
 - [ ] `tv-stats`; open `results/dataset/label_preview.png`. Do boxes sit on lesions? (If boxes look rotated or shifted, stop and read note 01, "EXIF")
 - [ ] Copy `data/tomato_village/split_manifest.csv` to `splits/` and commit it
 
-**Phase B — tier 1 (main result)**
-- [ ] `adcf-run --tier 1 --seeds 0` first: one seed of each. Check the training curves look sane
+**Phase B — tier 1: the improvement ladder (note 08)**
+- [ ] `tv-prepare --cv-folds 5` too (needed later; cheap)
+- [ ] `adcf-run --tier 1 --seeds 0`. Check training curves look sane
 - [ ] Record hours per run (`train_done.json`) → estimate the GPU budget for everything else
-- [ ] Finish seeds 1 and 2
-- [ ] `adcf-collect`: is ADCF better than YOLO11s by more than the seed std? (note 05)
+- [ ] Finish seeds 1 and 2, `adcf-collect`, read **`tables_val.md`** only
+- [ ] Decide replace vs residual (and P2) → set `adcf_final` and `cv.runs` in the config, commit
 
-**Phase C — tier 2 (ablations: why it works)**
-- [ ] Fusion ablation, capacity control, placement ablation, plug-in on YOLOv8s/YOLO26s
-- [ ] `adcf-gates` on the best ADCF checkpoint → figures + `gate_stats.json`
+**Phase C — tier 2: baselines, controls, resolution, ablations**
+- [ ] `adcf-run --tier 2`
+- [ ] If adding 960 px or P2 to the final model: the claim is vs the *matched* baseline
+- [ ] **Freeze the design.** Only now open `tables_test.md`; run `adcf-compare --a yolo11s --b <final>`
 
-**Phase D — tier 3 and efficiency**
-- [ ] Scale (n/m) and no-offline-aug runs if time allows
+**Phase D — confirmation, efficiency, analysis**
+- [ ] `adcf-run --cv` + `adcf-collect --cv` (baseline vs final, 5 folds)
 - [ ] `adcf-bench` for all runs **in one session** on an idle GPU
-- [ ] Final `adcf-collect`
+- [ ] `adcf-gates` on the final model → figures + `gate_stats.json`
+- [ ] Tier 3 if time allows
 
 **Phase E — write** (note 06)
 

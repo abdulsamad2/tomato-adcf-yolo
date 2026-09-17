@@ -13,6 +13,9 @@ What this script does:
   4. Stratified *group* split into train/val/test (default 70/15/15).
   5. Train gets originals + offline aug copies; val/test get originals only.
   6. Write an Ultralytics dataset.yaml, a split manifest (commit it!) and a report.
+
+`--cv-folds 5` instead writes 5 grouped, stratified folds (fold<k>/dataset.yaml with
+test = fold k) for the final, statistically stronger comparison.
 """
 
 from __future__ import annotations
@@ -221,38 +224,37 @@ def place(src: Path, dst: Path, mode: str) -> None:
         shutil.copy2(src, dst)
 
 
-def prepare(
-    raw_root: Path,
-    out: Path,
-    ratios: tuple[float, float, float] = (0.7, 0.15, 0.15),
-    seed: int = 0,
-    train_aug: bool = True,
-    dup_dist: int = 4,
-    manifest: Path | None = None,
-    link: str = "hardlink",
-    overwrite: bool = False,
-) -> dict:
-    variant_dir = raw_root / SUBDIR if (raw_root / SUBDIR).is_dir() else raw_root
-    if out.exists() and not overwrite:
-        raise FileExistsError(f"{out} exists; pass --overwrite to rebuild it")
+@dataclass
+class Analysis:
+    """Everything about the raw data that doesn't depend on how we split it."""
 
+    names: list[str]
+    samples: list[Sample]
+    groups: dict[str, list[Sample]]
+    cluster_of: dict[str, str]  # photo id -> near-duplicate cluster id
+    strata: dict[str, str]  # cluster id -> stratum (majority class)
+    info: dict
+
+
+def representative(g: list[Sample]) -> Sample:
+    """The un-augmented photo of a group (or its lowest-numbered copy if missing)."""
+    return min(g, key=lambda s: -1 if s.aug is None else s.aug)
+
+
+def analyse(raw_root: Path, dup_dist: int = 4) -> Analysis:
+    variant_dir = raw_root / SUBDIR if (raw_root / SUBDIR).is_dir() else raw_root
     names = read_class_names(variant_dir)
     problems: Counter = Counter()
     samples = scan(variant_dir, len(names), problems)
     if not samples:
         raise RuntimeError(f"no usable images found under {variant_dir}")
-    if out.exists():
-        shutil.rmtree(out)
     groups: dict[str, list[Sample]] = defaultdict(list)
     for s in samples:
         groups[s.original_id].append(s)
 
     # The official split leaks: count originals whose files sit in both train and val.
     leaked = sum(1 for g in groups.values() if len({s.source_split for s in g}) > 1)
-    missing_original = sorted(gid for gid, g in groups.items() if all(s.aug is not None for s in g))
-
-    def representative(g: list[Sample]) -> Sample:  # the un-augmented photo if present
-        return min(g, key=lambda s: -1 if s.aug is None else s.aug)
+    missing_original = sum(1 for g in groups.values() if all(s.aug is not None for s in g))
 
     # Near-duplicate photos (e.g. the same leaf shot twice) must share a split too.
     gids = sorted(groups)
@@ -261,9 +263,10 @@ def prepare(
     uf = UnionFind(gids)
     for a, b, _ in dup_pairs:
         uf.union(a, b)
+    cluster_of = {g: uf.find(g) for g in gids}
     clusters: dict[str, list[str]] = defaultdict(list)
-    for g in gids:
-        clusters[uf.find(g)].append(g)
+    for g, c in cluster_of.items():
+        clusters[c].append(g)
 
     # Stratum = majority class (by box count) of the cluster's original photos.
     global_counts = Counter(b[0] for s in samples if s.aug is None for b in s.boxes)
@@ -275,22 +278,31 @@ def prepare(
         else:  # ties go to the globally rarer class
             strata[cid] = names[max(counts, key=lambda c: (counts[c], -global_counts[c]))]
 
-    if manifest:
-        with open(manifest, newline="") as f:
-            fixed = {row["original_id"]: row["split"] for row in csv.DictReader(f)}
-        unknown = set(gids) - set(fixed)
-        if unknown:
-            raise ValueError(f"{len(unknown)} photos not in manifest, e.g. {sorted(unknown)[:3]}")
-        split_of = {g: fixed[g] for g in gids}
-    else:
-        cluster_split = stratified_group_split(strata, ratios, seed)
-        split_of = {g: cluster_split[uf.find(g)] for g in gids}
+    source = raw_root / "SOURCE.txt"
+    info = {
+        "source": source.read_text() if source.exists() else None,
+        "dup_dist": dup_dist,
+        "files_scanned": len(samples),
+        "original_photos": len(groups),
+        "official_split_leaked_photos": leaked,
+        "photos_without_unaugmented_file": missing_original,
+        "near_duplicate_pairs": [{"a": a, "b": b, "hamming": d} for a, b, d in dup_pairs],
+        "clusters": len(clusters),
+        "problems": dict(problems),
+    }
+    print(
+        f"[prepare] {len(groups)} photos ({leaked} leaked across official splits), "
+        f"{len(dup_pairs)} near-duplicate pairs -> {len(clusters)} clusters; problems {dict(problems)}"
+    )
+    return Analysis(names, samples, dict(groups), cluster_of, strata, info)
 
-    # Write the Ultralytics layout: images/<split>/x.jpg + labels/<split>/x.txt
+
+def write_split(an: Analysis, split_of: dict[str, str], out: Path, train_aug: bool, link: str, args: dict) -> dict:
+    """Write the Ultralytics layout (images/<split>, labels/<split>), dataset.yaml, manifest, report."""
     rows, file_counts, seen = [], Counter(), set()
-    for gid in gids:
+    for gid in sorted(an.groups):
         split = split_of[gid]
-        chosen = groups[gid] if (split == "train" and train_aug) else [representative(groups[gid])]
+        chosen = an.groups[gid] if (split == "train" and train_aug) else [representative(an.groups[gid])]
         for s in chosen:
             stem = safe_name(s.image.stem)
             if stem in seen:
@@ -301,15 +313,8 @@ def prepare(
             lbl.parent.mkdir(parents=True, exist_ok=True)
             lbl.write_text("".join(f"{c} {x:.6f} {y:.6f} {w:.6f} {h:.6f}\n" for c, x, y, w, h in s.boxes))
             file_counts[split] += 1
-        rows.append(
-            {
-                "original_id": gid,
-                "split": split,
-                "cluster": uf.find(gid),
-                "stratum": strata[uf.find(gid)],
-                "n_files_written": len(chosen),
-            }
-        )
+        cid = an.cluster_of[gid]
+        rows.append({"original_id": gid, "split": split, "cluster": cid, "stratum": an.strata[cid], "n_files_written": len(chosen)})
 
     out.mkdir(parents=True, exist_ok=True)
     with open(out / "split_manifest.csv", "w", newline="") as f:
@@ -321,49 +326,112 @@ def prepare(
         "train": "images/train",
         "val": "images/val",
         "test": "images/test",
-        "names": dict(enumerate(names)),
+        "names": dict(enumerate(an.names)),
     }
     (out / "dataset.yaml").write_text(yaml.safe_dump(dataset_yaml, sort_keys=False, allow_unicode=True))
-
-    source = raw_root / "SOURCE.txt"
     report = {
-        "source": source.read_text() if source.exists() else None,
-        "args": {
-            "ratios": ratios,
-            "seed": seed,
-            "train_aug": train_aug,
-            "dup_dist": dup_dist,
-            "manifest": str(manifest) if manifest else None,
-        },
-        "files_scanned": len(samples),
-        "original_photos": len(groups),
-        "official_split_leaked_photos": leaked,
-        "photos_without_unaugmented_file": len(missing_original),
-        "near_duplicate_pairs": [{"a": a, "b": b, "hamming": d} for a, b, d in dup_pairs],
-        "clusters": len(clusters),
-        "problems": dict(problems),
+        **an.info,
+        "args": {**args, "train_aug": train_aug},
         "photos_per_split": dict(Counter(split_of.values())),
         "files_per_split": dict(file_counts),
-        "strata_per_split": {
-            sp: dict(Counter(r["stratum"] for r in rows if r["split"] == sp)) for sp in SPLITS
-        },
+        "strata_per_split": {sp: dict(Counter(r["stratum"] for r in rows if r["split"] == sp)) for sp in SPLITS},
     }
     (out / "prepare_report.json").write_text(json.dumps(report, indent=2))
-    print(
-        f"[prepare] {len(groups)} photos ({leaked} leaked across official splits), "
-        f"{len(dup_pairs)} near-duplicate pairs -> {len(clusters)} clusters"
-    )
-    print(f"[prepare] photos/split {report['photos_per_split']}  files/split {dict(file_counts)}")
-    print(f"[prepare] problems {dict(problems)}")
-    print(f"[prepare] wrote {out / 'dataset.yaml'}")
+    print(f"[prepare] {out}: photos/split {report['photos_per_split']}  files/split {dict(file_counts)}")
     return report
+
+
+def stratified_kfold(strata: dict[str, str], k: int, seed: int) -> dict[str, int]:
+    """Assign each group to one of k folds, balancing every stratum across folds."""
+    rng = random.Random(seed)
+    by_stratum = defaultdict(list)
+    for gid in sorted(strata):
+        by_stratum[strata[gid]].append(gid)
+    fold_of = {}
+    for stratum in sorted(by_stratum):
+        gids = by_stratum[stratum]
+        rng.shuffle(gids)
+        offset = rng.randrange(k)  # so small strata don't always land in fold 0
+        for j, gid in enumerate(gids):
+            fold_of[gid] = (j + offset) % k
+    return fold_of
+
+
+def _prepare_out(out: Path, overwrite: bool) -> None:
+    if out.exists() and not overwrite:
+        raise FileExistsError(f"{out} exists; pass --overwrite to rebuild it")
+
+
+def prepare(
+    raw_root: Path,
+    out: Path,
+    ratios: tuple[float, float, float] = (0.7, 0.15, 0.15),
+    seed: int = 0,
+    train_aug: bool = True,
+    dup_dist: int = 4,
+    manifest: Path | None = None,
+    link: str = "hardlink",
+    overwrite: bool = False,
+) -> dict:
+    """Single train/val/test split (development, ablations)."""
+    _prepare_out(out, overwrite)
+    an = analyse(raw_root, dup_dist)
+    if manifest:
+        with open(manifest, newline="") as f:
+            fixed = {row["original_id"]: row["split"] for row in csv.DictReader(f)}
+        unknown = set(an.groups) - set(fixed)
+        if unknown:
+            raise ValueError(f"{len(unknown)} photos not in manifest, e.g. {sorted(unknown)[:3]}")
+        split_of = {g: fixed[g] for g in an.groups}
+    else:
+        cluster_split = stratified_group_split(an.strata, ratios, seed)
+        split_of = {g: cluster_split[c] for g, c in an.cluster_of.items()}
+    if out.exists():
+        shutil.rmtree(out)
+    args = {"ratios": ratios, "seed": seed, "manifest": str(manifest) if manifest else None}
+    return write_split(an, split_of, out, train_aug, link, args)
+
+
+def prepare_cv(
+    raw_root: Path,
+    out: Path,
+    folds: int = 5,
+    val_ratio: float = 0.15,
+    seed: int = 0,
+    train_aug: bool = True,
+    dup_dist: int = 4,
+    link: str = "hardlink",
+    overwrite: bool = False,
+) -> list[dict]:
+    """k-fold grouped cross-validation: out/fold<k>/dataset.yaml, test = fold k.
+
+    LEARN: every photo is a test photo exactly once, so the final comparison uses all
+    ~1,800 photos instead of ~270, and fold-to-fold pairing gives a stronger test.
+    """
+    _prepare_out(out, overwrite)
+    an = analyse(raw_root, dup_dist)
+    fold_of = stratified_kfold(an.strata, folds, seed)
+    # val is carved from the non-test clusters so it stays ~val_ratio of all photos
+    inner_val = val_ratio / (1 - 1 / folds)
+    if out.exists():
+        shutil.rmtree(out)
+    reports = []
+    for k in range(folds):
+        rest = {c: s for c, s in an.strata.items() if fold_of[c] != k}
+        inner = stratified_group_split(rest, (1 - inner_val, inner_val, 0.0), seed + k)
+        cluster_split = {c: ("test" if fold_of[c] == k else inner[c]) for c in an.strata}
+        split_of = {g: cluster_split[c] for g, c in an.cluster_of.items()}
+        args = {"folds": folds, "fold": k, "val_ratio": val_ratio, "seed": seed}
+        reports.append(write_split(an, split_of, out / f"fold{k}", train_aug, link, args))
+    return reports
 
 
 def main() -> None:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--raw", type=Path, default=Path("data/raw/Tomato-Village"))
-    p.add_argument("--out", type=Path, default=Path("data/tomato_village"))
+    p.add_argument("--out", type=Path, help="default: data/tomato_village (or data/tomato_village_cv with --cv-folds)")
     p.add_argument("--ratios", type=float, nargs=3, default=(0.7, 0.15, 0.15), metavar=("TRAIN", "VAL", "TEST"))
+    p.add_argument("--cv-folds", type=int, help="write k-fold cross-validation splits instead of one split")
     p.add_argument("--seed", type=int, default=0)
     p.add_argument("--no-train-aug", action="store_true", help="exclude the offline _augN copies from train")
     p.add_argument("--dup-dist", type=int, default=4, help="max dHash Hamming distance for near-duplicates")
@@ -373,17 +441,18 @@ def main() -> None:
     args = p.parse_args()
     if abs(sum(args.ratios) - 1) > 1e-6:
         p.error("--ratios must sum to 1")
-    prepare(
-        args.raw,
-        args.out,
-        tuple(args.ratios),
-        args.seed,
-        not args.no_train_aug,
-        args.dup_dist,
-        args.manifest,
-        args.link,
-        args.overwrite,
-    )
+    if args.cv_folds:
+        if args.manifest:
+            p.error("--manifest can't be combined with --cv-folds")
+        prepare_cv(
+            args.raw, args.out or Path("data/tomato_village_cv"), args.cv_folds, args.ratios[1], args.seed,
+            not args.no_train_aug, args.dup_dist, args.link, args.overwrite,
+        )
+    else:
+        prepare(
+            args.raw, args.out or Path("data/tomato_village"), tuple(args.ratios), args.seed,
+            not args.no_train_aug, args.dup_dist, args.manifest, args.link, args.overwrite,
+        )
 
 
 if __name__ == "__main__":

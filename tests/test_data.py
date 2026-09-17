@@ -4,7 +4,15 @@ from collections import Counter
 import pytest
 import yaml
 
-from adcf_yolo.data.prepare import AUG_RE, clean_class_name, parse_label, prepare, safe_name, stratified_group_split
+from adcf_yolo.data.prepare import (
+    AUG_RE,
+    clean_class_name,
+    parse_label,
+    prepare,
+    prepare_cv,
+    safe_name,
+    stratified_group_split,
+)
 from adcf_yolo.data.stats import compute_stats
 
 
@@ -71,3 +79,21 @@ def test_prepare_has_no_leakage(raw_dataset, tmp_path):
 
     with pytest.raises(FileExistsError):
         prepare(raw_dataset, out)
+
+
+def test_prepare_cv_every_photo_tested_once(raw_dataset, tmp_path):
+    out = tmp_path / "cv"
+    reports = prepare_cv(raw_dataset, out, folds=3, val_ratio=0.15, seed=0)
+    assert len(reports) == 3
+    tested = Counter()
+    for k in range(3):
+        rows = list(csv.DictReader(open(out / f"fold{k}" / "split_manifest.csv")))
+        split_of = {r["original_id"]: r["split"] for r in rows}
+        cluster_splits = {}
+        for r in rows:  # a near-duplicate cluster never straddles splits
+            assert cluster_splits.setdefault(r["cluster"], r["split"]) == r["split"]
+        tested.update(g for g, s in split_of.items() if s == "test")
+        assert {"train", "val", "test"} == set(split_of.values())
+        assert (out / f"fold{k}" / "dataset.yaml").exists()
+    assert set(tested.values()) == {1}
+    assert len(tested) == reports[0]["original_photos"]

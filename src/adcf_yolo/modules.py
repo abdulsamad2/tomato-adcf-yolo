@@ -29,15 +29,17 @@ class DetailBranch(nn.Module):
     leaf colour) cancel out; abrupt changes (lesion borders, speckles) remain.
     """
 
-    def __init__(self, c: int):
+    def __init__(self, c: int, highpass: bool = True):
         super().__init__()
         self.dw = Conv(c, c, 3, g=c)  # depthwise: one 3x3 filter per channel, ~9*c params
         self.pw = Conv(c, c, 1)  # pointwise: mixes channels
-        self.blur = nn.AvgPool2d(3, stride=1, padding=1, count_include_pad=False)
+        self.blur = nn.AvgPool2d(3, stride=1, padding=1, count_include_pad=False) if highpass else None
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        high_freq = x - self.blur(x)
-        return self.pw(self.dw(x) + high_freq)
+        y = self.dw(x)
+        if self.blur is not None:
+            y = y + (x - self.blur(x))  # high-frequency residual
+        return self.pw(y)
 
 
 class ContextBranch(nn.Module):
@@ -103,6 +105,7 @@ class ADCF(nn.Module):
         fusion: "gated" (proposed), or ablations "add", "concat", "detail", "context".
         gate: "spatial" or "channel" (only used when fusion == "gated").
         dilations: dilation rates of the cascaded context convs.
+        highpass: add the explicit high-pass residual in the detail branch (ablation switch).
     """
 
     def __init__(
@@ -113,6 +116,7 @@ class ADCF(nn.Module):
         fusion: str = "gated",
         gate: str = "spatial",
         dilations: tuple[int, ...] = (2, 3),
+        highpass: bool = True,
     ):
         super().__init__()
         if fusion not in FUSION_MODES:
@@ -120,7 +124,7 @@ class ADCF(nn.Module):
         c_ = int(c2 * e)
         self.fusion = fusion
         self.reduce = Conv(c1, c_, 1)
-        self.detail = DetailBranch(c_) if fusion != "context" else None
+        self.detail = DetailBranch(c_, highpass) if fusion != "context" else None
         self.context = ContextBranch(c_, tuple(dilations)) if fusion != "detail" else None
         self.gate = FusionGate(c_, gate) if fusion == "gated" else None
         self.mix = Conv(2 * c_, c_, 1) if fusion == "concat" else None
@@ -148,3 +152,26 @@ class ADCF(nn.Module):
             else:  # concat
                 fused = self.mix(torch.cat((d, c), 1))
         return self.proj(torch.cat((x, fused), 1))
+
+
+class ResidualRefine(nn.Module):
+    """Keep the original (pretrained) neck block and add a learned refinement on top.
+
+        y = block(x);   out = y + gamma * refiner(y)
+
+    LEARN: "replace" mode throws away the COCO-pretrained C2f/C3k2 weights of the neck,
+    so ADCF starts at a disadvantage. Here the pretrained block is kept, and gamma
+    (one value per channel, LayerScale-style) starts small, so at step 0 the network
+    behaves almost exactly like the pretrained baseline. Any gain must come from what
+    the refiner learns.
+    """
+
+    def __init__(self, block: nn.Module, refiner: nn.Module, channels: int, gamma_init: float = 0.01):
+        super().__init__()
+        self.block = block
+        self.refiner = refiner
+        self.gamma = nn.Parameter(torch.full((1, channels, 1, 1), float(gamma_init)))
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        y = self.block(x)
+        return y + self.gamma * self.refiner(y)

@@ -20,6 +20,7 @@ from pathlib import Path
 
 import numpy as np
 import torch
+import yaml
 from ultralytics import YOLO
 from ultralytics.utils.torch_utils import get_flops, get_num_params
 
@@ -88,7 +89,7 @@ def measure_latency(
 def main() -> None:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--runs", type=Path, default=Path("runs"), help="experiment root written by adcf-run")
-    p.add_argument("--imgsz", type=int, default=640)
+    p.add_argument("--imgsz", type=int, help="default: each run's training imgsz (from its args.yaml)")
     p.add_argument("--batch", type=int, default=1)
     p.add_argument("--fp32", action="store_true", help="time in FP32 instead of FP16")
     p.add_argument("--warmup", type=int, default=50)
@@ -102,9 +103,11 @@ def main() -> None:
         raise SystemExit(f"no checkpoints under {args.runs}/*/{args.seed_dir}/weights/best.pt")
     for ckpt in checkpoints:
         run_dir = ckpt.parents[2]
+        train_args = ckpt.parents[1] / "args.yaml"
+        imgsz = args.imgsz or (yaml.safe_load(train_args.read_text())["imgsz"] if train_args.exists() else 640)
         result = {
-            **model_complexity(ckpt, args.imgsz),
-            **measure_latency(ckpt, args.imgsz, args.batch, not args.fp32, args.warmup, args.iters, args.device),
+            **model_complexity(ckpt, imgsz),
+            **measure_latency(ckpt, imgsz, args.batch, not args.fp32, args.warmup, args.iters, args.device),
         }
         (run_dir / "speed.json").write_text(json.dumps(result, indent=2))
         print(f"{run_dir.name:32s} {result['params_M']:.2f}M  {result['GFLOPs']:.1f} GFLOPs  "
