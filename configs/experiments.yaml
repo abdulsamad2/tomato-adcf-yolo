@@ -1,0 +1,103 @@
+# Experiment plan. Every run shares `train` and `eval` settings: that's what
+# makes the comparison fair. See docs/notes/04-experiment-design.md.
+#
+# tier 1 = main results table (run first)
+# tier 2 = ablations (the paper needs these, reviewers will ask)
+# tier 3 = extra evidence (scaling, data), run if GPU time allows
+#
+# Run: adcf-run --config configs/experiments.yaml --tier 1
+
+data: data/tomato_village/dataset.yaml
+project: runs
+seeds: [0, 1, 2]
+pretrained: true   # start from COCO weights (<base>.pt), as almost all papers do
+
+train:
+  epochs: 200
+  patience: 50           # early stop if val fitness hasn't improved for 50 epochs
+  imgsz: 640
+  batch: 16
+  optimizer: SGD         # fixed; "auto" can pick different optimizers per model
+  lr0: 0.01
+  lrf: 0.01
+  momentum: 0.937
+  weight_decay: 0.0005
+  warmup_epochs: 3
+  cos_lr: false
+  close_mosaic: 10
+  workers: 8
+  deterministic: true
+  amp: true
+  cache: false           # set to "ram" if the lab machine has plenty of memory
+  plots: true
+
+eval:
+  split: test            # final numbers ONLY come from test; val is for early stopping
+  imgsz: 640
+  batch: 16
+  conf: 0.001
+  iou: 0.7
+
+# `table` decides where a run appears in adcf-collect's output;
+# `reference` is the run each table's rows are compared against (delta, p-value).
+tables:
+  main:      {reference: yolo11s, title: "Comparison with baselines"}
+  fusion:    {reference: yolo11s, title: "Ablation: fusion strategy (YOLO11s, all neck slots)"}
+  placement: {reference: yolo11s, title: "Ablation: where to insert ADCF"}
+  scale:     {reference: yolo11n, title: "Model scale"}
+  data:      {reference: yolo11s, title: "Offline augmentation copies"}
+
+runs:
+  # ---------------- tier 1: main table ----------------
+  - {name: yolo11s,        base: yolo11s, tier: 1, tables: [main, fusion, placement, data]}
+  - {name: yolo11s-adcf,   base: yolo11s, tier: 1, tables: [main, fusion, placement],
+     adcf: {placement: all, fusion: gated, gate: spatial}}
+  - {name: yolov8s,        base: yolov8s, tier: 1, tables: [main]}
+  - {name: yolo26s,        base: yolo26s, tier: 1, tables: [main]}
+
+  # ---------------- tier 2: ablations ----------------
+  # Is ADCF a general plug-in, not just a YOLO11 trick?
+  - {name: yolov8s-adcf,   base: yolov8s, tier: 2, tables: [main],
+     adcf: {placement: all, fusion: gated, gate: spatial}}
+  - {name: yolo26s-adcf,   base: yolo26s, tier: 2, tables: [main],
+     adcf: {placement: all, fusion: gated, gate: spatial}}
+
+  # Which part of ADCF matters? (each removes or replaces one idea)
+  - {name: yolo11s-adcf-detail,  base: yolo11s, tier: 2, tables: [fusion],
+     adcf: {placement: all, fusion: detail}}
+  - {name: yolo11s-adcf-context, base: yolo11s, tier: 2, tables: [fusion],
+     adcf: {placement: all, fusion: context}}
+  - {name: yolo11s-adcf-add,     base: yolo11s, tier: 2, tables: [fusion],
+     adcf: {placement: all, fusion: add}}
+  - {name: yolo11s-adcf-concat,  base: yolo11s, tier: 2, tables: [fusion],
+     adcf: {placement: all, fusion: concat}}
+  - {name: yolo11s-adcf-chgate,  base: yolo11s, tier: 2, tables: [fusion],
+     adcf: {placement: all, fusion: gated, gate: channel}}
+  # Capacity control: default ADCF (e=0.5) has FEWER params than the baseline
+  # (8.1M vs 9.4M). e=0.9 roughly matches it, so "it's just size" can be ruled out.
+  - {name: yolo11s-adcf-wide,    base: yolo11s, tier: 2, tables: [fusion],
+     adcf: {placement: all, fusion: gated, gate: spatial, e: 0.9}}
+
+  # Where should ADCF go?
+  - {name: yolo11s-adcf-p3,        base: yolo11s, tier: 2, tables: [placement],
+     adcf: {placement: p3, fusion: gated, gate: spatial}}
+  - {name: yolo11s-adcf-topdown,   base: yolo11s, tier: 2, tables: [placement],
+     adcf: {placement: top_down, fusion: gated, gate: spatial}}
+  - {name: yolo11s-adcf-bottomup,  base: yolo11s, tier: 2, tables: [placement],
+     adcf: {placement: bottom_up, fusion: gated, gate: spatial}}
+
+  # ---------------- tier 3: extra evidence ----------------
+  - {name: yolo11n,       base: yolo11n, tier: 3, tables: [scale]}
+  - {name: yolo11n-adcf,  base: yolo11n, tier: 3, tables: [scale],
+     adcf: {placement: all, fusion: gated, gate: spatial}}
+  - {name: yolo11m,       base: yolo11m, tier: 3, tables: [scale]}
+  - {name: yolo11m-adcf,  base: yolo11m, tier: 3, tables: [scale],
+     adcf: {placement: all, fusion: gated, gate: spatial}}
+
+  # Needs: tv-prepare --no-train-aug --out data/tomato_village_noaug
+  # (and --manifest data/tomato_village/split_manifest.csv so the split is identical)
+  - {name: yolo11s-noaug,      base: yolo11s, tier: 3, tables: [data],
+     data: data/tomato_village_noaug/dataset.yaml}
+  - {name: yolo11s-adcf-noaug, base: yolo11s, tier: 3, tables: [data],
+     data: data/tomato_village_noaug/dataset.yaml,
+     adcf: {placement: all, fusion: gated, gate: spatial}}

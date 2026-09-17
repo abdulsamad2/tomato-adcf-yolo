@@ -1,0 +1,38 @@
+[project]
+name = "tomato-adcf-yolo"
+version = "0.1.0"
+description = "Adaptive Detail–Context Fusion (ADCF) in the YOLO neck for tomato leaf disease detection on Tomato-Village"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "torch>=2.14.0",
+    "torchvision>=0.29.0",
+    "ultralytics>=8.4.155",
+    "pycocotools>=2.0.8",
+    "pyyaml>=6.0",
+    "scipy>=1.13",
+    "matplotlib>=3.8",
+]
+
+[project.scripts]
+tv-download = "adcf_yolo.data.download:main"
+tv-prepare = "adcf_yolo.data.prepare:main"
+tv-stats = "adcf_yolo.data.stats:main"
+adcf-run = "adcf_yolo.experiments:main"
+adcf-bench = "adcf_yolo.eval.efficiency:main"
+adcf-collect = "adcf_yolo.collect:main"
+adcf-gates = "adcf_yolo.gates:main"
+
+[dependency-groups]
+dev = ["pytest>=9.1.1"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/adcf_yolo"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["slow: end-to-end training smoke test (a few minutes on CPU)"]

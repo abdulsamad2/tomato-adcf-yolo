@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# datasets, training outputs, weights (large; regenerate with the pipeline)
+/data/
+/runs/
+*.pt
+*.onnx
+*.engine
+
+# results/ IS tracked (tables, figures) except bulky per-image gate plots
+results/gates/*.png
+
+.DS_Store
