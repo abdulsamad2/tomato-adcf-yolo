@@ -1,0 +1,7 @@
+# Keep frozen scripts and records byte-identical (their SHA-256 hashes are recorded in the pre-registrations)
+experiments/** -text
+artifacts/** -text
+splits/** -text
+*.docx binary
+*.png binary
+*.pdf binary

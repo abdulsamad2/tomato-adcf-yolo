@@ -1,0 +1,55 @@
+{
+ "pretrained": "yolo11n.pt (COCO, nc=80)",
+ "pretrained_tensors": 499,
+ "pretrained_params": 2639825,
+ "variants": {
+  "1.00x": {
+   "target_tensors": 499,
+   "target_params": 2606857,
+   "names_present_in_pretrained": 499,
+   "shape_matching_tensors": 448,
+   "shape_matching_params": 2560305,
+   "pct_tensors_transferable": 89.78,
+   "pct_params_transferable": 98.21,
+   "ultralytics_load_changed_tensors": 447,
+   "ultralytics_load_changed_params": 2560289,
+   "pct_params_actually_loaded": 98.21
+  },
+  "0.75x": {
+   "target_tensors": 499,
+   "target_params": 1577441,
+   "names_present_in_pretrained": 499,
+   "shape_matching_tensors": 120,
+   "shape_matching_params": 125201,
+   "pct_tensors_transferable": 24.05,
+   "pct_params_transferable": 7.94,
+   "ultralytics_load_changed_tensors": 119,
+   "ultralytics_load_changed_params": 125185,
+   "pct_params_actually_loaded": 7.94
+  },
+  "0.50x": {
+   "target_tensors": 499,
+   "target_params": 819297,
+   "names_present_in_pretrained": 499,
+   "shape_matching_tensors": 115,
+   "shape_matching_params": 124705,
+   "pct_tensors_transferable": 23.05,
+   "pct_params_transferable": 15.22,
+   "ultralytics_load_changed_tensors": 115,
+   "ultralytics_load_changed_params": 124905,
+   "pct_params_actually_loaded": 15.25
+  },
+  "0.35x": {
+   "target_tensors": 499,
+   "target_params": 543817,
+   "names_present_in_pretrained": 499,
+   "shape_matching_tensors": 115,
+   "shape_matching_params": 124705,
+   "pct_tensors_transferable": 23.05,
+   "pct_params_transferable": 22.93,
+   "ultralytics_load_changed_tensors": 115,
+   "ultralytics_load_changed_params": 124905,
+   "pct_params_actually_loaded": 22.97
+  }
+ }
+}

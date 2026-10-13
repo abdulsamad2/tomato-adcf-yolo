@@ -1,0 +1,8 @@
+{
+ "A": "C:\\Users\\absamad\\cs\\scales\\yolo11n_A.yaml",
+ "B": "C:\\Users\\absamad\\cs\\scales\\yolo11n_B.yaml",
+ "C": "C:\\Users\\absamad\\cs\\scales\\yolo11n_C.yaml",
+ "C_lean": "C:\\Users\\absamad\\cs\\scales\\yolo11n_C_lean.yaml",
+ "B_disc": "C:\\Users\\absamad\\cs\\scales\\yolo11n_B_disc.yaml",
+ "C_disc": "C:\\Users\\absamad\\cs\\scales\\yolo11n_C_disc.yaml"
+}

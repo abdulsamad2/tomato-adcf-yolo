@@ -1,0 +1,361 @@
+ap50,ap50_95,arm,checkpoint_step,class_id,class_name,seed
+0.447877,0.217825,B,6320,2,Late Blight,0
+0.502169,0.248093,B,6320,3,Leaf Miner,0
+0.479098,0.269486,B,6320,4,Magnesium Deficiency,0
+0.113058,0.054138,B,6320,5,Nitrogen Deficiency,0
+0.305024,0.173929,B,6320,6,Potassium Deficiency,0
+0.56508,0.246269,B,6320,7,Spotted Wilt Virus,0
+0.486881,0.255211,B,12008,2,Late Blight,0
+0.480968,0.23471,B,12008,3,Leaf Miner,0
+0.485566,0.280711,B,12008,4,Magnesium Deficiency,0
+0.194625,0.102692,B,12008,5,Nitrogen Deficiency,0
+0.373437,0.213564,B,12008,6,Potassium Deficiency,0
+0.545873,0.239316,B,12008,7,Spotted Wilt Virus,0
+0.513616,0.266963,B,18170,2,Late Blight,0
+0.441394,0.220435,B,18170,3,Leaf Miner,0
+0.478448,0.279977,B,18170,4,Magnesium Deficiency,0
+0.134227,0.066177,B,18170,5,Nitrogen Deficiency,0
+0.326131,0.18051,B,18170,6,Potassium Deficiency,0
+0.520892,0.22464,B,18170,7,Spotted Wilt Virus,0
+0.503347,0.263716,B,24569,2,Late Blight,0
+0.424273,0.214433,B,24569,3,Leaf Miner,0
+0.470753,0.270291,B,24569,4,Magnesium Deficiency,0
+0.142647,0.077242,B,24569,5,Nitrogen Deficiency,0
+0.452775,0.221536,B,24569,6,Potassium Deficiency,0
+0.513054,0.224082,B,24569,7,Spotted Wilt Virus,0
+0.441407,0.210749,B,6320,2,Late Blight,1
+0.502848,0.249696,B,6320,3,Leaf Miner,1
+0.535399,0.29446,B,6320,4,Magnesium Deficiency,1
+0.162791,0.089274,B,6320,5,Nitrogen Deficiency,1
+0.384316,0.223444,B,6320,6,Potassium Deficiency,1
+0.564601,0.245079,B,6320,7,Spotted Wilt Virus,1
+0.46214,0.248871,B,12008,2,Late Blight,1
+0.46627,0.232388,B,12008,3,Leaf Miner,1
+0.530247,0.314247,B,12008,4,Magnesium Deficiency,1
+0.124128,0.036368,B,12008,5,Nitrogen Deficiency,1
+0.326324,0.172183,B,12008,6,Potassium Deficiency,1
+0.566991,0.238293,B,12008,7,Spotted Wilt Virus,1
+0.508734,0.266271,B,18170,2,Late Blight,1
+0.452325,0.221756,B,18170,3,Leaf Miner,1
+0.516887,0.30384,B,18170,4,Magnesium Deficiency,1
+0.12625,0.052428,B,18170,5,Nitrogen Deficiency,1
+0.380005,0.222418,B,18170,6,Potassium Deficiency,1
+0.553007,0.240068,B,18170,7,Spotted Wilt Virus,1
+0.483736,0.26738,B,24569,2,Late Blight,1
+0.434161,0.213249,B,24569,3,Leaf Miner,1
+0.513094,0.293918,B,24569,4,Magnesium Deficiency,1
+0.143132,0.058615,B,24569,5,Nitrogen Deficiency,1
+0.359113,0.217246,B,24569,6,Potassium Deficiency,1
+0.553624,0.246861,B,24569,7,Spotted Wilt Virus,1
+0.601933,0.266426,B,6320,2,Late Blight,2
+0.492672,0.248268,B,6320,3,Leaf Miner,2
+0.531123,0.309948,B,6320,4,Magnesium Deficiency,2
+0.109226,0.064649,B,6320,5,Nitrogen Deficiency,2
+0.511177,0.266572,B,6320,6,Potassium Deficiency,2
+0.578267,0.250023,B,6320,7,Spotted Wilt Virus,2
+0.513121,0.247628,B,12008,2,Late Blight,2
+0.470394,0.231006,B,12008,3,Leaf Miner,2
+0.523118,0.292333,B,12008,4,Magnesium Deficiency,2
+0.114029,0.034015,B,12008,5,Nitrogen Deficiency,2
+0.379857,0.21349,B,12008,6,Potassium Deficiency,2
+0.538946,0.226574,B,12008,7,Spotted Wilt Virus,2
+0.525783,0.25349,B,18170,2,Late Blight,2
+0.454302,0.223932,B,18170,3,Leaf Miner,2
+0.485968,0.275755,B,18170,4,Magnesium Deficiency,2
+0.089379,0.038896,B,18170,5,Nitrogen Deficiency,2
+0.331963,0.179932,B,18170,6,Potassium Deficiency,2
+0.525114,0.227045,B,18170,7,Spotted Wilt Virus,2
+0.513988,0.250596,B,24569,2,Late Blight,2
+0.43515,0.217482,B,24569,3,Leaf Miner,2
+0.465779,0.266868,B,24569,4,Magnesium Deficiency,2
+0.120709,0.04837,B,24569,5,Nitrogen Deficiency,2
+0.328194,0.1713,B,24569,6,Potassium Deficiency,2
+0.506548,0.22315,B,24569,7,Spotted Wilt Virus,2
+0.416003,0.173028,B,6320,2,Late Blight,3
+0.495052,0.247674,B,6320,3,Leaf Miner,3
+0.538015,0.303015,B,6320,4,Magnesium Deficiency,3
+0.23375,0.110085,B,6320,5,Nitrogen Deficiency,3
+0.229217,0.115678,B,6320,6,Potassium Deficiency,3
+0.590778,0.254568,B,6320,7,Spotted Wilt Virus,3
+0.494262,0.249066,B,12008,2,Late Blight,3
+0.477778,0.233484,B,12008,3,Leaf Miner,3
+0.510535,0.290626,B,12008,4,Magnesium Deficiency,3
+0.171663,0.079859,B,12008,5,Nitrogen Deficiency,3
+0.330752,0.147144,B,12008,6,Potassium Deficiency,3
+0.558292,0.226876,B,12008,7,Spotted Wilt Virus,3
+0.555079,0.260443,B,18170,2,Late Blight,3
+0.455034,0.223903,B,18170,3,Leaf Miner,3
+0.500758,0.282133,B,18170,4,Magnesium Deficiency,3
+0.085,0.041917,B,18170,5,Nitrogen Deficiency,3
+0.222558,0.140276,B,18170,6,Potassium Deficiency,3
+0.531061,0.228345,B,18170,7,Spotted Wilt Virus,3
+0.515165,0.261389,B,24569,2,Late Blight,3
+0.438574,0.219466,B,24569,3,Leaf Miner,3
+0.477212,0.278704,B,24569,4,Magnesium Deficiency,3
+0.124161,0.054709,B,24569,5,Nitrogen Deficiency,3
+0.249682,0.148122,B,24569,6,Potassium Deficiency,3
+0.530261,0.231486,B,24569,7,Spotted Wilt Virus,3
+0.504251,0.248725,B,6320,2,Late Blight,4
+0.485081,0.246493,B,6320,3,Leaf Miner,4
+0.530845,0.302827,B,6320,4,Magnesium Deficiency,4
+0.156463,0.076821,B,6320,5,Nitrogen Deficiency,4
+0.209335,0.124079,B,6320,6,Potassium Deficiency,4
+0.568645,0.245035,B,6320,7,Spotted Wilt Virus,4
+0.502742,0.222241,B,12008,2,Late Blight,4
+0.461844,0.231689,B,12008,3,Leaf Miner,4
+0.503033,0.289413,B,12008,4,Magnesium Deficiency,4
+0.123974,0.046526,B,12008,5,Nitrogen Deficiency,4
+0.299668,0.167172,B,12008,6,Potassium Deficiency,4
+0.551973,0.233208,B,12008,7,Spotted Wilt Virus,4
+0.510924,0.261632,B,18170,2,Late Blight,4
+0.449855,0.222738,B,18170,3,Leaf Miner,4
+0.50255,0.292684,B,18170,4,Magnesium Deficiency,4
+0.139659,0.05259,B,18170,5,Nitrogen Deficiency,4
+0.366775,0.191779,B,18170,6,Potassium Deficiency,4
+0.544734,0.236532,B,18170,7,Spotted Wilt Virus,4
+0.488884,0.257717,B,24569,2,Late Blight,4
+0.42883,0.213527,B,24569,3,Leaf Miner,4
+0.507955,0.296133,B,24569,4,Magnesium Deficiency,4
+0.125455,0.055077,B,24569,5,Nitrogen Deficiency,4
+0.33106,0.205304,B,24569,6,Potassium Deficiency,4
+0.515489,0.221466,B,24569,7,Spotted Wilt Virus,4
+0.419554,0.215159,C,6300,2,Late Blight,0
+0.499133,0.245518,C,6300,3,Leaf Miner,0
+0.534413,0.306052,C,6300,4,Magnesium Deficiency,0
+0.1895,0.084854,C,6300,5,Nitrogen Deficiency,0
+0.269619,0.126759,C,6300,6,Potassium Deficiency,0
+0.562094,0.241,C,6300,7,Spotted Wilt Virus,0
+0.55962,0.251243,C,11970,2,Late Blight,0
+0.491856,0.240533,C,11970,3,Leaf Miner,0
+0.478409,0.273975,C,11970,4,Magnesium Deficiency,0
+0.171538,0.06105,C,11970,5,Nitrogen Deficiency,0
+0.32033,0.144282,C,11970,6,Potassium Deficiency,0
+0.547023,0.233257,C,11970,7,Spotted Wilt Virus,0
+0.516127,0.256591,C,18270,2,Late Blight,0
+0.471433,0.231714,C,18270,3,Leaf Miner,0
+0.4892,0.289199,C,18270,4,Magnesium Deficiency,0
+0.163291,0.063583,C,18270,5,Nitrogen Deficiency,0
+0.335221,0.187613,C,18270,6,Potassium Deficiency,0
+0.531712,0.228152,C,18270,7,Spotted Wilt Virus,0
+0.518197,0.231232,C,24570,2,Late Blight,0
+0.446505,0.220438,C,24570,3,Leaf Miner,0
+0.471421,0.275361,C,24570,4,Magnesium Deficiency,0
+0.147236,0.054569,C,24570,5,Nitrogen Deficiency,0
+0.281548,0.147318,C,24570,6,Potassium Deficiency,0
+0.512054,0.225137,C,24570,7,Spotted Wilt Virus,0
+0.458255,0.21952,C,6300,2,Late Blight,1
+0.48257,0.244,C,6300,3,Leaf Miner,1
+0.525311,0.305169,C,6300,4,Magnesium Deficiency,1
+0.059879,0.025714,C,6300,5,Nitrogen Deficiency,1
+0.333143,0.166379,C,6300,6,Potassium Deficiency,1
+0.568791,0.247551,C,6300,7,Spotted Wilt Virus,1
+0.489501,0.223249,C,11970,2,Late Blight,1
+0.485626,0.24051,C,11970,3,Leaf Miner,1
+0.509472,0.293793,C,11970,4,Magnesium Deficiency,1
+0.105446,0.046145,C,11970,5,Nitrogen Deficiency,1
+0.406456,0.211414,C,11970,6,Potassium Deficiency,1
+0.558137,0.243095,C,11970,7,Spotted Wilt Virus,1
+0.422742,0.206853,C,18270,2,Late Blight,1
+0.449339,0.221597,C,18270,3,Leaf Miner,1
+0.475352,0.276205,C,18270,4,Magnesium Deficiency,1
+0.087187,0.029475,C,18270,5,Nitrogen Deficiency,1
+0.291091,0.170791,C,18270,6,Potassium Deficiency,1
+0.520974,0.224915,C,18270,7,Spotted Wilt Virus,1
+0.440741,0.21552,C,24570,2,Late Blight,1
+0.429277,0.213901,C,24570,3,Leaf Miner,1
+0.47394,0.276635,C,24570,4,Magnesium Deficiency,1
+0.088836,0.031111,C,24570,5,Nitrogen Deficiency,1
+0.339405,0.195285,C,24570,6,Potassium Deficiency,1
+0.506306,0.222452,C,24570,7,Spotted Wilt Virus,1
+0.432952,0.198782,C,6300,2,Late Blight,2
+0.497149,0.252003,C,6300,3,Leaf Miner,2
+0.548467,0.312547,C,6300,4,Magnesium Deficiency,2
+0.136962,0.076233,C,6300,5,Nitrogen Deficiency,2
+0.291587,0.156523,C,6300,6,Potassium Deficiency,2
+0.555081,0.248899,C,6300,7,Spotted Wilt Virus,2
+0.435716,0.235519,C,11970,2,Late Blight,2
+0.469737,0.22981,C,11970,3,Leaf Miner,2
+0.503017,0.293923,C,11970,4,Magnesium Deficiency,2
+0.187176,0.089457,C,11970,5,Nitrogen Deficiency,2
+0.205724,0.118422,C,11970,6,Potassium Deficiency,2
+0.517413,0.224592,C,11970,7,Spotted Wilt Virus,2
+0.516094,0.274014,C,18270,2,Late Blight,2
+0.453134,0.221198,C,18270,3,Leaf Miner,2
+0.499611,0.285579,C,18270,4,Magnesium Deficiency,2
+0.21346,0.076271,C,18270,5,Nitrogen Deficiency,2
+0.260749,0.146609,C,18270,6,Potassium Deficiency,2
+0.525613,0.226575,C,18270,7,Spotted Wilt Virus,2
+0.531137,0.270285,C,24570,2,Late Blight,2
+0.432111,0.212644,C,24570,3,Leaf Miner,2
+0.487543,0.293582,C,24570,4,Magnesium Deficiency,2
+0.238366,0.105586,C,24570,5,Nitrogen Deficiency,2
+0.270627,0.146805,C,24570,6,Potassium Deficiency,2
+0.513338,0.217843,C,24570,7,Spotted Wilt Virus,2
+0.487666,0.257802,C,6300,2,Late Blight,3
+0.493263,0.243777,C,6300,3,Leaf Miner,3
+0.527711,0.29192,C,6300,4,Magnesium Deficiency,3
+0.110471,0.054334,C,6300,5,Nitrogen Deficiency,3
+0.319747,0.160809,C,6300,6,Potassium Deficiency,3
+0.599713,0.260577,C,6300,7,Spotted Wilt Virus,3
+0.508187,0.2569,C,11970,2,Late Blight,3
+0.467685,0.229139,C,11970,3,Leaf Miner,3
+0.5156,0.286752,C,11970,4,Magnesium Deficiency,3
+0.106566,0.040821,C,11970,5,Nitrogen Deficiency,3
+0.177538,0.112249,C,11970,6,Potassium Deficiency,3
+0.550388,0.235477,C,11970,7,Spotted Wilt Virus,3
+0.546158,0.273345,C,18270,2,Late Blight,3
+0.463161,0.224677,C,18270,3,Leaf Miner,3
+0.496107,0.297372,C,18270,4,Magnesium Deficiency,3
+0.113064,0.045199,C,18270,5,Nitrogen Deficiency,3
+0.255928,0.155798,C,18270,6,Potassium Deficiency,3
+0.532596,0.225731,C,18270,7,Spotted Wilt Virus,3
+0.472321,0.254147,C,24570,2,Late Blight,3
+0.431606,0.215252,C,24570,3,Leaf Miner,3
+0.493769,0.290973,C,24570,4,Magnesium Deficiency,3
+0.136955,0.052221,C,24570,5,Nitrogen Deficiency,3
+0.285876,0.172257,C,24570,6,Potassium Deficiency,3
+0.51939,0.228525,C,24570,7,Spotted Wilt Virus,3
+0.420935,0.209726,C,6300,2,Late Blight,4
+0.495094,0.247971,C,6300,3,Leaf Miner,4
+0.561229,0.303923,C,6300,4,Magnesium Deficiency,4
+0.110502,0.059544,C,6300,5,Nitrogen Deficiency,4
+0.315646,0.188672,C,6300,6,Potassium Deficiency,4
+0.591906,0.250761,C,6300,7,Spotted Wilt Virus,4
+0.519496,0.260084,C,11970,2,Late Blight,4
+0.478,0.237049,C,11970,3,Leaf Miner,4
+0.510108,0.291538,C,11970,4,Magnesium Deficiency,4
+0.165156,0.079993,C,11970,5,Nitrogen Deficiency,4
+0.268584,0.162028,C,11970,6,Potassium Deficiency,4
+0.551318,0.238231,C,11970,7,Spotted Wilt Virus,4
+0.503306,0.278069,C,18270,2,Late Blight,4
+0.458892,0.223211,C,18270,3,Leaf Miner,4
+0.460884,0.266458,C,18270,4,Magnesium Deficiency,4
+0.141969,0.075197,C,18270,5,Nitrogen Deficiency,4
+0.199597,0.133408,C,18270,6,Potassium Deficiency,4
+0.527997,0.231739,C,18270,7,Spotted Wilt Virus,4
+0.517511,0.26397,C,24570,2,Late Blight,4
+0.436146,0.218392,C,24570,3,Leaf Miner,4
+0.455636,0.269758,C,24570,4,Magnesium Deficiency,4
+0.171463,0.066973,C,24570,5,Nitrogen Deficiency,4
+0.228728,0.150081,C,24570,6,Potassium Deficiency,4
+0.531364,0.238535,C,24570,7,Spotted Wilt Virus,4
+0.390361,0.199647,D,6300,2,Late Blight,0
+0.512871,0.261967,D,6300,3,Leaf Miner,0
+0.550608,0.331743,D,6300,4,Magnesium Deficiency,0
+0.071946,0.047067,D,6300,5,Nitrogen Deficiency,0
+0.328586,0.148311,D,6300,6,Potassium Deficiency,0
+0.613051,0.275394,D,6300,7,Spotted Wilt Virus,0
+0.616223,0.286728,D,11970,2,Late Blight,0
+0.517396,0.258208,D,11970,3,Leaf Miner,0
+0.564397,0.328283,D,11970,4,Magnesium Deficiency,0
+0.148682,0.066853,D,11970,5,Nitrogen Deficiency,0
+0.449441,0.240018,D,11970,6,Potassium Deficiency,0
+0.598755,0.271377,D,11970,7,Spotted Wilt Virus,0
+0.542176,0.261353,D,18270,2,Late Blight,0
+0.504538,0.24916,D,18270,3,Leaf Miner,0
+0.548945,0.326161,D,18270,4,Magnesium Deficiency,0
+0.174852,0.079041,D,18270,5,Nitrogen Deficiency,0
+0.490761,0.269326,D,18270,6,Potassium Deficiency,0
+0.581296,0.259386,D,18270,7,Spotted Wilt Virus,0
+0.588932,0.282056,D,24570,2,Late Blight,0
+0.499724,0.243569,D,24570,3,Leaf Miner,0
+0.515534,0.304702,D,24570,4,Magnesium Deficiency,0
+0.1475,0.0561,D,24570,5,Nitrogen Deficiency,0
+0.419508,0.227591,D,24570,6,Potassium Deficiency,0
+0.582845,0.254027,D,24570,7,Spotted Wilt Virus,0
+0.453774,0.210828,D,6300,2,Late Blight,1
+0.513379,0.261678,D,6300,3,Leaf Miner,1
+0.592265,0.345674,D,6300,4,Magnesium Deficiency,1
+0.062205,0.025489,D,6300,5,Nitrogen Deficiency,1
+0.328499,0.177942,D,6300,6,Potassium Deficiency,1
+0.587116,0.26859,D,6300,7,Spotted Wilt Virus,1
+0.544195,0.277348,D,11970,2,Late Blight,1
+0.527186,0.267729,D,11970,3,Leaf Miner,1
+0.542593,0.309173,D,11970,4,Magnesium Deficiency,1
+0.080016,0.036488,D,11970,5,Nitrogen Deficiency,1
+0.418256,0.23273,D,11970,6,Potassium Deficiency,1
+0.59602,0.264883,D,11970,7,Spotted Wilt Virus,1
+0.573711,0.27636,D,18270,2,Late Blight,1
+0.521717,0.259772,D,18270,3,Leaf Miner,1
+0.547144,0.318938,D,18270,4,Magnesium Deficiency,1
+0.141639,0.07844,D,18270,5,Nitrogen Deficiency,1
+0.402938,0.2349,D,18270,6,Potassium Deficiency,1
+0.57422,0.254434,D,18270,7,Spotted Wilt Virus,1
+0.560042,0.273181,D,24570,2,Late Blight,1
+0.499361,0.241335,D,24570,3,Leaf Miner,1
+0.487292,0.278763,D,24570,4,Magnesium Deficiency,1
+0.137848,0.075561,D,24570,5,Nitrogen Deficiency,1
+0.418818,0.230224,D,24570,6,Potassium Deficiency,1
+0.558551,0.241699,D,24570,7,Spotted Wilt Virus,1
+0.529336,0.253777,D,6300,2,Late Blight,2
+0.493503,0.248982,D,6300,3,Leaf Miner,2
+0.611045,0.348918,D,6300,4,Magnesium Deficiency,2
+0.076174,0.035264,D,6300,5,Nitrogen Deficiency,2
+0.42079,0.197833,D,6300,6,Potassium Deficiency,2
+0.608716,0.268929,D,6300,7,Spotted Wilt Virus,2
+0.537518,0.258604,D,11970,2,Late Blight,2
+0.539063,0.273972,D,11970,3,Leaf Miner,2
+0.594242,0.348433,D,11970,4,Magnesium Deficiency,2
+0.155859,0.088617,D,11970,5,Nitrogen Deficiency,2
+0.334662,0.217442,D,11970,6,Potassium Deficiency,2
+0.606608,0.265489,D,11970,7,Spotted Wilt Virus,2
+0.545875,0.288474,D,18270,2,Late Blight,2
+0.514036,0.254782,D,18270,3,Leaf Miner,2
+0.535546,0.320471,D,18270,4,Magnesium Deficiency,2
+0.127004,0.066911,D,18270,5,Nitrogen Deficiency,2
+0.380872,0.192701,D,18270,6,Potassium Deficiency,2
+0.578896,0.260541,D,18270,7,Spotted Wilt Virus,2
+0.542901,0.250222,D,24570,2,Late Blight,2
+0.497848,0.245081,D,24570,3,Leaf Miner,2
+0.503486,0.288413,D,24570,4,Magnesium Deficiency,2
+0.176678,0.07518,D,24570,5,Nitrogen Deficiency,2
+0.422246,0.21507,D,24570,6,Potassium Deficiency,2
+0.560633,0.251705,D,24570,7,Spotted Wilt Virus,2
+0.441719,0.205388,D,6300,2,Late Blight,3
+0.510897,0.262156,D,6300,3,Leaf Miner,3
+0.593613,0.337138,D,6300,4,Magnesium Deficiency,3
+0.087608,0.048543,D,6300,5,Nitrogen Deficiency,3
+0.144952,0.074358,D,6300,6,Potassium Deficiency,3
+0.554876,0.25621,D,6300,7,Spotted Wilt Virus,3
+0.603888,0.254213,D,11970,2,Late Blight,3
+0.534828,0.264234,D,11970,3,Leaf Miner,3
+0.570898,0.327569,D,11970,4,Magnesium Deficiency,3
+0.095709,0.058783,D,11970,5,Nitrogen Deficiency,3
+0.183921,0.117493,D,11970,6,Potassium Deficiency,3
+0.584694,0.268825,D,11970,7,Spotted Wilt Virus,3
+0.552645,0.279281,D,18270,2,Late Blight,3
+0.518705,0.256457,D,18270,3,Leaf Miner,3
+0.543919,0.312467,D,18270,4,Magnesium Deficiency,3
+0.115714,0.076839,D,18270,5,Nitrogen Deficiency,3
+0.196655,0.115417,D,18270,6,Potassium Deficiency,3
+0.574556,0.251457,D,18270,7,Spotted Wilt Virus,3
+0.508662,0.239697,D,24570,2,Late Blight,3
+0.494568,0.239354,D,24570,3,Leaf Miner,3
+0.538249,0.30966,D,24570,4,Magnesium Deficiency,3
+0.119699,0.04342,D,24570,5,Nitrogen Deficiency,3
+0.266297,0.164937,D,24570,6,Potassium Deficiency,3
+0.571816,0.254803,D,24570,7,Spotted Wilt Virus,3
+0.595553,0.283743,D,6300,2,Late Blight,4
+0.515763,0.26217,D,6300,3,Leaf Miner,4
+0.56269,0.32932,D,6300,4,Magnesium Deficiency,4
+0.127464,0.061936,D,6300,5,Nitrogen Deficiency,4
+0.241245,0.124992,D,6300,6,Potassium Deficiency,4
+0.587072,0.278587,D,6300,7,Spotted Wilt Virus,4
+0.576165,0.279762,D,11970,2,Late Blight,4
+0.524731,0.264844,D,11970,3,Leaf Miner,4
+0.524264,0.304255,D,11970,4,Magnesium Deficiency,4
+0.139323,0.08262,D,11970,5,Nitrogen Deficiency,4
+0.246442,0.169201,D,11970,6,Potassium Deficiency,4
+0.603741,0.263476,D,11970,7,Spotted Wilt Virus,4
+0.584192,0.297226,D,18270,2,Late Blight,4
+0.518752,0.253525,D,18270,3,Leaf Miner,4
+0.51934,0.302138,D,18270,4,Magnesium Deficiency,4
+0.25245,0.125587,D,18270,5,Nitrogen Deficiency,4
+0.262612,0.16253,D,18270,6,Potassium Deficiency,4
+0.573535,0.245333,D,18270,7,Spotted Wilt Virus,4
+0.594379,0.288944,D,24570,2,Late Blight,4
+0.498671,0.241684,D,24570,3,Leaf Miner,4
+0.505145,0.280421,D,24570,4,Magnesium Deficiency,4
+0.129241,0.068846,D,24570,5,Nitrogen Deficiency,4
+0.317278,0.1779,D,24570,6,Potassium Deficiency,4
+0.55696,0.239173,D,24570,7,Spotted Wilt Virus,4

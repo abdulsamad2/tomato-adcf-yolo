@@ -1,0 +1,631 @@
+{
+ "rule": "Phase 16A design (no training): solve the Localization-Preserving Width Allocation (LPWA-50).\n\nRule fixed BEFORE solving (revision 2, user-set budget box; stated in the Phase 16A pre-registration):\n  * topology, depth, head design identical to YOLO11n / uniform 0.50x (runs_p15/w050)\n  * stem layers 0-2 stay at the uniform 0.50x width\n  * every P3/P4-resolution layer (backbone 3-6, neck 13, 16, 17, 19) is scaled by ONE shared factor a\n  * every P5-resolution layer (backbone 7-10, neck 20 and 22) is scaled by ONE shared factor b,\n    b in {0.50, 0.55, ..., 1.00} of the uniform 0.50x width\n  * HARD budget: params <= 811,144 (uniform 0.50x). TARGET: GFLOPs@512 <= 2.0. ABSOLUTE cap: < 2.707 (0.75x)\n  * choose the LARGEST a (0.01 grid) for which some b meets params and the 2.0 target; at that a take\n    the LARGEST b that meets params. If no a > 1 meets the 2.0 target, fall back to the 2.707 cap\n    with b = 0.50 and record that the target was infeasible.\n  * the head is unchanged: the class branch is <2% of params and the box branch is already floored\n    at 64 channels (reg_max*4) at every width (phase16/p16_budget_audit.json)\nChannels are realised with Ultralytics' make_divisible(.., 8), i.e. the same rounding as Phase 15.\n",
+ "a": 1.37,
+ "b": 0.65,
+ "params": 786882,
+ "GFLOPs_512": 1.965,
+ "budget_params": 811144,
+ "gflops_target": 2.0,
+ "gflops_target_met": true,
+ "gflops_cap": 2.707,
+ "w050_GFLOPs_512": 1.549,
+ "yaml": "C:\\Users\\absamad\\cs\\phase16\\yolo11n_lpwa50.yaml",
+ "yaml_sha256": "622f7079f73dff312ce5185b85951359ed1a721089b8689b4cd87070f9c1136a",
+ "channels": {
+  "0": {
+   "lpwa50": 8,
+   "uniform_w050": 8,
+   "group": "stem"
+  },
+  "1": {
+   "lpwa50": 16,
+   "uniform_w050": 16,
+   "group": "stem"
+  },
+  "2": {
+   "lpwa50": 32,
+   "uniform_w050": 32,
+   "group": "stem"
+  },
+  "3": {
+   "lpwa50": 48,
+   "uniform_w050": 32,
+   "group": "P3/P4"
+  },
+  "4": {
+   "lpwa50": 88,
+   "uniform_w050": 64,
+   "group": "P3/P4"
+  },
+  "5": {
+   "lpwa50": 88,
+   "uniform_w050": 64,
+   "group": "P3/P4"
+  },
+  "6": {
+   "lpwa50": 88,
+   "uniform_w050": 64,
+   "group": "P3/P4"
+  },
+  "7": {
+   "lpwa50": 88,
+   "uniform_w050": 128,
+   "group": "P5"
+  },
+  "8": {
+   "lpwa50": 88,
+   "uniform_w050": 128,
+   "group": "P5"
+  },
+  "9": {
+   "lpwa50": 88,
+   "uniform_w050": 128,
+   "group": "P5"
+  },
+  "10": {
+   "lpwa50": 88,
+   "uniform_w050": 128,
+   "group": "P5"
+  },
+  "13": {
+   "lpwa50": 88,
+   "uniform_w050": 64,
+   "group": "P3/P4"
+  },
+  "16": {
+   "lpwa50": 48,
+   "uniform_w050": 32,
+   "group": "P3/P4"
+  },
+  "17": {
+   "lpwa50": 48,
+   "uniform_w050": 32,
+   "group": "P3/P4"
+  },
+  "19": {
+   "lpwa50": 88,
+   "uniform_w050": 64,
+   "group": "P3/P4"
+  },
+  "20": {
+   "lpwa50": 48,
+   "uniform_w050": 64,
+   "group": "P5"
+  },
+  "22": {
+   "lpwa50": 88,
+   "uniform_w050": 128,
+   "group": "P5"
+  }
+ },
+ "search_grid": [
+  {
+   "a": 1.0,
+   "b": 0.5,
+   "params": 497768,
+   "GFLOPs": 1.375
+  },
+  {
+   "a": 2.0,
+   "b": 0.5,
+   "params": 1015944,
+   "GFLOPs": 2.834
+  },
+  {
+   "a": 1.5,
+   "b": 0.5,
+   "params": 724600,
+   "GFLOPs": 2.014
+  },
+  {
+   "a": 1.25,
+   "b": 0.5,
+   "params": 603120,
+   "GFLOPs": 1.672
+  },
+  {
+   "a": 1.37,
+   "b": 0.5,
+   "params": 673662,
+   "GFLOPs": 1.901
+  },
+  {
+   "a": 1.43,
+   "b": 0.5,
+   "params": 724600,
+   "GFLOPs": 2.014
+  },
+  {
+   "a": 1.4,
+   "b": 0.5,
+   "params": 724600,
+   "GFLOPs": 2.014
+  },
+  {
+   "a": 1.38,
+   "b": 0.5,
+   "params": 724600,
+   "GFLOPs": 2.014
+  },
+  {
+   "a": 1.0,
+   "b": 0.55,
+   "params": 531812,
+   "GFLOPs": 1.394
+  },
+  {
+   "a": 2.0,
+   "b": 0.55,
+   "params": 1059972,
+   "GFLOPs": 2.859
+  },
+  {
+   "a": 1.5,
+   "b": 0.55,
+   "params": 763636,
+   "GFLOPs": 2.036
+  },
+  {
+   "a": 1.25,
+   "b": 0.55,
+   "params": 639660,
+   "GFLOPs": 1.692
+  },
+  {
+   "a": 1.37,
+   "b": 0.55,
+   "params": 711482,
+   "GFLOPs": 1.923
+  },
+  {
+   "a": 1.43,
+   "b": 0.55,
+   "params": 763636,
+   "GFLOPs": 2.036
+  },
+  {
+   "a": 1.4,
+   "b": 0.55,
+   "params": 763636,
+   "GFLOPs": 2.036
+  },
+  {
+   "a": 1.38,
+   "b": 0.55,
+   "params": 763636,
+   "GFLOPs": 2.036
+  },
+  {
+   "a": 1.0,
+   "b": 0.6,
+   "params": 562864,
+   "GFLOPs": 1.412
+  },
+  {
+   "a": 2.0,
+   "b": 0.6,
+   "params": 1096400,
+   "GFLOPs": 2.88
+  },
+  {
+   "a": 1.5,
+   "b": 0.6,
+   "params": 797376,
+   "GFLOPs": 2.055
+  },
+  {
+   "a": 1.25,
+   "b": 0.6,
+   "params": 672056,
+   "GFLOPs": 1.711
+  },
+  {
+   "a": 1.37,
+   "b": 0.6,
+   "params": 744582,
+   "GFLOPs": 1.942
+  },
+  {
+   "a": 1.43,
+   "b": 0.6,
+   "params": 797376,
+   "GFLOPs": 2.055
+  },
+  {
+   "a": 1.4,
+   "b": 0.6,
+   "params": 797376,
+   "GFLOPs": 2.055
+  },
+  {
+   "a": 1.38,
+   "b": 0.6,
+   "params": 797376,
+   "GFLOPs": 2.055
+  },
+  {
+   "a": 1.0,
+   "b": 0.65,
+   "params": 601388,
+   "GFLOPs": 1.433
+  },
+  {
+   "a": 2.0,
+   "b": 0.65,
+   "params": 1144908,
+   "GFLOPs": 2.907
+  },
+  {
+   "a": 1.5,
+   "b": 0.65,
+   "params": 840892,
+   "GFLOPs": 2.079
+  },
+  {
+   "a": 1.25,
+   "b": 0.65,
+   "params": 713076,
+   "GFLOPs": 1.734
+  },
+  {
+   "a": 1.37,
+   "b": 0.65,
+   "params": 786882,
+   "GFLOPs": 1.965
+  },
+  {
+   "a": 1.43,
+   "b": 0.65,
+   "params": 840892,
+   "GFLOPs": 2.079
+  },
+  {
+   "a": 1.4,
+   "b": 0.65,
+   "params": 840892,
+   "GFLOPs": 2.079
+  },
+  {
+   "a": 1.38,
+   "b": 0.65,
+   "params": 840892,
+   "GFLOPs": 2.079
+  },
+  {
+   "a": 1.0,
+   "b": 0.7,
+   "params": 636792,
+   "GFLOPs": 1.453
+  },
+  {
+   "a": 2.0,
+   "b": 0.7,
+   "params": 1185688,
+   "GFLOPs": 2.93
+  },
+  {
+   "a": 1.5,
+   "b": 0.7,
+   "params": 878984,
+   "GFLOPs": 2.101
+  },
+  {
+   "a": 1.25,
+   "b": 0.7,
+   "params": 749824,
+   "GFLOPs": 1.754
+  },
+  {
+   "a": 1.37,
+   "b": 0.7,
+   "params": 824334,
+   "GFLOPs": 1.986
+  },
+  {
+   "a": 1.31,
+   "b": 0.7,
+   "params": 824334,
+   "GFLOPs": 1.986
+  },
+  {
+   "a": 1.28,
+   "b": 0.7,
+   "params": 824334,
+   "GFLOPs": 1.986
+  },
+  {
+   "a": 1.26,
+   "b": 0.7,
+   "params": 824334,
+   "GFLOPs": 1.986
+  },
+  {
+   "a": 1.0,
+   "b": 0.75,
+   "params": 636792,
+   "GFLOPs": 1.453
+  },
+  {
+   "a": 2.0,
+   "b": 0.75,
+   "params": 1185688,
+   "GFLOPs": 2.93
+  },
+  {
+   "a": 1.5,
+   "b": 0.75,
+   "params": 878984,
+   "GFLOPs": 2.101
+  },
+  {
+   "a": 1.25,
+   "b": 0.75,
+   "params": 749824,
+   "GFLOPs": 1.754
+  },
+  {
+   "a": 1.37,
+   "b": 0.75,
+   "params": 824334,
+   "GFLOPs": 1.986
+  },
+  {
+   "a": 1.31,
+   "b": 0.75,
+   "params": 824334,
+   "GFLOPs": 1.986
+  },
+  {
+   "a": 1.28,
+   "b": 0.75,
+   "params": 824334,
+   "GFLOPs": 1.986
+  },
+  {
+   "a": 1.26,
+   "b": 0.75,
+   "params": 824334,
+   "GFLOPs": 1.986
+  },
+  {
+   "a": 1.0,
+   "b": 0.8,
+   "params": 679796,
+   "GFLOPs": 1.477
+  },
+  {
+   "a": 2.0,
+   "b": 0.8,
+   "params": 1238676,
+   "GFLOPs": 2.96
+  },
+  {
+   "a": 1.5,
+   "b": 0.8,
+   "params": 926980,
+   "GFLOPs": 2.128
+  },
+  {
+   "a": 1.25,
+   "b": 0.8,
+   "params": 795324,
+   "GFLOPs": 1.78
+  },
+  {
+   "a": 1.37,
+   "b": 0.8,
+   "params": 871114,
+   "GFLOPs": 2.012
+  },
+  {
+   "a": 1.31,
+   "b": 0.8,
+   "params": 871114,
+   "GFLOPs": 2.012
+  },
+  {
+   "a": 1.28,
+   "b": 0.8,
+   "params": 871114,
+   "GFLOPs": 2.012
+  },
+  {
+   "a": 1.26,
+   "b": 0.8,
+   "params": 871114,
+   "GFLOPs": 2.012
+  },
+  {
+   "a": 1.0,
+   "b": 0.85,
+   "params": 719552,
+   "GFLOPs": 1.499
+  },
+  {
+   "a": 2.0,
+   "b": 0.85,
+   "params": 1283808,
+   "GFLOPs": 2.986
+  },
+  {
+   "a": 1.5,
+   "b": 0.85,
+   "params": 969424,
+   "GFLOPs": 2.152
+  },
+  {
+   "a": 1.25,
+   "b": 0.85,
+   "params": 836424,
+   "GFLOPs": 1.803
+  },
+  {
+   "a": 1.12,
+   "b": 0.85,
+   "params": 786622,
+   "GFLOPs": 1.704
+  },
+  {
+   "a": 1.18,
+   "b": 0.85,
+   "params": 836424,
+   "GFLOPs": 1.803
+  },
+  {
+   "a": 1.15,
+   "b": 0.85,
+   "params": 836424,
+   "GFLOPs": 1.803
+  },
+  {
+   "a": 1.13,
+   "b": 0.85,
+   "params": 836424,
+   "GFLOPs": 1.803
+  },
+  {
+   "a": 1.0,
+   "b": 0.9,
+   "params": 767036,
+   "GFLOPs": 1.525
+  },
+  {
+   "a": 2.0,
+   "b": 0.9,
+   "params": 1341276,
+   "GFLOPs": 3.018
+  },
+  {
+   "a": 1.5,
+   "b": 0.9,
+   "params": 1021900,
+   "GFLOPs": 2.18
+  },
+  {
+   "a": 1.25,
+   "b": 0.9,
+   "params": 886404,
+   "GFLOPs": 1.83
+  },
+  {
+   "a": 1.12,
+   "b": 0.9,
+   "params": 835386,
+   "GFLOPs": 1.73
+  },
+  {
+   "a": 1.06,
+   "b": 0.9,
+   "params": 835386,
+   "GFLOPs": 1.73
+  },
+  {
+   "a": 1.03,
+   "b": 0.9,
+   "params": 835386,
+   "GFLOPs": 1.73
+  },
+  {
+   "a": 1.01,
+   "b": 0.9,
+   "params": 835386,
+   "GFLOPs": 1.73
+  },
+  {
+   "a": 1.0,
+   "b": 0.95,
+   "params": 811144,
+   "GFLOPs": 1.549
+  },
+  {
+   "a": 2.0,
+   "b": 0.95,
+   "params": 1390760,
+   "GFLOPs": 3.045
+  },
+  {
+   "a": 1.5,
+   "b": 0.95,
+   "params": 1068696,
+   "GFLOPs": 2.207
+  },
+  {
+   "a": 1.25,
+   "b": 0.95,
+   "params": 931856,
+   "GFLOPs": 1.855
+  },
+  {
+   "a": 1.12,
+   "b": 0.95,
+   "params": 880198,
+   "GFLOPs": 1.755
+  },
+  {
+   "a": 1.06,
+   "b": 0.95,
+   "params": 880198,
+   "GFLOPs": 1.755
+  },
+  {
+   "a": 1.03,
+   "b": 0.95,
+   "params": 880198,
+   "GFLOPs": 1.755
+  },
+  {
+   "a": 1.01,
+   "b": 0.95,
+   "params": 880198,
+   "GFLOPs": 1.755
+  },
+  {
+   "a": 1.0,
+   "b": 1.0,
+   "params": 811144,
+   "GFLOPs": 1.549
+  },
+  {
+   "a": 2.0,
+   "b": 1.0,
+   "params": 1390760,
+   "GFLOPs": 3.045
+  },
+  {
+   "a": 1.5,
+   "b": 1.0,
+   "params": 1068696,
+   "GFLOPs": 2.207
+  },
+  {
+   "a": 1.25,
+   "b": 1.0,
+   "params": 931856,
+   "GFLOPs": 1.855
+  },
+  {
+   "a": 1.12,
+   "b": 1.0,
+   "params": 880198,
+   "GFLOPs": 1.755
+  },
+  {
+   "a": 1.06,
+   "b": 1.0,
+   "params": 880198,
+   "GFLOPs": 1.755
+  },
+  {
+   "a": 1.03,
+   "b": 1.0,
+   "params": 880198,
+   "GFLOPs": 1.755
+  },
+  {
+   "a": 1.01,
+   "b": 1.0,
+   "params": 880198,
+   "GFLOPs": 1.755
+  }
+ ]
+}

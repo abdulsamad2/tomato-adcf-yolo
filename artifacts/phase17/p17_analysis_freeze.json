@@ -1,0 +1,18 @@
+{
+ "frozen_at": "2026-10-12 23:51:41",
+ "note": "all Phase 17 scripts hashed before any Phase 17 training step that is kept and before any Phase 17 metric",
+ "prereg_sha256": "8c12afaeec9f01855a4223596e40ec34cd78cacd2c8c5d419e077fa329c2c011",
+ "dryrun_report_sha256": "8cbaa35fbac4b4efc2035a4fe33e7620ea86f3ce2d55389cc3a5875c12f35dd9",
+ "sha256": {
+  "p17_kd.py": "2d9fc0b3e7f2acb005e28579abaa3b817fa8aa6be226b04560105de8196b37f8",
+  "p17_run.py": "28c573f2811bc3c49ffa8e5c2d29a7214614968a3b88827380c388999a29e8cd",
+  "p17_dryrun.py": "f2b4af901dbba7b30555e3d6bf0c81b3d8a29d84fccec6b2d5b8580ba0f57820",
+  "p17_freeze.py": "094905378cddee054ebacef29273f1cd50e1c3f051bebbe74e036b5f3addb576",
+  "p17_eval.py": "699566f5fe24c6bf8220dce4713a161fdf4fb6893b5139e88f980d18c96d56ed",
+  "p17_stats.py": "3a5bb10dc5e5ee47b058aa125d09cb2d5fc196961a63d60b4c1dffea7b56aea1",
+  "p17_bench.py": "03c2cc644bbf7c0b9efb0659a29001374cdeb4abc5eda2898a0fbd75eab68157",
+  "p17_queue.ps1": "27525dafe6c5d266029e4a3d4953fb7567db74405cd611e86ac895802614c79a",
+  "p17_post.ps1": "9e4f8f63fc08c976c78f2b7e96e5ef3e835718e08d31acfd8d884ac7b43514c5"
+ },
+ "self_test": "p17_stats.py recovered a planted +1.0 AP effect (+0.85 over 5 seeds) on synthetic rows; both branches resolve"
+}

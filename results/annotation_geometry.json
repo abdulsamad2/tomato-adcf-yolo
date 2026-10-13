@@ -1,0 +1,626 @@
+{
+ "imgsz_reference": 512,
+ "test_opened": false,
+ "splits": {
+  "train": {
+   "all_files": {
+    "n_boxes": 113480,
+    "n_files": 10018,
+    "n_source_photos": 1254,
+    "norm_w": {
+     "mean": 0.1182,
+     "sd": 0.0967,
+     "p1": 0.0187,
+     "p5": 0.0281,
+     "p25": 0.0547,
+     "p50": 0.0891,
+     "p75": 0.1484,
+     "p95": 0.3109,
+     "p99": 0.4859
+    },
+    "norm_h": {
+     "mean": 0.1139,
+     "sd": 0.0936,
+     "p1": 0.0172,
+     "p5": 0.0266,
+     "p25": 0.0516,
+     "p50": 0.0859,
+     "p75": 0.1453,
+     "p95": 0.2984,
+     "p99": 0.4625
+    },
+    "norm_area": {
+     "mean": 0.01928,
+     "sd": 0.03655,
+     "p1": 0.0004,
+     "p5": 0.0009,
+     "p25": 0.003,
+     "p50": 0.0077,
+     "p75": 0.0198,
+     "p95": 0.077,
+     "p99": 0.1786
+    },
+    "px_w_at_512": {
+     "mean": 60.54,
+     "sd": 49.49,
+     "p1": 9.6,
+     "p5": 14.4,
+     "p25": 28.0003,
+     "p50": 45.6003,
+     "p75": 76.0003,
+     "p95": 159.1997,
+     "p99": 248.7997
+    },
+    "px_h_at_512": {
+     "mean": 58.3,
+     "sd": 47.91,
+     "p1": 8.8003,
+     "p5": 13.6003,
+     "p25": 26.3997,
+     "p50": 44.0003,
+     "p75": 74.3997,
+     "p95": 152.8003,
+     "p99": 236.8
+    },
+    "px_sqrt_area_at_512": {
+     "mean": 56.94,
+     "sd": 42.57,
+     "p1": 10.7332,
+     "p5": 15.595,
+     "p25": 28.0572,
+     "p50": 44.7931,
+     "p75": 72.0,
+     "p95": 142.069,
+     "p99": 216.347
+    },
+    "coco_strata_at_512": {
+     "small_pct": 31.84,
+     "medium_pct": 54.5,
+     "large_pct": 13.66
+    },
+    "fraction_of_image_area": {
+     "ge_10pct": 3.3,
+     "ge_25pct": 0.42,
+     "ge_50pct": 0.04
+    },
+    "by_stride_cell_at_512": {
+     "stride8": {
+      "median_object_side_in_cells": 5.6,
+      "pct_objects_under_1_cell": 0.17,
+      "pct_objects_under_4_cells": 31.84
+     },
+     "stride16": {
+      "median_object_side_in_cells": 2.8,
+      "pct_objects_under_1_cell": 5.39,
+      "pct_objects_under_4_cells": 69.35
+     },
+     "stride32": {
+      "median_object_side_in_cells": 1.4,
+      "pct_objects_under_1_cell": 31.84,
+      "pct_objects_under_4_cells": 93.44
+     }
+    },
+    "per_class": {
+     "Late Blight": {
+      "n": 2587,
+      "px_sqrt_area_median": 58.76,
+      "px_sqrt_area_mean": 62.32,
+      "px_sqrt_area_sd": 27.73,
+      "norm_area_median": 0.01317,
+      "small_pct": 13.84,
+      "large_pct": 11.71
+     },
+     "Leaf Miner": {
+      "n": 75663,
+      "px_sqrt_area_median": 37.2,
+      "px_sqrt_area_mean": 49.23,
+      "px_sqrt_area_sd": 38.43,
+      "norm_area_median": 0.00528,
+      "small_pct": 40.98,
+      "large_pct": 9.95
+     },
+     "Magnesium Deficiency": {
+      "n": 11513,
+      "px_sqrt_area_median": 77.69,
+      "px_sqrt_area_mean": 90.59,
+      "px_sqrt_area_sd": 55.08,
+      "norm_area_median": 0.02302,
+      "small_pct": 6.09,
+      "large_pct": 34.15
+     },
+     "Nitrogen Deficiency": {
+      "n": 1221,
+      "px_sqrt_area_median": 60.62,
+      "px_sqrt_area_mean": 63.79,
+      "px_sqrt_area_sd": 27.0,
+      "norm_area_median": 0.01402,
+      "small_pct": 7.21,
+      "large_pct": 11.63
+     },
+     "Potassium Deficiency": {
+      "n": 803,
+      "px_sqrt_area_median": 67.2,
+      "px_sqrt_area_mean": 77.56,
+      "px_sqrt_area_sd": 44.75,
+      "norm_area_median": 0.01723,
+      "small_pct": 8.47,
+      "large_pct": 23.91
+     },
+     "Spotted Wilt Virus": {
+      "n": 21693,
+      "px_sqrt_area_median": 54.49,
+      "px_sqrt_area_mean": 64.16,
+      "px_sqrt_area_sd": 40.36,
+      "norm_area_median": 0.01133,
+      "small_pct": 18.02,
+      "large_pct": 15.69
+     }
+    }
+   },
+   "unique_source_photos": {
+    "n_boxes": 14866,
+    "n_files": 1254,
+    "n_source_photos": 1254,
+    "norm_w": {
+     "mean": 0.1113,
+     "sd": 0.0899,
+     "p1": 0.0172,
+     "p5": 0.0281,
+     "p25": 0.0516,
+     "p50": 0.0844,
+     "p75": 0.1391,
+     "p95": 0.2906,
+     "p99": 0.4609
+    },
+    "norm_h": {
+     "mean": 0.106,
+     "sd": 0.0858,
+     "p1": 0.0172,
+     "p5": 0.025,
+     "p25": 0.0484,
+     "p50": 0.0797,
+     "p75": 0.1359,
+     "p95": 0.2766,
+     "p99": 0.4234
+    },
+    "norm_area": {
+     "mean": 0.01655,
+     "sd": 0.03002,
+     "p1": 0.0004,
+     "p5": 0.0009,
+     "p25": 0.0027,
+     "p50": 0.0068,
+     "p75": 0.0173,
+     "p95": 0.0641,
+     "p99": 0.1473
+    },
+    "px_w_at_512": {
+     "mean": 56.99,
+     "sd": 46.05,
+     "p1": 8.8003,
+     "p5": 14.4,
+     "p25": 26.3997,
+     "p50": 43.2,
+     "p75": 71.2003,
+     "p95": 148.8,
+     "p99": 236.0003
+    },
+    "px_h_at_512": {
+     "mean": 54.25,
+     "sd": 43.92,
+     "p1": 8.7997,
+     "p5": 12.8,
+     "p25": 24.7997,
+     "p50": 40.8003,
+     "p75": 69.5997,
+     "p95": 141.6003,
+     "p99": 216.7997
+    },
+    "px_sqrt_area_at_512": {
+     "mean": 53.22,
+     "sd": 38.81,
+     "p1": 10.3997,
+     "p5": 15.1156,
+     "p25": 26.7251,
+     "p50": 42.1198,
+     "p75": 67.3842,
+     "p95": 129.6302,
+     "p99": 196.5211
+    },
+    "coco_strata_at_512": {
+     "small_pct": 34.79,
+     "medium_pct": 53.73,
+     "large_pct": 11.48
+    },
+    "fraction_of_image_area": {
+     "ge_10pct": 2.5,
+     "ge_25pct": 0.22,
+     "ge_50pct": 0.01
+    },
+    "by_stride_cell_at_512": {
+     "stride8": {
+      "median_object_side_in_cells": 5.26,
+      "pct_objects_under_1_cell": 0.2,
+      "pct_objects_under_4_cells": 34.79
+     },
+     "stride16": {
+      "median_object_side_in_cells": 2.63,
+      "pct_objects_under_1_cell": 6.2,
+      "pct_objects_under_4_cells": 72.56
+     },
+     "stride32": {
+      "median_object_side_in_cells": 1.32,
+      "pct_objects_under_1_cell": 34.79,
+      "pct_objects_under_4_cells": 94.81
+     }
+    },
+    "per_class": {
+     "Late Blight": {
+      "n": 335,
+      "px_sqrt_area_median": 55.2,
+      "px_sqrt_area_mean": 58.4,
+      "px_sqrt_area_sd": 24.84,
+      "norm_area_median": 0.01162,
+      "small_pct": 15.82,
+      "large_pct": 7.76
+     },
+     "Leaf Miner": {
+      "n": 9957,
+      "px_sqrt_area_median": 35.05,
+      "px_sqrt_area_mean": 46.02,
+      "px_sqrt_area_sd": 35.12,
+      "norm_area_median": 0.00469,
+      "small_pct": 44.46,
+      "large_pct": 8.35
+     },
+     "Magnesium Deficiency": {
+      "n": 1493,
+      "px_sqrt_area_median": 74.25,
+      "px_sqrt_area_mean": 85.45,
+      "px_sqrt_area_sd": 50.18,
+      "norm_area_median": 0.02103,
+      "small_pct": 6.83,
+      "large_pct": 30.54
+     },
+     "Nitrogen Deficiency": {
+      "n": 160,
+      "px_sqrt_area_median": 58.35,
+      "px_sqrt_area_mean": 60.23,
+      "px_sqrt_area_sd": 24.05,
+      "norm_area_median": 0.01299,
+      "small_pct": 8.12,
+      "large_pct": 8.75
+     },
+     "Potassium Deficiency": {
+      "n": 103,
+      "px_sqrt_area_median": 65.46,
+      "px_sqrt_area_mean": 72.57,
+      "px_sqrt_area_sd": 40.73,
+      "norm_area_median": 0.01635,
+      "small_pct": 9.71,
+      "large_pct": 19.42
+     },
+     "Spotted Wilt Virus": {
+      "n": 2818,
+      "px_sqrt_area_median": 51.79,
+      "px_sqrt_area_mean": 59.84,
+      "px_sqrt_area_sd": 35.97,
+      "norm_area_median": 0.01023,
+      "small_pct": 20.12,
+      "large_pct": 12.74
+     }
+    }
+   }
+  },
+  "val": {
+   "all_files": {
+    "n_boxes": 3057,
+    "n_files": 266,
+    "n_source_photos": 266,
+    "norm_w": {
+     "mean": 0.112,
+     "sd": 0.0865,
+     "p1": 0.0156,
+     "p5": 0.0281,
+     "p25": 0.0563,
+     "p50": 0.0875,
+     "p75": 0.1391,
+     "p95": 0.2859,
+     "p99": 0.434
+    },
+    "norm_h": {
+     "mean": 0.1104,
+     "sd": 0.0853,
+     "p1": 0.0172,
+     "p5": 0.0266,
+     "p25": 0.0516,
+     "p50": 0.0844,
+     "p75": 0.1422,
+     "p95": 0.2812,
+     "p99": 0.4139
+    },
+    "norm_area": {
+     "mean": 0.01676,
+     "sd": 0.02778,
+     "p1": 0.0004,
+     "p5": 0.0009,
+     "p25": 0.003,
+     "p50": 0.0074,
+     "p75": 0.0186,
+     "p95": 0.0683,
+     "p99": 0.1292
+    },
+    "px_w_at_512": {
+     "mean": 57.34,
+     "sd": 44.31,
+     "p1": 8.0,
+     "p5": 14.4,
+     "p25": 28.8,
+     "p50": 44.8,
+     "p75": 71.2003,
+     "p95": 146.3997,
+     "p99": 222.208
+    },
+    "px_h_at_512": {
+     "mean": 56.55,
+     "sd": 43.67,
+     "p1": 8.8003,
+     "p5": 13.6003,
+     "p25": 26.3997,
+     "p50": 43.2,
+     "p75": 72.7997,
+     "p95": 144.0,
+     "p99": 211.904
+    },
+    "px_sqrt_area_at_512": {
+     "mean": 54.51,
+     "sd": 37.72,
+     "p1": 10.2351,
+     "p5": 15.5537,
+     "p25": 28.0572,
+     "p50": 43.9926,
+     "p75": 69.8477,
+     "p95": 133.8197,
+     "p99": 184.0007
+    },
+    "coco_strata_at_512": {
+     "small_pct": 30.95,
+     "medium_pct": 57.18,
+     "large_pct": 11.87
+    },
+    "fraction_of_image_area": {
+     "ge_10pct": 2.06,
+     "ge_25pct": 0.26,
+     "ge_50pct": 0.0
+    },
+    "by_stride_cell_at_512": {
+     "stride8": {
+      "median_object_side_in_cells": 5.5,
+      "pct_objects_under_1_cell": 0.23,
+      "pct_objects_under_4_cells": 30.95
+     },
+     "stride16": {
+      "median_object_side_in_cells": 2.75,
+      "pct_objects_under_1_cell": 5.66,
+      "pct_objects_under_4_cells": 70.66
+     },
+     "stride32": {
+      "median_object_side_in_cells": 1.37,
+      "pct_objects_under_1_cell": 30.95,
+      "pct_objects_under_4_cells": 94.57
+     }
+    },
+    "per_class": {
+     "Late Blight": {
+      "n": 61,
+      "px_sqrt_area_median": 55.98,
+      "px_sqrt_area_mean": 63.39,
+      "px_sqrt_area_sd": 35.92,
+      "norm_area_median": 0.01195,
+      "small_pct": 14.75,
+      "large_pct": 13.11
+     },
+     "Leaf Miner": {
+      "n": 2021,
+      "px_sqrt_area_median": 37.56,
+      "px_sqrt_area_mean": 47.55,
+      "px_sqrt_area_sd": 34.04,
+      "norm_area_median": 0.00538,
+      "small_pct": 39.29,
+      "large_pct": 8.61
+     },
+     "Magnesium Deficiency": {
+      "n": 294,
+      "px_sqrt_area_median": 72.21,
+      "px_sqrt_area_mean": 84.04,
+      "px_sqrt_area_sd": 45.96,
+      "norm_area_median": 0.01989,
+      "small_pct": 5.78,
+      "large_pct": 27.89
+     },
+     "Nitrogen Deficiency": {
+      "n": 27,
+      "px_sqrt_area_median": 64.48,
+      "px_sqrt_area_mean": 84.43,
+      "px_sqrt_area_sd": 57.35,
+      "norm_area_median": 0.01586,
+      "small_pct": 14.81,
+      "large_pct": 37.04
+     },
+     "Potassium Deficiency": {
+      "n": 28,
+      "px_sqrt_area_median": 77.48,
+      "px_sqrt_area_mean": 76.01,
+      "px_sqrt_area_sd": 25.87,
+      "norm_area_median": 0.0229,
+      "small_pct": 3.57,
+      "large_pct": 21.43
+     },
+     "Spotted Wilt Virus": {
+      "n": 626,
+      "px_sqrt_area_median": 52.36,
+      "px_sqrt_area_mean": 59.99,
+      "px_sqrt_area_sd": 35.59,
+      "norm_area_median": 0.01046,
+      "small_pct": 19.33,
+      "large_pct": 13.26
+     }
+    }
+   },
+   "unique_source_photos": {
+    "n_boxes": 3057,
+    "n_files": 266,
+    "n_source_photos": 266,
+    "norm_w": {
+     "mean": 0.112,
+     "sd": 0.0865,
+     "p1": 0.0156,
+     "p5": 0.0281,
+     "p25": 0.0563,
+     "p50": 0.0875,
+     "p75": 0.1391,
+     "p95": 0.2859,
+     "p99": 0.434
+    },
+    "norm_h": {
+     "mean": 0.1104,
+     "sd": 0.0853,
+     "p1": 0.0172,
+     "p5": 0.0266,
+     "p25": 0.0516,
+     "p50": 0.0844,
+     "p75": 0.1422,
+     "p95": 0.2812,
+     "p99": 0.4139
+    },
+    "norm_area": {
+     "mean": 0.01676,
+     "sd": 0.02778,
+     "p1": 0.0004,
+     "p5": 0.0009,
+     "p25": 0.003,
+     "p50": 0.0074,
+     "p75": 0.0186,
+     "p95": 0.0683,
+     "p99": 0.1292
+    },
+    "px_w_at_512": {
+     "mean": 57.34,
+     "sd": 44.31,
+     "p1": 8.0,
+     "p5": 14.4,
+     "p25": 28.8,
+     "p50": 44.8,
+     "p75": 71.2003,
+     "p95": 146.3997,
+     "p99": 222.208
+    },
+    "px_h_at_512": {
+     "mean": 56.55,
+     "sd": 43.67,
+     "p1": 8.8003,
+     "p5": 13.6003,
+     "p25": 26.3997,
+     "p50": 43.2,
+     "p75": 72.7997,
+     "p95": 144.0,
+     "p99": 211.904
+    },
+    "px_sqrt_area_at_512": {
+     "mean": 54.51,
+     "sd": 37.72,
+     "p1": 10.2351,
+     "p5": 15.5537,
+     "p25": 28.0572,
+     "p50": 43.9926,
+     "p75": 69.8477,
+     "p95": 133.8197,
+     "p99": 184.0007
+    },
+    "coco_strata_at_512": {
+     "small_pct": 30.95,
+     "medium_pct": 57.18,
+     "large_pct": 11.87
+    },
+    "fraction_of_image_area": {
+     "ge_10pct": 2.06,
+     "ge_25pct": 0.26,
+     "ge_50pct": 0.0
+    },
+    "by_stride_cell_at_512": {
+     "stride8": {
+      "median_object_side_in_cells": 5.5,
+      "pct_objects_under_1_cell": 0.23,
+      "pct_objects_under_4_cells": 30.95
+     },
+     "stride16": {
+      "median_object_side_in_cells": 2.75,
+      "pct_objects_under_1_cell": 5.66,
+      "pct_objects_under_4_cells": 70.66
+     },
+     "stride32": {
+      "median_object_side_in_cells": 1.37,
+      "pct_objects_under_1_cell": 30.95,
+      "pct_objects_under_4_cells": 94.57
+     }
+    },
+    "per_class": {
+     "Late Blight": {
+      "n": 61,
+      "px_sqrt_area_median": 55.98,
+      "px_sqrt_area_mean": 63.39,
+      "px_sqrt_area_sd": 35.92,
+      "norm_area_median": 0.01195,
+      "small_pct": 14.75,
+      "large_pct": 13.11
+     },
+     "Leaf Miner": {
+      "n": 2021,
+      "px_sqrt_area_median": 37.56,
+      "px_sqrt_area_mean": 47.55,
+      "px_sqrt_area_sd": 34.04,
+      "norm_area_median": 0.00538,
+      "small_pct": 39.29,
+      "large_pct": 8.61
+     },
+     "Magnesium Deficiency": {
+      "n": 294,
+      "px_sqrt_area_median": 72.21,
+      "px_sqrt_area_mean": 84.04,
+      "px_sqrt_area_sd": 45.96,
+      "norm_area_median": 0.01989,
+      "small_pct": 5.78,
+      "large_pct": 27.89
+     },
+     "Nitrogen Deficiency": {
+      "n": 27,
+      "px_sqrt_area_median": 64.48,
+      "px_sqrt_area_mean": 84.43,
+      "px_sqrt_area_sd": 57.35,
+      "norm_area_median": 0.01586,
+      "small_pct": 14.81,
+      "large_pct": 37.04
+     },
+     "Potassium Deficiency": {
+      "n": 28,
+      "px_sqrt_area_median": 77.48,
+      "px_sqrt_area_mean": 76.01,
+      "px_sqrt_area_sd": 25.87,
+      "norm_area_median": 0.0229,
+      "small_pct": 3.57,
+      "large_pct": 21.43
+     },
+     "Spotted Wilt Virus": {
+      "n": 626,
+      "px_sqrt_area_median": 52.36,
+      "px_sqrt_area_mean": 59.99,
+      "px_sqrt_area_sd": 35.59,
+      "norm_area_median": 0.01046,
+      "small_pct": 19.33,
+      "large_pct": 13.26
+     }
+    }
+   }
+  }
+ }
+}

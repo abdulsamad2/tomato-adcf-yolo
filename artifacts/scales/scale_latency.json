@@ -1,0 +1,298 @@
+{
+ "gate_before": {
+  "util_pct": 0,
+  "mem_MB": 496,
+  "temp_C": 42,
+  "sm_MHz": 210,
+  "throttle": "0x0000000000000001"
+ },
+ "imgsz": 512,
+ "warmup": 200,
+ "iters": 1000,
+ "sequence": [
+  "A",
+  "B",
+  "C",
+  "C_lean",
+  "B_disc",
+  "C_disc",
+  "A"
+ ],
+ "runs": [
+  {
+   "pos": 0,
+   "variant": "A",
+   "gpu_before": {
+    "util_pct": 0,
+    "mem_MB": 795,
+    "temp_C": 42,
+    "sm_MHz": 210,
+    "throttle": "0x0000000000000001"
+   },
+   "batches": {
+    "1": {
+     "ms_mean": 9.606,
+     "ms_sd": 2.081,
+     "ms_median": 8.819,
+     "ms_p05": 7.85,
+     "ms_p95": 14.097,
+     "img_per_s": 104.1,
+     "peak_mem_MB": 64.1
+    },
+    "16": {
+     "ms_mean": 9.142,
+     "ms_sd": 1.837,
+     "ms_median": 8.465,
+     "ms_p05": 7.772,
+     "ms_p95": 12.991,
+     "img_per_s": 1750.1,
+     "peak_mem_MB": 362.9
+    }
+   },
+   "gpu_after": {
+    "util_pct": 76,
+    "mem_MB": 1243,
+    "temp_C": 61,
+    "sm_MHz": 2700,
+    "throttle": "0x0000000000000000"
+   }
+  },
+  {
+   "pos": 1,
+   "variant": "B",
+   "gpu_before": {
+    "util_pct": 76,
+    "mem_MB": 1243,
+    "temp_C": 61,
+    "sm_MHz": 2700,
+    "throttle": "0x0000000000000000"
+   },
+   "batches": {
+    "1": {
+     "ms_mean": 7.802,
+     "ms_sd": 2.053,
+     "ms_median": 6.954,
+     "ms_p05": 6.3,
+     "ms_p95": 13.57,
+     "img_per_s": 128.2,
+     "peak_mem_MB": 61.1
+    },
+    "16": {
+     "ms_mean": 7.476,
+     "ms_sd": 1.355,
+     "ms_median": 6.826,
+     "ms_p05": 6.535,
+     "ms_p95": 10.358,
+     "img_per_s": 2140.2,
+     "peak_mem_MB": 359.9
+    }
+   },
+   "gpu_after": {
+    "util_pct": 84,
+    "mem_MB": 1239,
+    "temp_C": 66,
+    "sm_MHz": 2670,
+    "throttle": "0x0000000000000004"
+   }
+  },
+  {
+   "pos": 2,
+   "variant": "C",
+   "gpu_before": {
+    "util_pct": 94,
+    "mem_MB": 1239,
+    "temp_C": 64,
+    "sm_MHz": 2685,
+    "throttle": "0x0000000000000004"
+   },
+   "batches": {
+    "1": {
+     "ms_mean": 8.13,
+     "ms_sd": 1.899,
+     "ms_median": 7.351,
+     "ms_p05": 6.672,
+     "ms_p95": 12.163,
+     "img_per_s": 123.0,
+     "peak_mem_MB": 63.5
+    },
+    "16": {
+     "ms_mean": 8.22,
+     "ms_sd": 1.734,
+     "ms_median": 7.522,
+     "ms_p05": 6.699,
+     "ms_p95": 11.918,
+     "img_per_s": 1946.4,
+     "peak_mem_MB": 362.4
+    }
+   },
+   "gpu_after": {
+    "util_pct": 66,
+    "mem_MB": 1243,
+    "temp_C": 69,
+    "sm_MHz": 2685,
+    "throttle": "0x0000000000000000"
+   }
+  },
+  {
+   "pos": 3,
+   "variant": "C_lean",
+   "gpu_before": {
+    "util_pct": 66,
+    "mem_MB": 1243,
+    "temp_C": 69,
+    "sm_MHz": 2685,
+    "throttle": "0x0000000000000000"
+   },
+   "batches": {
+    "1": {
+     "ms_mean": 7.578,
+     "ms_sd": 1.407,
+     "ms_median": 7.077,
+     "ms_p05": 6.414,
+     "ms_p95": 10.467,
+     "img_per_s": 132.0,
+     "peak_mem_MB": 63.2
+    },
+    "16": {
+     "ms_mean": 7.232,
+     "ms_sd": 1.125,
+     "ms_median": 6.844,
+     "ms_p05": 6.409,
+     "ms_p95": 9.752,
+     "img_per_s": 2212.5,
+     "peak_mem_MB": 362.1
+    }
+   },
+   "gpu_after": {
+    "util_pct": 77,
+    "mem_MB": 1241,
+    "temp_C": 72,
+    "sm_MHz": 2685,
+    "throttle": "0x0000000000000000"
+   }
+  },
+  {
+   "pos": 4,
+   "variant": "B_disc",
+   "gpu_before": {
+    "util_pct": 77,
+    "mem_MB": 1241,
+    "temp_C": 72,
+    "sm_MHz": 2685,
+    "throttle": "0x0000000000000000"
+   },
+   "batches": {
+    "1": {
+     "ms_mean": 9.041,
+     "ms_sd": 1.881,
+     "ms_median": 8.279,
+     "ms_p05": 7.457,
+     "ms_p95": 13.077,
+     "img_per_s": 110.6,
+     "peak_mem_MB": 63.2
+    },
+    "16": {
+     "ms_mean": 8.339,
+     "ms_sd": 1.367,
+     "ms_median": 7.781,
+     "ms_p05": 7.143,
+     "ms_p95": 10.772,
+     "img_per_s": 1918.7,
+     "peak_mem_MB": 362.1
+    }
+   },
+   "gpu_after": {
+    "util_pct": 85,
+    "mem_MB": 1241,
+    "temp_C": 74,
+    "sm_MHz": 2625,
+    "throttle": "0x0000000000000004"
+   }
+  },
+  {
+   "pos": 5,
+   "variant": "C_disc",
+   "gpu_before": {
+    "util_pct": 14,
+    "mem_MB": 1241,
+    "temp_C": 72,
+    "sm_MHz": 2685,
+    "throttle": "0x0000000000000000"
+   },
+   "batches": {
+    "1": {
+     "ms_mean": 8.82,
+     "ms_sd": 1.739,
+     "ms_median": 8.119,
+     "ms_p05": 7.412,
+     "ms_p95": 12.258,
+     "img_per_s": 113.4,
+     "peak_mem_MB": 63.9
+    },
+    "16": {
+     "ms_mean": 8.232,
+     "ms_sd": 1.241,
+     "ms_median": 7.777,
+     "ms_p05": 7.251,
+     "ms_p95": 10.775,
+     "img_per_s": 1943.7,
+     "peak_mem_MB": 362.7
+    }
+   },
+   "gpu_after": {
+    "util_pct": 81,
+    "mem_MB": 1243,
+    "temp_C": 75,
+    "sm_MHz": 2655,
+    "throttle": "0x0000000000000004"
+   }
+  },
+  {
+   "pos": 6,
+   "variant": "A",
+   "gpu_before": {
+    "util_pct": 36,
+    "mem_MB": 1243,
+    "temp_C": 75,
+    "sm_MHz": 2685,
+    "throttle": "0x0000000000000000"
+   },
+   "batches": {
+    "1": {
+     "ms_mean": 9.674,
+     "ms_sd": 2.007,
+     "ms_median": 8.831,
+     "ms_p05": 7.917,
+     "ms_p95": 14.018,
+     "img_per_s": 103.4,
+     "peak_mem_MB": 64.1
+    },
+    "16": {
+     "ms_mean": 8.851,
+     "ms_sd": 1.586,
+     "ms_median": 8.264,
+     "ms_p05": 7.655,
+     "ms_p95": 12.271,
+     "img_per_s": 1807.7,
+     "peak_mem_MB": 362.9
+    }
+   },
+   "gpu_after": {
+    "util_pct": 67,
+    "mem_MB": 1243,
+    "temp_C": 75,
+    "sm_MHz": 2580,
+    "throttle": "0x0000000000000000"
+   }
+  }
+ ],
+ "gate_after": {
+  "util_pct": 67,
+  "mem_MB": 1243,
+  "temp_C": 75,
+  "sm_MHz": 2580,
+  "throttle": "0x0000000000000000"
+ },
+ "reference_drift_pct": -2.37,
+ "reference_repeat_ok": true
+}

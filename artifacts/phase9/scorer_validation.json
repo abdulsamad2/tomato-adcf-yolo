@@ -1,0 +1,114 @@
+[
+ {
+  "tag": "runs_p3__yolo11n__pNone__seed0",
+  "arm": "A",
+  "mine": 0.435956,
+  "pycocotools": 0.435956,
+  "abs_diff": 0.0
+ },
+ {
+  "tag": "runs_p3__yolo11n__pNone__seed0",
+  "arm": "B",
+  "mine": 0.181395,
+  "pycocotools": 0.181395,
+  "abs_diff": 0.0
+ },
+ {
+  "tag": "runs_p3__yolo11n__pNone__seed1",
+  "arm": "A",
+  "mine": 0.418095,
+  "pycocotools": 0.418095,
+  "abs_diff": 0.0
+ },
+ {
+  "tag": "runs_p3__yolo11n__pNone__seed1",
+  "arm": "B",
+  "mine": 0.172278,
+  "pycocotools": 0.172278,
+  "abs_diff": 2.7755575615628914e-17
+ },
+ {
+  "tag": "runs_p3__yolo11n__pNone__seed2",
+  "arm": "A",
+  "mine": 0.422883,
+  "pycocotools": 0.422883,
+  "abs_diff": 1.1102230246251565e-16
+ },
+ {
+  "tag": "runs_p3__yolo11n__pNone__seed2",
+  "arm": "B",
+  "mine": 0.168819,
+  "pycocotools": 0.168819,
+  "abs_diff": 5.551115123125783e-17
+ },
+ {
+  "tag": "runs_p3__yolo11n__pNone__seed3",
+  "arm": "A",
+  "mine": 0.420144,
+  "pycocotools": 0.420144,
+  "abs_diff": 5.551115123125783e-17
+ },
+ {
+  "tag": "runs_p3__yolo11n__pNone__seed3",
+  "arm": "B",
+  "mine": 0.164185,
+  "pycocotools": 0.164185,
+  "abs_diff": 0.0
+ },
+ {
+  "tag": "runs_p3__yolo11n__pNone__seed4",
+  "arm": "A",
+  "mine": 0.432286,
+  "pycocotools": 0.432286,
+  "abs_diff": 0.0
+ },
+ {
+  "tag": "runs_p3__yolo11n__pNone__seed4",
+  "arm": "B",
+  "mine": 0.172674,
+  "pycocotools": 0.172674,
+  "abs_diff": 0.0
+ },
+ {
+  "tag": "runs_p3__yolo11m__pNone__seed0",
+  "arm": "A",
+  "mine": 0.648592,
+  "pycocotools": 0.648592,
+  "abs_diff": 1.1102230246251565e-16
+ },
+ {
+  "tag": "runs_p3__yolo11m__pNone__seed0",
+  "arm": "B",
+  "mine": 0.167424,
+  "pycocotools": 0.167424,
+  "abs_diff": 2.7755575615628914e-17
+ },
+ {
+  "tag": "runs_p3__yolo11m__pNone__seed1",
+  "arm": "A",
+  "mine": 0.644094,
+  "pycocotools": 0.644094,
+  "abs_diff": 1.1102230246251565e-16
+ },
+ {
+  "tag": "runs_p3__yolo11m__pNone__seed1",
+  "arm": "B",
+  "mine": 0.171462,
+  "pycocotools": 0.171462,
+  "abs_diff": 0.0
+ },
+ {
+  "tag": "runs_p3__yolo11m__pNone__seed2",
+  "arm": "A",
+  "mine": 0.64133,
+  "pycocotools": 0.64133,
+  "abs_diff": 1.1102230246251565e-16
+ },
+ {
+  "tag": "runs_p3__yolo11m__pNone__seed2",
+  "arm": "B",
+  "mine": 0.178872,
+  "pycocotools": 0.178872,
+  "abs_diff": 2.7755575615628914e-17
+ }
+]

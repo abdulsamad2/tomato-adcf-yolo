@@ -1,0 +1,78 @@
+{
+ "definitions": {
+  "A_source_exposed": "official-val family that is also a clean-TRAIN family (model saw a relative)",
+  "B_source_independent_permitted": "official-val family that is a clean-VAL family (never trained on, not test)",
+  "B_excluded_closed_test": "official-val family that is a clean-TEST family - EXCLUDED to protect the closed test set",
+  "unassigned": "official-val family present in no clean split"
+ },
+ "counts": {
+  "official_val_families": 1484,
+  "official_train_families": 1796,
+  "clean_train_families": 1260,
+  "clean_val_families": 268,
+  "clean_test_families": 268,
+  "A_exposed_families": 1047,
+  "B_independent_permitted_families": 213,
+  "B_excluded_closed_test_families": 224,
+  "unassigned_families": 0
+ },
+ "A_exposed": {
+  "files": 2028,
+  "boxes": 23225,
+  "classes": {
+   "2": 498,
+   "3": 15587,
+   "4": 2432,
+   "5": 291,
+   "6": 187,
+   "7": 4230
+  }
+ },
+ "B_independent_permitted": {
+  "files": 411,
+  "boxes": 4683,
+  "classes": {
+   "2": 78,
+   "3": 3138,
+   "4": 497,
+   "5": 32,
+   "6": 39,
+   "7": 899
+  }
+ },
+ "B_excluded_closed_test": {
+  "files": 436,
+  "boxes": 4998,
+  "classes": {
+   "2": 188,
+   "3": 3265,
+   "4": 438,
+   "5": 60,
+   "6": 31,
+   "7": 1016
+  }
+ },
+ "unassigned": {
+  "files": 0,
+  "boxes": 0,
+  "classes": {}
+ },
+ "clean_val_whole": {
+  "files": 268,
+  "boxes": 3057,
+  "classes": {
+   "2": 61,
+   "3": 2021,
+   "4": 294,
+   "5": 27,
+   "6": 28,
+   "7": 626
+  }
+ },
+ "sanity": {
+  "clean_splits_disjoint": true,
+  "A_and_B_disjoint": true,
+  "A_plus_B_plus_excluded_plus_unassigned_eq_officialval": true,
+  "official_val_families_also_in_official_train": 1484
+ }
+}

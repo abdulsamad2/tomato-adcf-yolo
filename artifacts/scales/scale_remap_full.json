@@ -1,0 +1,54 @@
+{
+ "A": {
+  "target_params": 2606857,
+  "transferred_tensors": 448,
+  "transferred_params": 2560305,
+  "transferred_pct": 98.21,
+  "body_new_params": 0,
+  "body_new_pct": 0.0,
+  "body_new_layers": [],
+  "detect_new_params": 46552,
+  "detect_new_pct": 1.786,
+  "detect_new_tensors": 51
+ },
+ "B": {
+  "target_params": 1863281,
+  "transferred_tensors": 365,
+  "transferred_params": 1839073,
+  "transferred_pct": 98.7,
+  "body_new_params": 0,
+  "body_new_pct": 0.0,
+  "body_new_layers": [],
+  "detect_new_params": 24208,
+  "detect_new_pct": 1.299,
+  "detect_new_tensors": 34
+ },
+ "C": {
+  "target_params": 2492662,
+  "transferred_tensors": 394,
+  "transferred_params": 2386918,
+  "transferred_pct": 95.76,
+  "body_new_params": 16384,
+  "body_new_pct": 0.657,
+  "body_new_layers": [
+   "14"
+  ],
+  "detect_new_params": 89360,
+  "detect_new_pct": 3.585,
+  "detect_new_tensors": 34
+ },
+ "C_lean": {
+  "target_params": 2413426,
+  "transferred_tensors": 370,
+  "transferred_params": 2274914,
+  "transferred_pct": 94.26,
+  "body_new_params": 49152,
+  "body_new_pct": 2.037,
+  "body_new_layers": [
+   "13"
+  ],
+  "detect_new_params": 89360,
+  "detect_new_pct": 3.703,
+  "detect_new_tensors": 34
+ }
+}

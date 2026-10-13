@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this code or results, please cite this repository and the Tomato-Village dataset."
+title: "Beyond Metric Inflation: Source-Family Exposure Distorts Compression, Pretraining and Distillation Conclusions in Tomato Disease Detection"
+authors:
+  - name: "abdulsamad2"
+repository-code: "https://github.com/abdulsamad2/tomato-adcf-yolo"
+license: MIT
+date-released: "2026-10-13"
+references:
+  - type: article
+    title: "\"Tomato-Village\": a dataset for end-to-end tomato disease detection in a real-world environment"
+    authors:
+      - family-names: Gehlot
+        given-names: M.
+      - family-names: Saxena
+        given-names: R.K.
+      - family-names: Gandhi
+        given-names: G.C.
+    journal: "Multimedia Systems"
+    year: 2023
+    doi: "10.1007/s00530-023-01158-y"

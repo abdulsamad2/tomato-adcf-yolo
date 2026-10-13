@@ -1,0 +1,117 @@
+{
+ "B": {
+  "steps_per_epoch": 79,
+  "epochs": 630,
+  "total_updates": 49770,
+  "warmup_updates_trainer": 1890,
+  "warmup_end_observed": 1890,
+  "lr_peak_during_warmup": 0.009633,
+  "mosaic_close_epoch": 550,
+  "mosaic_free_updates": 6320,
+  "validated_milestones": [
+   79,
+   632,
+   1264,
+   1896
+  ],
+  "lr_at_milestones": [
+   [
+    79,
+    0.000413
+   ],
+   [
+    632,
+    0.003302
+   ],
+   [
+    1264,
+    0.006525
+   ],
+   [
+    1896,
+    0.009633
+   ]
+  ],
+  "n_logged_epochs": 26
+ },
+ "C": {
+  "steps_per_epoch": 630,
+  "epochs": 79,
+  "total_updates": 49770,
+  "warmup_updates_trainer": 1890,
+  "warmup_end_observed": 1890,
+  "lr_peak_during_warmup": 0.009744,
+  "mosaic_close_epoch": 69,
+  "mosaic_free_updates": 6300,
+  "validated_milestones": [
+   630,
+   1260,
+   1890,
+   2520,
+   3150
+  ],
+  "lr_at_milestones": [
+   [
+    630,
+    0.003328
+   ],
+   [
+    1260,
+    0.006578
+   ],
+   [
+    1890,
+    0.009744
+   ],
+   [
+    2520,
+    0.009624
+   ],
+   [
+    3150,
+    0.009624
+   ]
+  ],
+  "n_logged_epochs": 5
+ },
+ "D": {
+  "steps_per_epoch": 630,
+  "epochs": 79,
+  "total_updates": 49770,
+  "warmup_updates_trainer": 1890,
+  "warmup_end_observed": 1890,
+  "lr_peak_during_warmup": 0.009744,
+  "mosaic_close_epoch": 69,
+  "mosaic_free_updates": 6300,
+  "validated_milestones": [
+   630,
+   1260,
+   1890,
+   2520,
+   3150
+  ],
+  "lr_at_milestones": [
+   [
+    630,
+    0.003328
+   ],
+   [
+    1260,
+    0.006578
+   ],
+   [
+    1890,
+    0.009744
+   ],
+   [
+    2520,
+    0.009624
+   ],
+   [
+    3150,
+    0.009624
+   ]
+  ],
+  "n_logged_epochs": 5
+ }
+}

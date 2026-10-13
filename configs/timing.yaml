@@ -1,0 +1,115 @@
+# Experiment plan. Every run shares `train` and `eval`: that's what makes the
+# comparison fair. See docs/notes/04-experiment-design.md and 08-publication-plan.md.
+#
+# tier 1 = improvement ladder on YOLO11s: decides the final design (read VAL tables)
+# tier 2 = baselines, controls, ablations, resolution (the paper needs all of these)
+# tier 3 = extra evidence (scale, data), if GPU time allows
+# cv     = final headline comparison, 5-fold cross-validation (adcf-run --cv)
+#
+#   adcf-run --tier 1 --seeds 0      first pass
+#   adcf-collect                     -> results/tables_val.md (decide) / tables_test.md (report)
+
+data: data/tomato_village/dataset.yaml
+project: runs_timing
+seeds: [0, 1, 2]
+pretrained: true   # start from COCO weights (<base>.pt), as almost all papers do
+
+train:
+  epochs: 3
+  patience: 3           # early stop if val fitness hasn't improved for 50 epochs
+  imgsz: 640
+  batch: 16
+  optimizer: SGD         # fixed; "auto" can pick different optimizers per model
+  lr0: 0.01
+  lrf: 0.01
+  momentum: 0.937
+  weight_decay: 0.0005
+  warmup_epochs: 3
+  cos_lr: false
+  close_mosaic: 10
+  workers: 8
+  deterministic: true
+  amp: true
+  cache: false           # "ram" speeds up data loading if the machine has the memory
+  plots: true
+
+eval:
+  splits: [val, test]    # val -> decisions, test -> paper (after the design is frozen)
+  batch: 16
+  conf: 0.001
+  iou: 0.7
+
+# The ADCF design every ablation is built around. After tier 1, set this ONCE from
+# the VAL ladder (e.g. switch mode to replace if that wins), then run tier 2.
+adcf_final: &final {placement: all, mode: residual, fusion: gated, gate: spatial}
+
+tables:
+  ladder:     {kind: ladder, reference: yolo11s, title: "From YOLO11s to ADCF-YOLO (each step on top of the previous)",
+               order: [yolo11s, yolo11s-adcf-replace, yolo11s-adcf, yolo11s-p2-adcf, yolo11s-p2-adcf-960]}
+  main:       {reference: yolo11s, title: "Comparison with baselines"}
+  control:    {reference: yolo11s, title: "Is it ADCF, or any add-on in the same place?"}
+  resolution: {reference: yolo11s, title: "Resolution and small-object head: fair comparison"}
+  fusion:     {reference: yolo11s-adcf, title: "Ablation: ADCF design (? vs full ADCF)"}
+  placement:  {reference: yolo11s-adcf, title: "Ablation: where to insert ADCF (? vs all slots)"}
+  scale:      {reference: yolo11n, title: "Model scale"}
+  data:       {reference: yolo11s, title: "Offline augmentation copies"}
+
+cv:
+  folds: 5
+  data: data/tomato_village_cv/fold{fold}/dataset.yaml   # tv-prepare --cv-folds 5
+  project: runs_cv
+  seeds: [0]
+  runs: [yolo11s, yolo11s-adcf]   # reference first; replace the second with your final model
+
+runs:
+  # ---------------- tier 1: improvement ladder ----------------
+  - {name: yolo11s,              base: yolo11s, tier: 1, tables: [ladder, main, control, resolution, data]}
+  - {name: yolo11s-adcf-replace, base: yolo11s, tier: 1, tables: [ladder, control],
+     adcf: {<<: *final, mode: replace}}
+  - {name: yolo11s-adcf,         base: yolo11s, tier: 1, tables: [ladder, main, control, fusion, placement],
+     adcf: *final}
+  - {name: yolo11s-p2-adcf,      base: yolo11s, cfg: configs/models/yolo11s-p2.yaml, tier: 1, tables: [ladder, resolution],
+     adcf: *final}
+
+  # ---------------- tier 2: baselines ----------------
+  - {name: yolov8s,        base: yolov8s, tier: 2, tables: [main]}
+  - {name: yolo26s,        base: yolo26s, tier: 2, tables: [main]}
+  - {name: yolov8s-adcf,   base: yolov8s, tier: 2, tables: [main], adcf: *final}
+  - {name: yolo26s-adcf,   base: yolo26s, tier: 2, tables: [main], adcf: *final}
+
+  # Controls: would any add-on do? (CBAM in the same slots, same residual form)
+  - {name: yolo11s-cbam,   base: yolo11s, tier: 2, tables: [control],
+     adcf: {placement: all, mode: residual, module: cbam}}
+
+  # The obvious alternatives for small lesions, which reviewers WILL ask about:
+  # a stride-4 detection head, and simply feeding a larger image.
+  - {name: yolo11s-p2,          base: yolo11s, cfg: configs/models/yolo11s-p2.yaml, tier: 2, tables: [resolution]}
+  - {name: yolo11s-960,         base: yolo11s, tier: 2, tables: [resolution], train: {imgsz: 960}}
+  - {name: yolo11s-adcf-960,    base: yolo11s, tier: 2, tables: [resolution], train: {imgsz: 960}, adcf: *final}
+  - {name: yolo11s-p2-960,      base: yolo11s, cfg: configs/models/yolo11s-p2.yaml, tier: 2, tables: [resolution],
+     train: {imgsz: 960}}
+  - {name: yolo11s-p2-adcf-960, base: yolo11s, cfg: configs/models/yolo11s-p2.yaml, tier: 2, tables: [ladder, resolution],
+     train: {imgsz: 960}, adcf: *final}
+
+  # Ablations: each removes or replaces one idea of the final design
+  - {name: yolo11s-adcf-detail,     base: yolo11s, tier: 2, tables: [fusion], adcf: {<<: *final, fusion: detail}}
+  - {name: yolo11s-adcf-context,    base: yolo11s, tier: 2, tables: [fusion], adcf: {<<: *final, fusion: context}}
+  - {name: yolo11s-adcf-add,        base: yolo11s, tier: 2, tables: [fusion], adcf: {<<: *final, fusion: add}}
+  - {name: yolo11s-adcf-concat,     base: yolo11s, tier: 2, tables: [fusion], adcf: {<<: *final, fusion: concat}}
+  - {name: yolo11s-adcf-chgate,     base: yolo11s, tier: 2, tables: [fusion], adcf: {<<: *final, gate: channel}}
+  - {name: yolo11s-adcf-nohighpass, base: yolo11s, tier: 2, tables: [fusion], adcf: {<<: *final, highpass: false}}
+
+  - {name: yolo11s-adcf-p3,       base: yolo11s, tier: 2, tables: [placement], adcf: {<<: *final, placement: p3}}
+  - {name: yolo11s-adcf-topdown,  base: yolo11s, tier: 2, tables: [placement], adcf: {<<: *final, placement: top_down}}
+  - {name: yolo11s-adcf-bottomup, base: yolo11s, tier: 2, tables: [placement], adcf: {<<: *final, placement: bottom_up}}
+
+  # ---------------- tier 3: extra evidence ----------------
+  - {name: yolo11n,       base: yolo11n, tier: 3, tables: [scale]}
+  - {name: yolo11n-adcf,  base: yolo11n, tier: 3, tables: [scale], adcf: *final}
+  - {name: yolo11m,       base: yolo11m, tier: 3, tables: [scale]}
+  - {name: yolo11m-adcf,  base: yolo11m, tier: 3, tables: [scale], adcf: *final}
+
+  # Needs: tv-prepare --no-train-aug --out data/tomato_village_noaug --manifest splits/split_manifest.csv
+  - {name: yolo11s-noaug,      base: yolo11s, tier: 3, tables: [data], data: data/tomato_village_noaug/dataset.yaml}
+  - {name: yolo11s-adcf-noaug, base: yolo11s, tier: 3, tables: [data], data: data/tomato_village_noaug/dataset.yaml,
+     adcf: *final}

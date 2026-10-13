@@ -1,0 +1,70 @@
+{
+ "frozen_before_model_load": true,
+ "released_source": "C:\\Users\\absamad\\cs\\tomato-adcf-yolo\\data\\raw\\Tomato-Village\\Variant-c(Object Detection)\\val",
+ "clean_split": "C:\\Users\\absamad\\cs\\tomato-adcf-yolo\\data\\tomato_village",
+ "arms": {
+  "A": {
+   "manifest_sha256": "c00a732c237451111c37083c77861e7f0c7bf494a35ed4ca826bd3c966990d1e",
+   "filelist_sha256": "9d0ef744875440b047fa58d0650ad9b6d342c12ec943776954c35e624aa9d603",
+   "familylist_sha256": "a0ec7649f9d289a1d1fb6354cbc5fd7a17c1fa4e08ee7bab9ef018cc28ff0744",
+   "files": 2028,
+   "families": 1047,
+   "boxes": 23225,
+   "augmented_files": 1764
+  },
+  "B": {
+   "manifest_sha256": "8f725036c48d122b0835256459f4ca06eacf2006bfe68d4e94d9572c6c989935",
+   "filelist_sha256": "4f7cadc0579be1eaf1515c1e5698881dcd927757d0f375a2ad599e52974259f4",
+   "familylist_sha256": "c9005cb2643817831ef09701f9497953a73fadae740386961f44b454f5095fe9",
+   "files": 411,
+   "families": 213,
+   "boxes": 4683,
+   "augmented_files": 358
+  }
+ },
+ "excluded_clean_test_label_files": 436,
+ "gates_passed": [
+  "G1",
+  "G2",
+  "G3",
+  "G4",
+  "G5",
+  "G6",
+  "G7"
+ ],
+ "class_ids_present": [
+  2,
+  3,
+  4,
+  5,
+  6,
+  7
+ ],
+ "dataset_names": {
+  "0": "Early Blight",
+  "1": "Healthy",
+  "2": "Late Blight",
+  "3": "Leaf Miner",
+  "4": "Magnesium Deficiency",
+  "5": "Nitrogen Deficiency",
+  "6": "Potassium Deficiency",
+  "7": "Spotted Wilt Virus"
+ },
+ "nc": null,
+ "class_pct_A": {
+  "2": 2.14,
+  "3": 67.11,
+  "4": 10.47,
+  "5": 1.25,
+  "6": 0.81,
+  "7": 18.21
+ },
+ "class_pct_B": {
+  "2": 1.67,
+  "3": 67.01,
+  "4": 10.61,
+  "5": 0.68,
+  "6": 0.83,
+  "7": 19.2
+ }
+}

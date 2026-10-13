@@ -1,0 +1,95 @@
+{
+ "A_1x_normal": {
+  "train": {
+   "images": 1260,
+   "labels": 1260,
+   "source_photos": 1260,
+   "aug_copies_present": 0
+  },
+  "val": {
+   "images": 268,
+   "labels": 268,
+   "source_photos": 268,
+   "aug_copies_present": 0
+  },
+  "test": {
+   "images": 268,
+   "labels": 268,
+   "source_photos": 268,
+   "aug_copies_present": 0
+  },
+  "overlap_train_val": 0,
+  "overlap_train_test": 0,
+  "overlap_val_test": 0
+ },
+ "C_8x_duplicate": {
+  "train": {
+   "images": 10080,
+   "labels": 10080,
+   "source_photos": 1260,
+   "aug_copies_present": 8820
+  },
+  "val": {
+   "images": 268,
+   "labels": 268,
+   "source_photos": 268,
+   "aug_copies_present": 0
+  },
+  "test": {
+   "images": 268,
+   "labels": 268,
+   "source_photos": 268,
+   "aug_copies_present": 0
+  },
+  "overlap_train_val": 0,
+  "overlap_train_test": 0,
+  "overlap_val_test": 0
+ },
+ "D_8x_augmented": {
+  "train": {
+   "images": 10080,
+   "labels": 10080,
+   "source_photos": 1260,
+   "aug_copies_present": 8820
+  },
+  "val": {
+   "images": 268,
+   "labels": 268,
+   "source_photos": 268,
+   "aug_copies_present": 0
+  },
+  "test": {
+   "images": 268,
+   "labels": 268,
+   "source_photos": 268,
+   "aug_copies_present": 0
+  },
+  "overlap_train_val": 0,
+  "overlap_train_test": 0,
+  "overlap_val_test": 0
+ },
+ "B_1x_matched": {
+  "train": {
+   "images": 1260,
+   "labels": 1260,
+   "source_photos": 1260,
+   "aug_copies_present": 0
+  },
+  "val": {
+   "images": 268,
+   "labels": 268,
+   "source_photos": 268,
+   "aug_copies_present": 0
+  },
+  "test": {
+   "images": 268,
+   "labels": 268,
+   "source_photos": 268,
+   "aug_copies_present": 0
+  },
+  "overlap_train_val": 0,
+  "overlap_train_test": 0,
+  "overlap_val_test": 0,
+  "note": "identical data to A; only the epoch budget differs"
+ }
+}

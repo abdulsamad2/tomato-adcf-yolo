@@ -1,0 +1,18 @@
+{
+ "dataset": "PlantDoc",
+ "images_scanned": 2578,
+ "images_per_split": {
+  "test": 236,
+  "train": 2342
+ },
+ "distinct_name_groups": 2541,
+ "name_groups_spanning_splits": 16,
+ "distinct_hash_clusters": 2502,
+ "hash_clusters_spanning_splits": 14,
+ "contaminated_eval_images": {
+  "test": 14
+ },
+ "contamination_pct": {
+  "test": 5.93
+ }
+}

@@ -1,0 +1,85 @@
+{
+ "yolo11n": {
+  "weights": "C:\\Users\\absamad\\cs\\tomato-adcf-yolo\\runs_p3\\yolo11n\\seed0\\weights\\ckpt_ep39_step24570.pt",
+  "params_M": 2.5914,
+  "GFLOPs_640": 6.507,
+  "batches": {
+   "1": {
+    "ms_mean": 9.145,
+    "ms_sd": 1.674,
+    "ms_median": 8.537,
+    "ms_p95": 12.833,
+    "img_per_s": 109.3,
+    "warmup": 200,
+    "iters": 1000
+   },
+   "16": {
+    "ms_mean": 12.421,
+    "ms_sd": 0.629,
+    "ms_median": 12.212,
+    "ms_p95": 14.12,
+    "img_per_s": 1288.2,
+    "warmup": 200,
+    "iters": 1000
+   }
+  }
+ },
+ "yolo11s": {
+  "weights": "C:\\Users\\absamad\\cs\\tomato-adcf-yolo\\runs_p2b\\D\\seed0\\weights\\ckpt_ep39_step24570.pt",
+  "params_M": 9.4309,
+  "GFLOPs_640": 21.682,
+  "batches": {
+   "1": {
+    "ms_mean": 9.118,
+    "ms_sd": 1.868,
+    "ms_median": 8.485,
+    "ms_p95": 12.614,
+    "img_per_s": 109.7,
+    "warmup": 200,
+    "iters": 1000
+   },
+   "16": {
+    "ms_mean": 28.902,
+    "ms_sd": 0.53,
+    "ms_median": 28.662,
+    "ms_p95": 30.049,
+    "img_per_s": 553.6,
+    "warmup": 200,
+    "iters": 1000
+   }
+  }
+ },
+ "yolo11m": {
+  "weights": "C:\\Users\\absamad\\cs\\tomato-adcf-yolo\\runs_p3\\yolo11m\\seed0\\weights\\ckpt_ep39_step24570.pt",
+  "params_M": 20.0592,
+  "GFLOPs_640": 68.333,
+  "batches": {
+   "1": {
+    "ms_mean": 11.148,
+    "ms_sd": 1.834,
+    "ms_median": 10.565,
+    "ms_p95": 15.096,
+    "img_per_s": 89.7,
+    "warmup": 200,
+    "iters": 1000
+   },
+   "16": {
+    "ms_mean": 71.215,
+    "ms_sd": 0.644,
+    "ms_median": 71.173,
+    "ms_p95": 72.321,
+    "img_per_s": 224.7,
+    "warmup": 200,
+    "iters": 1000
+   }
+  }
+ },
+ "_meta": {
+  "gpu": "NVIDIA RTX 5000 Ada Generation",
+  "imgsz": 640,
+  "warmup": 200,
+  "iters": 1000,
+  "precision": "fp32",
+  "when": "2026-10-06 00:48:22"
+ }
+}

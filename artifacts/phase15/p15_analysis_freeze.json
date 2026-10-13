@@ -1,0 +1,16 @@
+{
+ "frozen_at": "2026-10-12 03:11:24",
+ "note": "analysis code frozen while run 1 of 20 is training; no Phase 15 metric computed or viewed",
+ "revision": "v2 supersedes p15_analysis_freeze_v1.json (03:09): p15_stats.py gained the P15_TEST_ROOT synthetic self-test hook (paths only, unset in the real run) and passed a planted-effect self-test. No rule, margin, endpoint or test changed.",
+ "completed_runs_at_freeze": 0,
+ "prereg_sha256": "97761370f1f6e771bf8ada8808f97634eea2cf76794ceee005a609b1cfdfb208",
+ "sha256": {
+  "p15_run.py": "f0d4426b15882c6ca8b71278617f7fab7deb1a9104c6efc434478e69113aad9e",
+  "p15_queue.ps1": "0379adc9233dd6a9401dfa6cfbaea838386d8938a1774caa72552cb86904310e",
+  "p15_eval.py": "923e5c49ac0d8aba3ea61e0b625ab47b432462e482164bbbfc0b698171f2be6d",
+  "p15_stats.py": "cb7ddb0fa969ebb112a4d819a148b606e179828e649bda8d3bf9fb29456b663c",
+  "p15_bench.py": "586d690ecc7324727ede760a8886303b318a7c66e13bb29f7b708901a2e10d99",
+  "p15_post.ps1": "3676852239785463b95fe741c1eddd3f06b17c302a5fd0c71ca3df3558eb9186"
+ },
+ "evaluator_control": "CONTROL r512 seed0 reproduced Phase 9 six-class AP within 0.0021 AP and the Phase 12 decomposition exactly"
+}

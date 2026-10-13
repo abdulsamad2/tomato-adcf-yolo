@@ -16,7 +16,7 @@ pretrained: true   # start from COCO weights (<base>.pt), as almost all papers d
 
 train:
   epochs: 200
-  patience: 50           # early stop if val fitness hasn't improved for 50 epochs
+  patience: 25           # early stop if val fitness hasn't improved for 25 epochs (reduced from 50; no run improved after a 17-epoch gap)
   imgsz: 640
   batch: 16
   optimizer: SGD         # fixed; "auto" can pick different optimizers per model
@@ -49,10 +49,11 @@ tables:
   main:       {reference: yolo11s, title: "Comparison with baselines"}
   control:    {reference: yolo11s, title: "Is it ADCF, or any add-on in the same place?"}
   resolution: {reference: yolo11s, title: "Resolution and small-object head: fair comparison"}
-  fusion:     {reference: yolo11s-adcf, title: "Ablation: ADCF design (Δ vs full ADCF)"}
-  placement:  {reference: yolo11s-adcf, title: "Ablation: where to insert ADCF (Δ vs all slots)"}
+  fusion:     {reference: yolo11s-adcf, title: "Ablation: ADCF design (? vs full ADCF)"}
+  placement:  {reference: yolo11s-adcf, title: "Ablation: where to insert ADCF (? vs all slots)"}
   scale:      {reference: yolo11n, title: "Model scale"}
   data:       {reference: yolo11s, title: "Offline augmentation copies"}
+  family:     {reference: yolo11s, title: "Cross-family comparison"}
 
 cv:
   folds: 5
@@ -108,8 +109,26 @@ runs:
   - {name: yolo11n-adcf,  base: yolo11n, tier: 3, tables: [scale], adcf: *final}
   - {name: yolo11m,       base: yolo11m, tier: 3, tables: [scale]}
   - {name: yolo11m-adcf,  base: yolo11m, tier: 3, tables: [scale], adcf: *final}
+  - {name: yolo26n,       base: yolo26n, tier: 3, tables: [scale]}
+  - {name: yolov8n,       base: yolov8n, tier: 3, tables: [scale]}
 
   # Needs: tv-prepare --no-train-aug --out data/tomato_village_noaug --manifest splits/split_manifest.csv
   - {name: yolo11s-noaug,      base: yolo11s, tier: 3, tables: [data], data: data/tomato_village_noaug/dataset.yaml}
+  - {name: yolo11s-aug4,      base: yolo11s, tier: 3, tables: [data], data: data/tomato_village_aug4/dataset.yaml}
+  - {name: yolo11s-aug2,      base: yolo11s, tier: 3, tables: [data], data: data/tomato_village_aug2/dataset.yaml}
+  - {name: yolo11s-480,       base: yolo11s, tier: 3, tables: [resolution], train: {imgsz: 480}}
+  - {name: yolo11s-320,       base: yolo11s, tier: 3, tables: [resolution], train: {imgsz: 320}}
+  - {name: yolo11s-cp10,        base: yolo11s, tier: 3, tables: [data], train: {copy_paste: 0.1}}
+  # Does the zero-init residual scaling starve the gate of gradient? (alpha measured at 0.50 everywhere)
+  - {name: yolo11s-adcf-g05, base: yolo11s, tier: 3, tables: [fusion],
+     adcf: {placement: all, mode: residual, fusion: gated, gate: spatial, gamma_init: 0.5}}
+  - {name: yolo11s-adcf-g10, base: yolo11s, tier: 3, tables: [fusion],
+     adcf: {placement: all, mode: residual, fusion: gated, gate: spatial, gamma_init: 1.0}}
+  - {name: yolo11s-cp30,        base: yolo11s, tier: 3, tables: [data], train: {copy_paste: 0.3}}
+  - {name: yolov5su,          base: yolov5su, tier: 4, tables: [family]}
+  - {name: yolo12s,           base: yolo12s, tier: 4, tables: [family]}
+  - {name: yolov10s,          base: yolov10s, tier: 4, tables: [family]}
+  - {name: yolov9s,           base: yolov9s, tier: 4, tables: [family]}
+  - {name: rtdetr-l,          base: rtdetr-l, tier: 4, tables: [family]}
   - {name: yolo11s-adcf-noaug, base: yolo11s, tier: 3, tables: [data], data: data/tomato_village_noaug/dataset.yaml,
      adcf: *final}

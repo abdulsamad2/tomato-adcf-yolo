@@ -1,0 +1,223 @@
+{
+ "phase": 17,
+ "title": "Single-configuration localization-focused distillation into the selected 0.75x model",
+ "frozen_at": "2026-10-12 23:51:41",
+ "question": "Can knowledge distillation from the pretrained 1.00x teacher recover independent-source (arm B) accuracy in the Phase 15 0.75x student without changing its inference architecture?",
+ "context": [
+  "Phase 15 selected 0.75x (1,565,628 params, 2.707 GFLOPs) as equivalent to 1.00x within +/-1.5 AP.",
+  "Phase 16A LPWA-50 failed its AP gate; architecture work is closed.",
+  "Exploratory: COCO pretraining adds +3.9 AP on arm B vs +15.1 on exposed arm A.",
+  "Deficits are dominated by localization; conditional class correctness stays ~97%."
+ ],
+ "teacher": {
+  "checkpoint": "C:\\Users\\absamad\\cs\\tomato-adcf-yolo\\runs_p4\\r512\\seed0\\weights\\ckpt_ep39_step24570.pt",
+  "sha256": "756f917bc7d27a9cf599404a3de0d606974e8744adbc1987481d2a4d3aeec3a5",
+  "description": "pretrained (COCO-init) YOLO11n 1.00x, runs_p4/r512 seed 0, fixed 24570-update checkpoint (not best-val); the model used in the exploratory pretraining analysis",
+  "params": 2591400,
+  "frozen": "eval mode, requires_grad False, torch.no_grad",
+  "single_teacher_for_all_seeds": true
+ },
+ "student": {
+  "yaml": "C:\\Users\\absamad\\cs\\widths\\yolo11n_w0p75.yaml",
+  "yaml_sha256": "157eb1175501af4f97618466a4d830264f0131dfce177f31618dbc29c324f573",
+  "params": 1565628,
+  "GFLOPs_512": 2.707,
+  "imgsz": 512,
+  "init_policy": "random initialisation exactly as Phase 15 w075 (yaml-built, pretrained=False, Ultralytics deterministic seeding with the run seed); the dry run verified identical initial state-dict hashes for the ordinary and KD trainers and that the first conv is not yolo11n.pt",
+  "init_sd_sha256_seed0": "35c5b4755de78979f28a337ea3c1599d2a68e6846261d798c70ae7ea7ff7c512",
+  "architecture_change": "none"
+ },
+ "baseline": {
+  "runs": "runs_p15/w075/seed0-4 (ordinary, non-distilled, already trained and scored)",
+  "scores": "phase15/eval_rows.json (unchanged)"
+ },
+ "training": {
+  "source": "configs/experiments.yaml [train], identical to runs_p4/r512 except init",
+  "data": "data/tomato_village (leakage-free source-family split, 10080 train files)",
+  "imgsz": 512,
+  "batch": 16,
+  "nbs": 64,
+  "optimizer": "SGD",
+  "lr0": 0.01,
+  "lrf": 0.01,
+  "cos_lr": false,
+  "epochs": 39,
+  "steps_per_epoch": 630,
+  "total_updates": 24570,
+  "warmup_updates": 933,
+  "close_mosaic_epochs": 5,
+  "patience": "1e6 (disabled)",
+  "multi_scale": false,
+  "rect": false,
+  "deterministic": true,
+  "augmentation": "unchanged Ultralytics defaults (as runs_p4/r512)",
+  "note": "identical to runs_p15/w075; the ONLY difference is the added KD loss"
+ },
+ "seeds": [
+  0,
+  1,
+  2,
+  3,
+  4
+ ],
+ "run_order": "one seed at a time, 0..4",
+ "checkpoints": {
+  "epoch10": 6300,
+  "epoch19": 11970,
+  "epoch29": 18270,
+  "epoch39": 24570
+ },
+ "primary_checkpoint": 24570,
+ "secondary_checkpoint": 18270,
+ "distillation": {
+  "formula": "L = L_box + L_cls + L_dfl  +  lam_ld * hyp.dfl * L_LD  +  lam_at * L_AT;  L_LD = mean over the student's TaskAlignedAssigner foreground anchors and the 4 box sides of KL( softmax(t/T) || softmax(s/T) ) * T^2 over the 16 DFL bins;  L_AT = sum over P3,P4 of mean_b || q_S - q_T ||_2^2 with q = vec(mean_c F^2)/||vec(mean_c F^2)||_2;  the total is multiplied by the batch size (Ultralytics convention)",
+  "lam_ld": 1.0,
+  "T_ld": 1.0,
+  "hyp_dfl": 1.5,
+  "lam_at": 1.25,
+  "lam_at_rule": "lam_at = mean_{first 10 batches, ordinary trajectory, seed 0}(hyp.dfl*L_LD) / mean(L_AT), 3 significant figures; computed on training images only, before pre-registration",
+  "lam_at_calibration": {
+   "dfl_gain": 1.5,
+   "mean_LD_first10": 1.7524635314941406,
+   "mean_AT_first10": 2.1026464223861696,
+   "lam_at_raw": 1.2501841818264714,
+   "lam_at": 1.25,
+   "lam_ld": 1.0,
+   "T_ld": 1.0,
+   "det_loss_first10": 13.28087911605835
+  },
+  "class_logit_kd": "none",
+  "trainable_params_added": 0,
+  "hook_points": "Detect training output dict {boxes, scores, feats}: student box logits and neck P3/P4 feats are read directly (no hooks); teacher run in eval mode returns (y, dict) and the dict is used; assigner foreground mask from v8DetectionLoss.get_assigned_targets_and_loss",
+  "why_not_builtin": "Ultralytics 8.4.155 ships DistillationModel (distill_model=...): P3/P4/P5 feature imitation with trainable projector MLPs weighted by teacher class scores, no box-distribution term. It is not localization-focused and adds P5, so it does not match this phase's design.",
+  "kd_share_of_total_loss_dry_run": [
+   0.28787213370454395,
+   0.27014256141968057
+  ]
+ },
+ "dry_run": {
+  "report": "C:\\Users\\absamad\\cs\\phase17\\p17_dryrun_report.json",
+  "report_sha256": "8cbaa35fbac4b4efc2035a4fe33e7620ea86f3ce2d55389cc3a5875c12f35dd9",
+  "kd_off_reproduces_ordinary_loss_max_rel_diff": 0.0,
+  "shapes": {
+   "student_boxes": [
+    16,
+    64,
+    5376
+   ],
+   "teacher_boxes": [
+    16,
+    64,
+    5376
+   ],
+   "student_feats": [
+    [
+     16,
+     48,
+     64,
+     64
+    ],
+    [
+     16,
+     96,
+     32,
+     32
+    ],
+    [
+     16,
+     192,
+     16,
+     16
+    ]
+   ],
+   "teacher_feats": [
+    [
+     16,
+     64,
+     64,
+     64
+    ],
+    [
+     16,
+     128,
+     32,
+     32
+    ],
+    [
+     16,
+     256,
+     16,
+     16
+    ]
+   ],
+   "fg_anchors_first_batch": 2574
+  },
+  "all_pass": true
+ },
+ "evaluation": {
+  "arms": "Phase 9 frozen arms over the official-val union (2439 images): arm B = source-INDEPENDENT (213 families, 411 files), arm A = source-EXPOSED (1047 families, 2028 files). Manifests/hashes: phase9/arm_freeze_record.json.",
+  "inference": "imgsz 512, conf 0.001, NMS IoU 0.7, max_det 300, top-100 per image",
+  "scorer": "pycocotools COCO AP@[.50:.95], maxDets 100, 8 categories (as Phase 9/12)",
+  "decomposition": "Phase 12 matching rules: conf 0.25, greedy one-to-one class-agnostic match at IoU 0.50; strict 0.75",
+  "also": "clean-val (268 originals) Ultralytics val at every checkpoint, descriptive only"
+ },
+ "primary": {
+  "endpoint": "six-class AP50-95 on arm B (213 independent families) at exactly 24570 updates",
+  "comparison": "kd075 vs ordinary w075, paired by seed",
+  "statistic": "Delta_i = AP_B(kd075, i) - AP_B(w075, i), i = 0..4",
+  "gate_AP": 0.75,
+  "rule": "PASS iff mean Delta >= +0.75 AP AND the resource/architecture-identity gate holds",
+  "reported": "paired 95% t CI (df 4), per-seed deltas; significance not required"
+ },
+ "mechanism_gate": "mean Delta localization recall @IoU .50 on arm B > 0 (expected direction). Reported as mechanistic corroboration; not part of PASS; no significance test.",
+ "resource_gate": "per seed: params kd == base == 1,565,628; GFLOPs@512 equal; identical state-dict keys and shapes; checkpoint file size within 1%. Latency (GPU b1/b16, CPU b1) benchmarked on idle hardware; no speed-up is claimed because the inference graph is unchanged.",
+ "secondary": [
+  "AP50, AP75, APs, AR100, class-agnostic AP, locR50, locR75, conditional class correctness, FP/family",
+  "arm A and arm B; exposed-minus-independent interaction (paired t and family bootstrap 1000)",
+  "all of the above at 18270",
+  "vs 1.00x (Phase 15 one-sided margin -1.5) and vs the pretrained teacher family (context)",
+  "fraction of the pretrained-vs-0.75x gap recovered",
+  "convergence (Phase 15 rule)"
+ ],
+ "stop_rules": {
+  "fail": "mean Delta AP_B < +0.75: Phase 17 FAILS. No second KD method, no alternate teacher, no alternate loss weights, no architecture modification, no rescue experiment.",
+  "pass": "mean Delta AP_B >= +0.75 (and resource gate holds): Phase 17 PASSES; distilled 0.75x becomes the candidate deployment model; no further KD search."
+ },
+ "integrity_rules": [
+  "The clean test split is not inspected during development.",
+  "The margin and all rules are not changed after any result is seen.",
+  "Best-validation checkpoints are never the primary outcome; the primary is the fixed 24570-update checkpoint.",
+  "No edge-device speed claim is made from desktop GPU timings.",
+  "No Phase 17 AP is inspected during training (curves log losses and clean-val only; not read until post).",
+  "Coefficients are frozen; none is tuned on arm A, arm B or any Phase 17 result.",
+  "Clean test is opened once only, after Phase 17 finishes and final model selection is locked."
+ ],
+ "expected_compute": {
+  "training_hours": "3.0-3.5 (5 x ~36-42 min; teacher forward adds a few %)",
+  "post_hours": "~1.0 (scoring 20 checkpoints ~35 min, bench ~5 min, stats ~25 min)",
+  "total_wall_hours": "4.0-4.5"
+ },
+ "outputs": {
+  "runs": "runs_p17/seed0-4",
+  "results": [
+   "results/p17_checkpoint_results.csv",
+   "results/p17_stats.json",
+   "results/p17_efficiency.json"
+  ],
+  "logs": [
+   "logs/p17.log",
+   "logs/p17post.log"
+  ]
+ },
+ "script_sha256": {
+  "p17_kd.py": "2d9fc0b3e7f2acb005e28579abaa3b817fa8aa6be226b04560105de8196b37f8",
+  "p17_run.py": "28c573f2811bc3c49ffa8e5c2d29a7214614968a3b88827380c388999a29e8cd",
+  "p17_dryrun.py": "f2b4af901dbba7b30555e3d6bf0c81b3d8a29d84fccec6b2d5b8580ba0f57820",
+  "p17_freeze.py": "094905378cddee054ebacef29273f1cd50e1c3f051bebbe74e036b5f3addb576",
+  "p17_eval.py": "699566f5fe24c6bf8220dce4713a161fdf4fb6893b5139e88f980d18c96d56ed",
+  "p17_stats.py": "3a5bb10dc5e5ee47b058aa125d09cb2d5fc196961a63d60b4c1dffea7b56aea1",
+  "p17_bench.py": "03c2cc644bbf7c0b9efb0659a29001374cdeb4abc5eda2898a0fbd75eab68157",
+  "p17_queue.ps1": "27525dafe6c5d266029e4a3d4953fb7567db74405cd611e86ac895802614c79a",
+  "p17_post.ps1": "9e4f8f63fc08c976c78f2b7e96e5ef3e835718e08d31acfd8d884ac7b43514c5"
+ }
+}

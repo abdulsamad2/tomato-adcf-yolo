@@ -1,0 +1,97 @@
+{
+ "train_block": {
+  "epochs": 200,
+  "patience": 25,
+  "imgsz": 640,
+  "batch": 16,
+  "optimizer": "SGD",
+  "lr0": 0.01,
+  "lrf": 0.01,
+  "momentum": 0.937,
+  "weight_decay": 0.0005,
+  "warmup_epochs": 3,
+  "cos_lr": false,
+  "close_mosaic": 10
+ },
+ "arm_C_identity": {
+  "source_photos": 1260,
+  "files_per_photo": {
+   "8": 1260
+  },
+  "photos_with_differing_bytes": 0
+ },
+ "steps": {
+  "A_1x_normal": {
+   "n_images": 1260,
+   "steps_per_epoch": 79
+  },
+  "C_8x_duplicate": {
+   "n_images": 10080,
+   "steps_per_epoch": 630
+  },
+  "D_8x_augmented": {
+   "n_images": 10080,
+   "steps_per_epoch": 630
+  },
+  "B_1x_matched": {
+   "n_images": 1260,
+   "steps_per_epoch": 79
+  }
+ },
+ "observed": {
+  "D_8x_augmented(yolo11s)": [
+   {
+    "seed": "seed0",
+    "epochs": 82,
+    "hours": 1.2283809810876847
+   },
+   {
+    "seed": "seed1",
+    "epochs": 66,
+    "hours": 1.116595792969068
+   },
+   {
+    "seed": "seed2",
+    "epochs": 68,
+    "hours": 1.1528207300768958
+   },
+   {
+    "seed": "seed3",
+    "epochs": 59,
+    "hours": 1.0041548921002281
+   },
+   {
+    "seed": "seed4",
+    "epochs": 58,
+    "hours": 0.9872271835803985
+   }
+  ],
+  "A_1x_normal(yolo11s-noaug)": [
+   {
+    "seed": "seed0",
+    "epochs": 88,
+    "hours": 0.2375013138188256
+   },
+   {
+    "seed": "seed1",
+    "epochs": 63,
+    "hours": 0.17346381392743854
+   },
+   {
+    "seed": "seed2",
+    "epochs": 101,
+    "hours": 0.2652271425061756
+   },
+   {
+    "seed": "seed3",
+    "epochs": 107,
+    "hours": 0.28095450103282926
+   },
+   {
+    "seed": "seed4",
+    "epochs": 110,
+    "hours": 0.2885320919089847
+   }
+  ]
+ }
+}

@@ -1,0 +1,75 @@
+{
+ "V1_counts": {
+  "n_images": 268,
+  "n_labels": 268,
+  "n_manifest_test": 268,
+  "stems_equal_manifest": true,
+  "stems_equal_manifest_note": "compared after the Phase 9 name normalisation ('Jaipur_Pots (102)' == 'Jaipur_Pots_102')",
+  "label_stems_equal_images": true,
+  "aug_copies_in_test": 0,
+  "pass": true
+ },
+ "V2_manifest_disjoint": {
+  "test_clusters": 261,
+  "id_overlap_train": 0,
+  "id_overlap_val": 0,
+  "cluster_overlap_train": 0,
+  "cluster_overlap_val": 0,
+  "pass": true
+ },
+ "V3_disk_disjoint": {
+  "train_file_families": 1260,
+  "val_file_families": 268,
+  "overlap_train": 0,
+  "overlap_val": 0,
+  "pass": true
+ },
+ "V4_phase9_arms": {
+  "arm_families": 1260,
+  "overlap_test": 0,
+  "pass": true
+ },
+ "V5_prior_access": {
+  "statement": "The clean test split HAS been scored before, for models outside this plan: the original adcf-run pipeline (results_test.json per run, results/tables_test.md, Sep 21 - Oct 3) and the Phase 2B single test evaluation (results/p2b_test_eval.json, Oct 5, 15 YOLO11s checkpoints). capacity_audit.py and res_audit.py later read those stored numbers. No model in this plan, and no protocol choice in Phases 4-17, was scored on or selected with the test split.",
+  "earlier_runs_with_test_results": {
+   "runs/yolo11n": 3,
+   "runs/yolo11s": 5,
+   "runs/yolo11s-960": 3,
+   "runs/yolo11s-adcf": 3,
+   "runs/yolo11s-adcf-960": 1,
+   "runs/yolo11s-adcf-g05": 1,
+   "runs/yolo11s-adcf-g10": 1,
+   "runs/yolo11s-adcf-noaug": 3,
+   "runs/yolo11s-adcf-replace": 3,
+   "runs/yolo11s-cbam": 3,
+   "runs/yolo11s-cp10": 3,
+   "runs/yolo11s-cp30": 1,
+   "runs/yolo11s-noaug": 5,
+   "runs/yolo11s-p2": 3,
+   "runs/yolo11s-p2-adcf": 3,
+   "runs/yolo26n": 3,
+   "runs/yolo26s": 3,
+   "runs/yolov8n": 3,
+   "runs/yolov8s": 3,
+   "runs_cv/yolo11s": 5,
+   "runs_cv/yolo11s-adcf": 5,
+   "runs_timing/yolo11s": 1
+  },
+  "other_test_artefacts": [
+   "results\\tables_test.md",
+   "results\\p2b_test_eval.json",
+   "results\\all_seeds_test.csv"
+  ],
+  "test_named_files_in_plan_runs": {
+   "runs_p17": [],
+   "runs_p15/w075": [],
+   "runs_p15/w100": [],
+   "runs_p4/r512": []
+  },
+  "pass_plan_models_never_scored_on_test": true
+ },
+ "test_set_sha256": "97873e6a1c1588e0e8d65acf42a3a0ac1b693721e964bb75afc562bf94bc74de",
+ "n_boxes": 3205,
+ "n_empty_label_images": 2,
+ "all_pass": true
+}

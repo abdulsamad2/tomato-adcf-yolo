@@ -1,0 +1,253 @@
+{
+ "gate_before": {
+  "name": "NVIDIA RTX 5000 Ada Generation",
+  "util_pct": 0,
+  "mem_MB": 567,
+  "temp_C": 38,
+  "sm_MHz": 210
+ },
+ "imgsz": 512,
+ "warmup": 200,
+ "iters": 1000,
+ "cpu_iters": 100,
+ "torch": "2.14.0+cu130",
+ "cpu_threads": 20,
+ "weights": {
+  "w100": "C:\\Users\\absamad\\cs\\tomato-adcf-yolo\\runs_p15\\w100\\seed0\\weights\\ckpt_ep39_step24570.pt",
+  "w075": "C:\\Users\\absamad\\cs\\tomato-adcf-yolo\\runs_p15\\w075\\seed0\\weights\\ckpt_ep39_step24570.pt",
+  "kd075": "C:\\Users\\absamad\\cs\\tomato-adcf-yolo\\runs_p17\\seed0\\weights\\ckpt_ep39_step24570.pt"
+ },
+ "sequence": [
+  "w100",
+  "w075",
+  "kd075",
+  "w100"
+ ],
+ "static": {
+  "w100": {
+   "params": 2591400,
+   "params_M": 2.5914,
+   "GFLOPs_512": 4.15,
+   "fp16_state_dict_MB": 5.38,
+   "checkpoint_file_MB": 10.746
+  },
+  "w075": {
+   "params": 1565628,
+   "params_M": 1.5656,
+   "GFLOPs_512": 2.707,
+   "fp16_state_dict_MB": 3.315,
+   "checkpoint_file_MB": 6.626
+  },
+  "kd075": {
+   "params": 1565628,
+   "params_M": 1.5656,
+   "GFLOPs_512": 2.707,
+   "fp16_state_dict_MB": 3.315,
+   "checkpoint_file_MB": 6.626
+  }
+ },
+ "runs": [
+  {
+   "pos": 0,
+   "width": "w100",
+   "gpu_before": {
+    "name": "NVIDIA RTX 5000 Ada Generation",
+    "util_pct": 4,
+    "mem_MB": 567,
+    "temp_C": 38,
+    "sm_MHz": 210
+   },
+   "gpu": {
+    "1": {
+     "ms_mean": 7.697,
+     "ms_sd": 1.839,
+     "ms_median": 6.997,
+     "ms_p05": 6.277,
+     "ms_p95": 11.765,
+     "img_per_s": 142.9,
+     "peak_mem_MB": 60.0
+    },
+    "16": {
+     "ms_mean": 7.471,
+     "ms_sd": 1.426,
+     "ms_median": 6.991,
+     "ms_p05": 6.515,
+     "ms_p95": 10.166,
+     "img_per_s": 2288.5,
+     "peak_mem_MB": 295.7
+    }
+   },
+   "cpu": {
+    "1": {
+     "ms_mean": 26.132,
+     "ms_sd": 3.439,
+     "ms_median": 25.669,
+     "ms_p05": 21.513,
+     "ms_p95": 33.269,
+     "img_per_s": 39.0
+    }
+   },
+   "gpu_after": {
+    "name": "NVIDIA RTX 5000 Ada Generation",
+    "util_pct": 0,
+    "mem_MB": 1243,
+    "temp_C": 47,
+    "sm_MHz": 495
+   }
+  },
+  {
+   "pos": 1,
+   "width": "w075",
+   "gpu_before": {
+    "name": "NVIDIA RTX 5000 Ada Generation",
+    "util_pct": 3,
+    "mem_MB": 1243,
+    "temp_C": 47,
+    "sm_MHz": 375
+   },
+   "gpu": {
+    "1": {
+     "ms_mean": 7.591,
+     "ms_sd": 1.746,
+     "ms_median": 6.878,
+     "ms_p05": 6.21,
+     "ms_p95": 11.109,
+     "img_per_s": 145.4,
+     "peak_mem_MB": 54.6
+    },
+    "16": {
+     "ms_mean": 7.431,
+     "ms_sd": 1.84,
+     "ms_median": 6.624,
+     "ms_p05": 6.056,
+     "ms_p95": 11.694,
+     "img_per_s": 2415.3,
+     "peak_mem_MB": 241.2
+    }
+   },
+   "cpu": {
+    "1": {
+     "ms_mean": 22.911,
+     "ms_sd": 2.741,
+     "ms_median": 22.845,
+     "ms_p05": 19.145,
+     "ms_p95": 27.402,
+     "img_per_s": 43.8
+    }
+   },
+   "gpu_after": {
+    "name": "NVIDIA RTX 5000 Ada Generation",
+    "util_pct": 0,
+    "mem_MB": 1159,
+    "temp_C": 53,
+    "sm_MHz": 480
+   }
+  },
+  {
+   "pos": 2,
+   "width": "kd075",
+   "gpu_before": {
+    "name": "NVIDIA RTX 5000 Ada Generation",
+    "util_pct": 2,
+    "mem_MB": 1159,
+    "temp_C": 52,
+    "sm_MHz": 375
+   },
+   "gpu": {
+    "1": {
+     "ms_mean": 7.379,
+     "ms_sd": 1.513,
+     "ms_median": 6.793,
+     "ms_p05": 6.235,
+     "ms_p95": 10.393,
+     "img_per_s": 147.2,
+     "peak_mem_MB": 54.6
+    },
+    "16": {
+     "ms_mean": 7.162,
+     "ms_sd": 1.538,
+     "ms_median": 6.615,
+     "ms_p05": 6.038,
+     "ms_p95": 10.158,
+     "img_per_s": 2418.7,
+     "peak_mem_MB": 241.2
+    }
+   },
+   "cpu": {
+    "1": {
+     "ms_mean": 23.081,
+     "ms_sd": 3.199,
+     "ms_median": 22.433,
+     "ms_p05": 19.451,
+     "ms_p95": 28.403,
+     "img_per_s": 44.6
+    }
+   },
+   "gpu_after": {
+    "name": "NVIDIA RTX 5000 Ada Generation",
+    "util_pct": 0,
+    "mem_MB": 1159,
+    "temp_C": 56,
+    "sm_MHz": 555
+   }
+  },
+  {
+   "pos": 3,
+   "width": "w100",
+   "gpu_before": {
+    "name": "NVIDIA RTX 5000 Ada Generation",
+    "util_pct": 0,
+    "mem_MB": 1159,
+    "temp_C": 56,
+    "sm_MHz": 555
+   },
+   "gpu": {
+    "1": {
+     "ms_mean": 7.276,
+     "ms_sd": 1.508,
+     "ms_median": 6.735,
+     "ms_p05": 6.144,
+     "ms_p95": 10.48,
+     "img_per_s": 148.5,
+     "peak_mem_MB": 60.0
+    },
+    "16": {
+     "ms_mean": 7.213,
+     "ms_sd": 1.298,
+     "ms_median": 6.699,
+     "ms_p05": 6.527,
+     "ms_p95": 10.213,
+     "img_per_s": 2388.4,
+     "peak_mem_MB": 295.7
+    }
+   },
+   "cpu": {
+    "1": {
+     "ms_mean": 26.312,
+     "ms_sd": 3.94,
+     "ms_median": 25.662,
+     "ms_p05": 21.4,
+     "ms_p95": 33.157,
+     "img_per_s": 39.0
+    }
+   },
+   "gpu_after": {
+    "name": "NVIDIA RTX 5000 Ada Generation",
+    "util_pct": 1,
+    "mem_MB": 1247,
+    "temp_C": 59,
+    "sm_MHz": 375
+   }
+  }
+ ],
+ "claim_scope": "desktop GPU / CPU only; no edge-device claim",
+ "reference_drift_pct_b16": -4.18,
+ "reference_repeat_ok": true,
+ "gate_after": {
+  "name": "NVIDIA RTX 5000 Ada Generation",
+  "util_pct": 1,
+  "mem_MB": 1247,
+  "temp_C": 59,
+  "sm_MHz": 375
+ }
+}

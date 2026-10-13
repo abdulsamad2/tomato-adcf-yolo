@@ -1,0 +1,7 @@
+{
+ "written_at": "2026-10-13 09:03:27",
+ "applies_to_prereg_sha256": "3538c2d11ba0f66029037dc724a376331d197bb7be227bee47701858c81e5e8e",
+ "approved_by_user": true,
+ "wording_rule": "Describe the test split as 'held out from all Phase 4-17 models and decisions', never as 'never opened'.",
+ "interpretation_rule": "Whatever the clean-test ranking is, no model changes or new training phases follow from it. Every outcome is reported as observed (e.g. pretrained 1.00x best; distilled 0.75x above or below from-scratch 1.00x; results below expectation). The clean test is confirmation, not development."
+}

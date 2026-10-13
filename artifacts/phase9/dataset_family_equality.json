@@ -1,0 +1,98 @@
+{
+ "reference": "data/tomato_village/labels/train",
+ "reference_families": 1260,
+ "datasets": {
+  "tomato_village": {
+   "train": {
+    "families": 1260,
+    "label_files": 10080,
+    "files_per_family": 8.0
+   },
+   "train_identical_to_reference": true,
+   "train_missing_vs_reference": 0,
+   "train_extra_vs_reference": 0,
+   "val": {
+    "families": 268,
+    "label_files": 268,
+    "files_per_family": 1.0
+   },
+   "test": {
+    "families": 268,
+    "label_files": 268,
+    "files_per_family": 1.0
+   }
+  },
+  "tomato_village_noaug": {
+   "train": {
+    "families": 1260,
+    "label_files": 1260,
+    "files_per_family": 1.0
+   },
+   "train_identical_to_reference": true,
+   "train_missing_vs_reference": 0,
+   "train_extra_vs_reference": 0,
+   "val": {
+    "families": 268,
+    "label_files": 268,
+    "files_per_family": 1.0
+   },
+   "test": {
+    "families": 268,
+    "label_files": 268,
+    "files_per_family": 1.0
+   }
+  },
+  "tomato_village_dup8": {
+   "train": {
+    "families": 1260,
+    "label_files": 10080,
+    "files_per_family": 8.0
+   },
+   "train_identical_to_reference": true,
+   "train_missing_vs_reference": 0,
+   "train_extra_vs_reference": 0,
+   "val": {
+    "families": 268,
+    "label_files": 268,
+    "files_per_family": 1.0
+   },
+   "test": {
+    "families": 268,
+    "label_files": 268,
+    "files_per_family": 1.0
+   }
+  }
+ },
+ "cv_folds": {
+  "fold0": {
+   "train_families": 1173,
+   "eval_families": 355,
+   "train_subset_of_full_1796": null,
+   "overlap_train_eval": 0
+  },
+  "fold1": {
+   "train_families": 1164,
+   "eval_families": 359,
+   "train_subset_of_full_1796": null,
+   "overlap_train_eval": 0
+  },
+  "fold2": {
+   "train_families": 1172,
+   "eval_families": 357,
+   "train_subset_of_full_1796": null,
+   "overlap_train_eval": 0
+  },
+  "fold3": {
+   "train_families": 1168,
+   "eval_families": 361,
+   "train_subset_of_full_1796": null,
+   "overlap_train_eval": 0
+  },
+  "fold4": {
+   "train_families": 1169,
+   "eval_families": 364,
+   "train_subset_of_full_1796": null,
+   "overlap_train_eval": 0
+  }
+ }
+}

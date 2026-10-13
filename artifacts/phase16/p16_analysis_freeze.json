@@ -1,0 +1,17 @@
+﻿{
+ "frozen_at": "2026-10-12 18:08:40",
+ "note": "analysis code frozen while LPWA-50 seed 0 is training; no Phase 16 metric computed or viewed",
+ "completed_runs_at_freeze": 0,
+ "prereg_sha256": "4ffdb2693690026abf9236a45c3ade0e37206175920e81d93a69f3a18cddebaa",
+ "sha256": {
+  "p16_budget.py": "2653b703ab34b973dac0153365a75f33499ea2109971e086a38f69d0219ab181",
+  "p16_design.py": "66a0acb11e4a50a525b3c98fb0e8fa3c532cfa937acf94dca2bcc153732411ae",
+  "p16_freeze.py": "a9c8212a6e6232242876c0667b2a56c6e0a5cfa2c86a0be962a81acf9f985772",
+  "p16_run.py": "4bca02be5fedbba4e4326afd7e3e79171924c8381b309d8cf8881d97c009a18b",
+  "p16_queue.ps1": "781829db60f1df2eff04dd11ecc5a5fba224264d835d150bdaf4863b46e4623f",
+  "p16_eval.py": "8b476dc879701dd1a29ec625822986dc697f9db407a89b606a533f1b3fdf4514",
+  "p16_stats.py": "bcf926c193eb44945bddb8ab8f07cc4dd92183080918d4ca557e60e628562ac9",
+  "p16_bench.py": "f6b000bf44166bdfd950dfda20baa34a2615eea2d5d428277a4ccb2e207fa32b"
+ },
+ "evaluator_control": "p16_eval.py is the Phase 15 scorer with paths changed; p16_stats.py passed a planted +1.0 AP synthetic self-test. Phase 15 control (0.0021 AP) carries over"
+}

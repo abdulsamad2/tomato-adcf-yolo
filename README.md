@@ -1,80 +1,136 @@
-# ADCF-YOLO: Adaptive Detail–Context Fusion for Tomato Leaf Disease Detection
+# Beyond Metric Inflation: source-family exposure in tomato disease detection
 
-A YOLO neck module that fuses fine lesion **detail** with surrounding leaf **context**
-through a learned per-pixel gate, evaluated on
-[Tomato-Village](https://github.com/mamta-joshi-gehlot/Tomato-Village) (Variant-c,
-object detection) with a **leakage-free re-split**.
+Code, frozen pre-registrations and results for the study *"Beyond Metric Inflation: Source-Family Exposure Distorts
+Compression, Pretraining and Distillation Conclusions in Tomato Disease Detection"* (manuscript in
+[`docs/manuscript.docx`](docs/manuscript.docx); plain-language summary in [`docs/results_summary.md`](docs/results_summary.md)).
 
-> **New here? Read [`docs/notes/00-roadmap.md`](docs/notes/00-roadmap.md) first.** The critical review
-> ([07](docs/notes/07-critical-review.md)) and publication plan ([08](docs/notes/08-publication-plan.md)) explain the experiment strategy.
-> The notes explain the dataset issue, YOLO, the module, the experiment design,
-> the metrics and how to write the paper, in that order.
+**The problem.** The public [Tomato-Village](https://github.com/mamta-joshi-gehlot/Tomato-Village) detection data
+ships each source photograph as 8 files: the original plus 7 augmented copies. The official split was made at file
+level, so **every validation file has a sibling in training.**
 
-```
-image → Backbone → P3/P4/P5 → Neck (PAN-FPN, 4 × ADCF) → Detect head → box + class + score
+**What we did.** We built a source-family-aware split and two development evaluation arms:
 
-ADCF:  x ─ 1×1 ─┬─ Detail (DW 3×3 + high-pass) ──┐
-                ├─ Context (dilated DW + SE) ────┼─ α·D + (1−α)·C ─┐
-                │         Gate α = σ(g[D, C]) ───┘                  ├─ concat ─ 1×1 → out
-                └──────────────────── shortcut ────────────────────┘
-```
+| Arm | Contents |
+|---|---|
+| **Exposed (A)** | Images whose source photograph was seen in training |
+| **Independent (B)** | Images whose source photograph was never seen in training |
 
-## Run it on the lab GPU
+We then measured how this exposure changes the conclusions drawn from detector experiments.
+
+## Key results
+
+**1. Exposure distorts every design decision.** Effect on six-class AP50-95, YOLO11n, 5 paired seeds:
+
+| Intervention | Independent (arm B) | Exposed (arm A) |
+|---|---|---|
+| Shrink width to 0.75× | −0.31 | −5.79 |
+| Shrink width to 0.50× | −1.80 | −12.22 |
+| Width reallocation (LPWA-50) | +0.26 | +1.58 |
+| COCO pretraining | +3.93 | +15.07 |
+| Localization distillation | +0.95 | +2.81 |
+
+**2. It changes the model you would deploy.** The same frozen selection rule picks:
+- a **1.57 M**-parameter model (0.75×) with independent validation;
+- the **2.59 M** model with exposed validation, because it rejects every reduced width.
+
+**3. The detectors miss lesions; they rarely misname them.**
+- About half of all ground-truth lesions receive no detection near them.
+- Disease misclassification is under 2 per 100 lesions.
+- Compression mainly increases missed lesions, and small lesions suffer most.
+
+**4. Distillation partly repairs the compact model.** Distilling box distributions and P3/P4 attention from a
+pretrained teacher raises the 0.75× model by +0.95 AP [95% CI 0.21, 1.69], with no change to its architecture.
+
+**5. Locked test** (268 photographs, evaluated once after every selection was frozen):
+
+| Model | Params | Test AP50-95 (mean ± SD, 5 seeds) |
+|---|---|---|
+| Pretrained YOLO11n 1.00× | 2.59 M | **17.27 ± 0.39** |
+| **Distilled 0.75× (selected)** | **1.57 M** | **16.08 ± 0.96** |
+| From-scratch 1.00× | 2.59 M | 16.19 ± 0.69 |
+| Ordinary 0.75× | 1.57 M | 14.95 ± 0.98 |
+
+## Dataset: Tomato-Village (third-party, not redistributed here)
+
+The data come from Tomato-Village, created and published by Gehlot, Saxena and Gandhi:
+
+> Gehlot, M., Saxena, R.K. & Gandhi, G.C. "Tomato-Village": a dataset for end-to-end tomato disease detection in a
+> real-world environment. *Multimedia Systems* (2023). https://doi.org/10.1007/s00530-023-01158-y
+> Data: https://github.com/mamta-joshi-gehlot/Tomato-Village (Variant-c, Object Detection)
+
+**What this repository contains and doesn't contain:**
+- The Tomato-Village repository is public but declares **no licence**.
+- We therefore **do not redistribute any of its images or labels.** This repo contains only our code, our split
+  manifest (file names and split assignments), and results derived from our own runs.
+- Please obtain the data from the authors, follow their terms, and cite their paper.
+- Our experiments used commit **`dfc246014558293987b381c1edb49398d9f570ac`**.
+
+See [`DATASET.md`](DATASET.md) for the leakage structure we found and how the split is rebuilt.
+
+## Reproduce
+
+**Environment.** Python 3.12, PyTorch 2.14 + CUDA, Ultralytics 8.4.155. We trained on one NVIDIA RTX 5000 Ada (32 GB).
 
 ```bash
-git clone <this repo> && cd tomato-adcf-yolo
-curl -LsSf https://astral.sh/uv/install.sh | sh     # if uv isn't installed
-uv sync                                             # exact versions from uv.lock
-
-# If the lab needs a specific CUDA build of torch, install it into the env afterwards, e.g.
-#   uv pip install torch torchvision --index-url https://download.pytorch.org/whl/cuXXX  (match the lab's CUDA)
-
-uv run pytest -q                    # ~1 min: unit tests + end-to-end smoke test on synthetic data
-
-# 1. Data (downloads only Variant-c)
-uv run tv-download
-uv run tv-prepare                   # leakage-free split → data/tomato_village/
-uv run tv-prepare --cv-folds 5      # 5-fold grouped CV → data/tomato_village_cv/
-uv run tv-stats                     # tables + results/dataset/label_preview.png (look at it!)
-mkdir -p splits && cp data/tomato_village/split_manifest.csv splits/   # commit this
-
-# 2. Experiments (resumable; re-run the same command after any interruption)
-uv run adcf-run --dry-run
-uv run adcf-run --tier 1 --seeds 0 --device 0      # improvement ladder, first pass
-uv run adcf-run --tier 1 --device 0
-uv run adcf-collect                                 # decide from results/tables_val.md, set adcf_final
-uv run adcf-run --tier 2 --device 0                 # baselines, controls, resolution/P2, ablations
-
-# 3. Confirm and analyse (after the design is frozen)
-uv run adcf-compare --a yolo11s --b yolo11s-adcf    # paired bootstrap 95% CI on test
-uv run adcf-run --cv --device 0 && uv run adcf-collect --cv
-uv run adcf-bench                                   # all models, one session, idle GPU
-uv run adcf-gates --weights runs/yolo11s-adcf/seed0/weights/best.pt
-uv run adcf-collect                                 # → results/tables_val.md, tables_test.md
+git clone https://github.com/abdulsamad2/tomato-adcf-yolo && cd tomato-adcf-yolo
+uv sync                                   # exact versions from uv.lock
+uv pip install statsmodels pandas         # used by some phase statistics scripts
+uv run pytest -q                          # unit tests + end-to-end smoke test on synthetic data
 ```
 
-Long runs: use `tmux` or `nohup uv run adcf-run --tier 2 --device 0 > tier2.log 2>&1 &`
-so a dropped SSH session doesn't kill training.
+**1. Get the data at the pinned commit and rebuild the exact split from the committed manifest:**
+
+```bash
+uv run tv-download --commit dfc246014558293987b381c1edb49398d9f570ac
+uv run tv-prepare --manifest splits/split_manifest.csv      # writes data/tomato_village/ (1,260 / 268 / 268 photos)
+```
+
+**2. Re-run the experiments.** These scripts were run from a parent directory: they assume `<ROOT>/tomato-adcf-yolo`
+plus sibling output folders, and they hard-code the original root path. Keep the frozen originals untouched (their
+SHA-256 hashes are recorded in the pre-registrations) and make a runnable copy with your own root:
+
+```bash
+python tools/relocate_paths.py --root /path/to/ROOT --out /path/to/ROOT    # copies experiments/* with paths rewritten
+```
+
+Then follow [`experiments/README.md`](experiments/README.md) phase by phase. Approximate GPU time on our hardware:
+
+| Phase | Runs | Time |
+|---|---|---|
+| Phase 15 (width) | 20 | ~12 h |
+| Phase 16A (LPWA-50) | 5 | ~3 h |
+| Phase 17 (distillation) | 5 | ~4 h |
+| Pretrained reference (Phase 4, 512 px) | 5 | ~3 h |
+
+The evaluation and statistics scripts reproduce every number in the manuscript from the trained checkpoints.
+
+**Trained weights** for the 20 locked-test checkpoints will be attached to a GitHub Release.
 
 ## Repository map
 
-| Path | What |
+| Path | Contents |
 |---|---|
-| `src/adcf_yolo/modules.py` | the ADCF block, `ResidualRefine` wrapper |
-| `src/adcf_yolo/build.py` | inserts ADCF (replace/residual) or a CBAM control into YOLOv8/11/26 necks, incl. P2; custom trainer |
-| `configs/models/yolo11-p2.yaml` | YOLO11 with a stride-4 head (not shipped by Ultralytics) |
-| `src/adcf_yolo/data/` | `download`, `prepare` (grouping, dedup, stratified split), `stats` |
-| `src/adcf_yolo/experiments.py` | train → test-eval runner (`adcf-run`) |
-| `src/adcf_yolo/eval/` | cached predictions, COCO size-AP, params/GFLOPs/latency |
-| `src/adcf_yolo/compare.py` | paired bootstrap CI between two runs (`adcf-compare`) |
-| `src/adcf_yolo/gates.py` | gate α maps + inside/outside-box statistics |
-| `src/adcf_yolo/collect.py` | paper tables (val/test/CV), improvement ladder, mean ± std, t-tests |
-| `configs/experiments.yaml` | every run in the paper: ladder, tiers, CV |
-| `docs/notes/` | learning notes |
-| `tests/` | unit tests + end-to-end pipeline test on synthetic data |
+| `src/adcf_yolo/` | Data download, family-aware split (`data/prepare.py`), and the original ADCF pipeline (see [`docs/ADCF_PIPELINE.md`](docs/ADCF_PIPELINE.md)) |
+| `splits/split_manifest.csv` | Our family-aware split: photograph id, split, near-duplicate cluster, stratum |
+| `configs/` | Training configuration shared by all phases |
+| `experiments/` | Every phase script exactly as run (Phases 1–17, pretraining audit, locked test, post-hoc analyses), with `MANIFEST.json` (hashes) |
+| `artifacts/` | Frozen records: pre-registrations, freeze/hash files, dry-run reports, evaluation rows, statistics, figures |
+| `results/` | Per-phase result tables (CSV/JSON) |
+| `docs/` | Manuscript (`.docx` and its generator), results summary, development notes |
+| `tools/` | Helper scripts (path relocation) |
+| `tests/` | Unit and end-to-end tests |
 
-## Dataset citation
+## Evidence standards
 
-Gehlot, M., Saxena, R.K. & Gandhi, G.C. "Tomato-Village": a dataset for end-to-end
-tomato disease detection in a real-world environment. *Multimedia Systems* (2023).
-https://doi.org/10.1007/s00530-023-01158-y
+| Category | What it covers |
+|---|---|
+| **Pre-registered** | Phases 15, 16A and 17: rules, margins and script hashes frozen before training (`artifacts/phase15–17/`). |
+| **Locked test** | Run once after model selection was locked (`artifacts/clean_test/`). The test split was scored earlier for models outside this study, so we describe it as *held out from all models and decisions reported in the paper*, not as never opened. |
+| **Post-hoc, plan hashed** | Error decomposition and the other analyses in manuscript Section 4.6–4.8 used saved development-set detections only (`artifacts/posthoc/plan.md`). |
+| **Exploratory** | Labelled as such in the manuscript. |
+
+## Licence and citation
+
+- **Code:** MIT ([`LICENSE`](LICENSE)).
+- **Dataset:** remains under its owners' terms; it is not covered by this licence.
+- **Citing:** if you use this work, cite it via [`CITATION.cff`](CITATION.cff) and also cite Tomato-Village.

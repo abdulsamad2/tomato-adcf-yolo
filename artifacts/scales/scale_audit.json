@@ -1,0 +1,635 @@
+{
+ "imgsz": 512,
+ "nc": 8,
+ "warmup": 200,
+ "iters": 1000,
+ "pretrained_tensors": 499,
+ "pretrained_params": 2639825,
+ "variants": {
+  "A": {
+   "yaml": "C:\\Users\\absamad\\cs\\scales\\yolo11n_A.yaml",
+   "n_modules": 24,
+   "n_conv2d": 88,
+   "n_batchnorm": 81,
+   "module_sequence": [
+    "0:Conv",
+    "1:Conv",
+    "2:C3k2",
+    "3:Conv",
+    "4:C3k2",
+    "5:Conv",
+    "6:C3k2",
+    "7:Conv",
+    "8:C3k2",
+    "9:SPPF",
+    "10:C2PSA",
+    "11:Upsample",
+    "12:Concat",
+    "13:C3k2",
+    "14:Upsample",
+    "15:Concat",
+    "16:C3k2",
+    "17:Conv",
+    "18:Concat",
+    "19:C3k2",
+    "20:Conv",
+    "21:Concat",
+    "22:C3k2",
+    "23:Detect"
+   ],
+   "params": 2591400,
+   "params_M": 2.5914,
+   "GFLOPs_512": 4.15,
+   "detect": {
+    "nl": 3,
+    "reg_max": 16,
+    "strides": [
+     8,
+     16,
+     32
+    ],
+    "in_channels": [
+     64,
+     128,
+     256
+    ],
+    "cv2_mid": [
+     64,
+     64,
+     64
+    ],
+    "cv3_out": [
+     8,
+     8,
+     8
+    ],
+    "detect_from": [
+     16,
+     19,
+     22
+    ]
+   },
+   "transfer": {
+    "target_tensors": 499,
+    "target_params": 2606857,
+    "matched_tensors": 448,
+    "matched_params": 2560305,
+    "pct_params": 98.21,
+    "newly_init_tensors": 51,
+    "newly_init_body_tensors": 0,
+    "newly_init_body_params": 0,
+    "newly_init_body_pct": 0.0,
+    "newly_init_detect_tensors": 51,
+    "newly_init_detect_params": 46552,
+    "newly_init_detect_pct": 1.786,
+    "newly_init_body_names": []
+   },
+   "batches": {
+    "1": {
+     "ms_mean": 20.247,
+     "ms_sd": 1.559,
+     "img_per_s": 49.4,
+     "peak_mem_MB": 64.1
+    },
+    "16": {
+     "ms_mean": 24.634,
+     "ms_sd": 2.4,
+     "img_per_s": 649.5,
+     "peak_mem_MB": 362.9
+    }
+   },
+   "params_ratio": 1.0,
+   "GFLOPs_ratio": 1.0,
+   "b16_latency_ratio": 1.0,
+   "b1_latency_ratio": 1.0
+  },
+  "B": {
+   "yaml": "C:\\Users\\absamad\\cs\\scales\\yolo11n_B.yaml",
+   "n_modules": 21,
+   "n_conv2d": 70,
+   "n_batchnorm": 65,
+   "module_sequence": [
+    "0:Conv",
+    "1:Conv",
+    "2:C3k2",
+    "3:Conv",
+    "4:C3k2",
+    "5:Conv",
+    "6:C3k2",
+    "7:Conv",
+    "8:C3k2",
+    "9:SPPF",
+    "10:C2PSA",
+    "11:Upsample",
+    "12:Concat",
+    "13:C3k2",
+    "14:Upsample",
+    "15:Concat",
+    "16:C3k2",
+    "17:Conv",
+    "18:Concat",
+    "19:C3k2",
+    "20:Detect"
+   ],
+   "params": 1851296,
+   "params_M": 1.8513,
+   "GFLOPs_512": 3.77,
+   "detect": {
+    "nl": 2,
+    "reg_max": 16,
+    "strides": [
+     8,
+     16
+    ],
+    "in_channels": [
+     64,
+     128
+    ],
+    "cv2_mid": [
+     64,
+     64
+    ],
+    "cv3_out": [
+     8,
+     8
+    ],
+    "detect_from": [
+     16,
+     19
+    ]
+   },
+   "transfer": {
+    "target_tensors": 399,
+    "target_params": 1863281,
+    "matched_tensors": 318,
+    "matched_params": 1642885,
+    "pct_params": 88.17,
+    "newly_init_tensors": 81,
+    "newly_init_body_tensors": 0,
+    "newly_init_body_params": 0,
+    "newly_init_body_pct": 0.0,
+    "newly_init_detect_tensors": 81,
+    "newly_init_detect_params": 220396,
+    "newly_init_detect_pct": 11.828,
+    "newly_init_body_names": []
+   },
+   "batches": {
+    "1": {
+     "ms_mean": 16.109,
+     "ms_sd": 1.882,
+     "img_per_s": 62.1,
+     "peak_mem_MB": 61.1
+    },
+    "16": {
+     "ms_mean": 21.797,
+     "ms_sd": 2.085,
+     "img_per_s": 734.0,
+     "peak_mem_MB": 359.9
+    }
+   },
+   "params_ratio": 0.7144,
+   "GFLOPs_ratio": 0.9084,
+   "b16_latency_ratio": 0.8848,
+   "b1_latency_ratio": 0.7956
+  },
+  "C": {
+   "yaml": "C:\\Users\\absamad\\cs\\scales\\yolo11n_C.yaml",
+   "n_modules": 19,
+   "n_conv2d": 75,
+   "n_batchnorm": 70,
+   "module_sequence": [
+    "0:Conv",
+    "1:Conv",
+    "2:C3k2",
+    "3:Conv",
+    "4:C3k2",
+    "5:Conv",
+    "6:C3k2",
+    "7:Conv",
+    "8:C3k2",
+    "9:SPPF",
+    "10:C2PSA",
+    "11:Upsample",
+    "12:Concat",
+    "13:C3k2",
+    "14:C3k2",
+    "15:Conv",
+    "16:Concat",
+    "17:C3k2",
+    "18:Detect"
+   ],
+   "params": 2477696,
+   "params_M": 2.4777,
+   "GFLOPs_512": 3.122,
+   "detect": {
+    "nl": 2,
+    "reg_max": 16,
+    "strides": [
+     16,
+     32
+    ],
+    "in_channels": [
+     128,
+     256
+    ],
+    "cv2_mid": [
+     64,
+     64
+    ],
+    "cv3_out": [
+     8,
+     8
+    ],
+    "detect_from": [
+     14,
+     17
+    ]
+   },
+   "transfer": {
+    "target_tensors": 429,
+    "target_params": 2492662,
+    "matched_tensors": 264,
+    "matched_params": 1485884,
+    "pct_params": 59.61,
+    "newly_init_tensors": 165,
+    "newly_init_body_tensors": 84,
+    "newly_init_body_params": 608142,
+    "newly_init_body_pct": 24.397,
+    "newly_init_detect_tensors": 81,
+    "newly_init_detect_params": 398636,
+    "newly_init_detect_pct": 15.992,
+    "newly_init_body_names": [
+     "model.14.cv1.conv.weight",
+     "model.14.cv1.bn.weight",
+     "model.14.cv1.bn.bias",
+     "model.14.cv1.bn.running_mean",
+     "model.14.cv1.bn.running_var",
+     "model.14.cv1.bn.num_batches_tracked",
+     "model.14.cv2.conv.weight",
+     "model.14.cv2.bn.weight",
+     "model.14.cv2.bn.bias",
+     "model.14.cv2.bn.running_mean",
+     "model.14.cv2.bn.running_var",
+     "model.14.cv2.bn.num_batches_tracked",
+     "model.14.m.0.cv1.conv.weight",
+     "model.14.m.0.cv1.bn.weight",
+     "model.14.m.0.cv1.bn.bias",
+     "model.14.m.0.cv1.bn.running_mean",
+     "model.14.m.0.cv1.bn.running_var",
+     "model.14.m.0.cv1.bn.num_batches_tracked",
+     "model.14.m.0.cv2.conv.weight",
+     "model.14.m.0.cv2.bn.weight",
+     "model.14.m.0.cv2.bn.bias",
+     "model.14.m.0.cv2.bn.running_mean",
+     "model.14.m.0.cv2.bn.running_var",
+     "model.14.m.0.cv2.bn.num_batches_tracked",
+     "model.15.conv.weight",
+     "model.15.bn.weight",
+     "model.15.bn.bias",
+     "model.15.bn.running_mean",
+     "model.15.bn.running_var",
+     "model.15.bn.num_batches_tracked",
+     "model.17.cv1.conv.weight",
+     "model.17.cv1.bn.weight",
+     "model.17.cv1.bn.bias",
+     "model.17.cv1.bn.running_mean",
+     "model.17.cv1.bn.running_var",
+     "model.17.cv1.bn.num_batches_tracked",
+     "model.17.cv2.conv.weight",
+     "model.17.cv2.bn.weight",
+     "model.17.cv2.bn.bias",
+     "model.17.cv2.bn.running_mean"
+    ]
+   },
+   "batches": {
+    "1": {
+     "ms_mean": 17.783,
+     "ms_sd": 1.537,
+     "img_per_s": 56.2,
+     "peak_mem_MB": 63.5
+    },
+    "16": {
+     "ms_mean": 20.444,
+     "ms_sd": 2.203,
+     "img_per_s": 782.6,
+     "peak_mem_MB": 362.4
+    }
+   },
+   "params_ratio": 0.9561,
+   "GFLOPs_ratio": 0.7523,
+   "b16_latency_ratio": 0.8299,
+   "b1_latency_ratio": 0.8783
+  },
+  "C_lean": {
+   "yaml": "C:\\Users\\absamad\\cs\\scales\\yolo11n_C_lean.yaml",
+   "n_modules": 18,
+   "n_conv2d": 71,
+   "n_batchnorm": 66,
+   "module_sequence": [
+    "0:Conv",
+    "1:Conv",
+    "2:C3k2",
+    "3:Conv",
+    "4:C3k2",
+    "5:Conv",
+    "6:C3k2",
+    "7:Conv",
+    "8:C3k2",
+    "9:SPPF",
+    "10:C2PSA",
+    "11:Upsample",
+    "12:Concat",
+    "13:C3k2",
+    "14:Conv",
+    "15:Concat",
+    "16:C3k2",
+    "17:Detect"
+   ],
+   "params": 2399168,
+   "params_M": 2.3992,
+   "GFLOPs_512": 2.96,
+   "detect": {
+    "nl": 2,
+    "reg_max": 16,
+    "strides": [
+     16,
+     32
+    ],
+    "in_channels": [
+     128,
+     256
+    ],
+    "cv2_mid": [
+     64,
+     64
+    ],
+    "cv3_out": [
+     8,
+     8
+    ],
+    "detect_from": [
+     13,
+     16
+    ]
+   },
+   "transfer": {
+    "target_tensors": 405,
+    "target_params": 2413426,
+    "matched_tensors": 268,
+    "matched_params": 1485888,
+    "pct_params": 61.57,
+    "newly_init_tensors": 137,
+    "newly_init_body_tensors": 56,
+    "newly_init_body_params": 528902,
+    "newly_init_body_pct": 21.915,
+    "newly_init_detect_tensors": 81,
+    "newly_init_detect_params": 398636,
+    "newly_init_detect_pct": 16.517,
+    "newly_init_body_names": [
+     "model.14.conv.weight",
+     "model.14.bn.weight",
+     "model.14.bn.bias",
+     "model.14.bn.running_mean",
+     "model.14.bn.running_var",
+     "model.14.bn.num_batches_tracked",
+     "model.16.cv1.conv.weight",
+     "model.16.cv1.bn.weight",
+     "model.16.cv1.bn.bias",
+     "model.16.cv1.bn.running_mean",
+     "model.16.cv1.bn.running_var",
+     "model.16.cv2.conv.weight",
+     "model.16.cv2.bn.weight",
+     "model.16.cv2.bn.bias",
+     "model.16.cv2.bn.running_mean",
+     "model.16.cv2.bn.running_var",
+     "model.16.m.0.cv1.conv.weight",
+     "model.16.m.0.cv1.bn.weight",
+     "model.16.m.0.cv1.bn.bias",
+     "model.16.m.0.cv1.bn.running_mean",
+     "model.16.m.0.cv1.bn.running_var",
+     "model.16.m.0.cv2.conv.weight",
+     "model.16.m.0.cv2.bn.weight",
+     "model.16.m.0.cv2.bn.bias",
+     "model.16.m.0.cv2.bn.running_mean",
+     "model.16.m.0.cv2.bn.running_var",
+     "model.16.m.0.cv3.conv.weight",
+     "model.16.m.0.cv3.bn.weight",
+     "model.16.m.0.cv3.bn.bias",
+     "model.16.m.0.cv3.bn.running_mean",
+     "model.16.m.0.cv3.bn.running_var",
+     "model.16.m.0.cv3.bn.num_batches_tracked",
+     "model.16.m.0.m.0.cv1.conv.weight",
+     "model.16.m.0.m.0.cv1.bn.weight",
+     "model.16.m.0.m.0.cv1.bn.bias",
+     "model.16.m.0.m.0.cv1.bn.running_mean",
+     "model.16.m.0.m.0.cv1.bn.running_var",
+     "model.16.m.0.m.0.cv1.bn.num_batches_tracked",
+     "model.16.m.0.m.0.cv2.conv.weight",
+     "model.16.m.0.m.0.cv2.bn.weight"
+    ]
+   },
+   "batches": {
+    "1": {
+     "ms_mean": 16.699,
+     "ms_sd": 1.428,
+     "img_per_s": 59.9,
+     "peak_mem_MB": 63.2
+    },
+    "16": {
+     "ms_mean": 20.05,
+     "ms_sd": 2.082,
+     "img_per_s": 798.0,
+     "peak_mem_MB": 362.1
+    }
+   },
+   "params_ratio": 0.9258,
+   "GFLOPs_ratio": 0.7133,
+   "b16_latency_ratio": 0.8139,
+   "b1_latency_ratio": 0.8248
+  },
+  "B_disc": {
+   "yaml": "C:\\Users\\absamad\\cs\\scales\\yolo11n_B_disc.yaml",
+   "n_modules": 24,
+   "n_conv2d": 80,
+   "n_batchnorm": 75,
+   "module_sequence": [
+    "0:Conv",
+    "1:Conv",
+    "2:C3k2",
+    "3:Conv",
+    "4:C3k2",
+    "5:Conv",
+    "6:C3k2",
+    "7:Conv",
+    "8:C3k2",
+    "9:SPPF",
+    "10:C2PSA",
+    "11:Upsample",
+    "12:Concat",
+    "13:C3k2",
+    "14:Upsample",
+    "15:Concat",
+    "16:C3k2",
+    "17:Conv",
+    "18:Concat",
+    "19:C3k2",
+    "20:Conv",
+    "21:Concat",
+    "22:C3k2",
+    "23:Detect"
+   ],
+   "params": 2377888,
+   "params_M": 2.3779,
+   "GFLOPs_512": 4.04,
+   "detect": {
+    "nl": 2,
+    "reg_max": 16,
+    "strides": [
+     8,
+     16
+    ],
+    "in_channels": [
+     64,
+     128
+    ],
+    "cv2_mid": [
+     64,
+     64
+    ],
+    "cv3_out": [
+     8,
+     8
+    ],
+    "detect_from": [
+     16,
+     19
+    ]
+   },
+   "transfer": {
+    "target_tensors": 459,
+    "target_params": 2392187,
+    "matched_tensors": 425,
+    "matched_params": 2367979,
+    "pct_params": 98.99,
+    "newly_init_tensors": 34,
+    "newly_init_body_tensors": 0,
+    "newly_init_body_params": 0,
+    "newly_init_body_pct": 0.0,
+    "newly_init_detect_tensors": 34,
+    "newly_init_detect_params": 24208,
+    "newly_init_detect_pct": 1.012,
+    "newly_init_body_names": []
+   },
+   "batches": {
+    "1": {
+     "ms_mean": 18.808,
+     "ms_sd": 1.765,
+     "img_per_s": 53.2,
+     "peak_mem_MB": 63.2
+    },
+    "16": {
+     "ms_mean": 20.295,
+     "ms_sd": 5.925,
+     "img_per_s": 788.4,
+     "peak_mem_MB": 362.1
+    }
+   },
+   "params_ratio": 0.9176,
+   "GFLOPs_ratio": 0.9735,
+   "b16_latency_ratio": 0.8239,
+   "b1_latency_ratio": 0.9289
+  },
+  "C_disc": {
+   "yaml": "C:\\Users\\absamad\\cs\\scales\\yolo11n_C_disc.yaml",
+   "n_modules": 24,
+   "n_conv2d": 80,
+   "n_batchnorm": 75,
+   "module_sequence": [
+    "0:Conv",
+    "1:Conv",
+    "2:C3k2",
+    "3:Conv",
+    "4:C3k2",
+    "5:Conv",
+    "6:C3k2",
+    "7:Conv",
+    "8:C3k2",
+    "9:SPPF",
+    "10:C2PSA",
+    "11:Upsample",
+    "12:Concat",
+    "13:C3k2",
+    "14:Upsample",
+    "15:Concat",
+    "16:C3k2",
+    "17:Conv",
+    "18:Concat",
+    "19:C3k2",
+    "20:Conv",
+    "21:Concat",
+    "22:C3k2",
+    "23:Detect"
+   ],
+   "params": 2554976,
+   "params_M": 2.555,
+   "GFLOPs_512": 3.48,
+   "detect": {
+    "nl": 2,
+    "reg_max": 16,
+    "strides": [
+     16,
+     32
+    ],
+    "in_channels": [
+     128,
+     256
+    ],
+    "cv2_mid": [
+     64,
+     64
+    ],
+    "cv3_out": [
+     8,
+     8
+    ],
+    "detect_from": [
+     19,
+     22
+    ]
+   },
+   "transfer": {
+    "target_tensors": 459,
+    "target_params": 2570427,
+    "matched_tensors": 413,
+    "matched_params": 2254891,
+    "pct_params": 87.72,
+    "newly_init_tensors": 46,
+    "newly_init_body_tensors": 0,
+    "newly_init_body_params": 0,
+    "newly_init_body_pct": 0.0,
+    "newly_init_detect_tensors": 46,
+    "newly_init_detect_params": 315536,
+    "newly_init_detect_pct": 12.276,
+    "newly_init_body_names": []
+   },
+   "batches": {
+    "1": {
+     "ms_mean": 18.901,
+     "ms_sd": 1.893,
+     "img_per_s": 52.9,
+     "peak_mem_MB": 63.9
+    },
+    "16": {
+     "ms_mean": 22.871,
+     "ms_sd": 2.329,
+     "img_per_s": 699.6,
+     "peak_mem_MB": 362.7
+    }
+   },
+   "params_ratio": 0.9859,
+   "GFLOPs_ratio": 0.8386,
+   "b16_latency_ratio": 0.9284,
+   "b1_latency_ratio": 0.9335
+  }
+ }
+}

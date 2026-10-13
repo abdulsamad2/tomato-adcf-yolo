@@ -3,14 +3,25 @@ __pycache__/
 *.pyc
 .pytest_cache/
 
-# datasets, training outputs, weights (large; regenerate with the pipeline)
+# datasets (third-party Tomato-Village; never committed, see DATASET.md)
 /data/
+
+# training outputs and weights (large; weights are published as a GitHub Release)
 /runs/
+/runs_*/
+/results_now/
+/Ultralytics/
 *.pt
 *.onnx
 *.engine
+*.npz
 
-# results/ IS tracked (tables, figures) except bulky per-image gate plots
-results/gates/*.png
+# figures that contain dataset images (not redistributable)
+results/dataset/label_preview.png
+results/gates*/
+
+# local config backups
+configs/*.bak*
 
 .DS_Store
+~$*.docx

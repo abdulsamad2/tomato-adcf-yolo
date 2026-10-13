@@ -1,0 +1,104 @@
+{
+ "source": "C:\\Users\\absamad\\cs\\tomato-adcf-yolo\\data\\raw\\Tomato-Village\\Variant-c(Object Detection)",
+ "n_files": 14368,
+ "n_train_files": 11493,
+ "n_val_files": 2875,
+ "n_families": 1796,
+ "family_size_distribution": {
+  "8": 1796
+ },
+ "families_spanning_train_and_val": 1484,
+ "val_files_with_sibling_in_train": 2875,
+ "val_files_with_sibling_in_train_pct": 100.0,
+ "val_families_with_sibling_in_train_pct": 100.0,
+ "augmented_files": 12572,
+ "inferred_transform_counts": {
+  "identity": 4109,
+  "other (crop/scale/shift or box count differs)": 3552,
+  "hflip": 1786,
+  "vflip": 1785,
+  "rot90 cw": 466,
+  "rot90 ccw": 439,
+  "rot180 (both flips)": 435
+ },
+ "inferred_transform_pct": {
+  "identity": 32.6837416481069,
+  "other (crop/scale/shift or box count differs)": 28.2532612153993,
+  "hflip": 14.206172446706967,
+  "vflip": 14.198218262806236,
+  "rot90 cw": 3.7066496977410117,
+  "rot90 ccw": 3.4918867324212535,
+  "rot180 (both flips)": 3.4600699968183264
+ },
+ "note": "Transform is inferred from labels only; photometric changes (brightness, colour, blur) are invisible here.",
+ "exploratory_recall50_by_transform_w100_5seeds": {
+  "A": {
+   "hflip": {
+    "recall50": 53.31791143423661,
+    "gt_boxes_x5seeds": 15130
+   },
+   "identity": {
+    "recall50": 50.83817427385892,
+    "gt_boxes_x5seeds": 36150
+   },
+   "original": {
+    "recall50": 53.85910224438903,
+    "gt_boxes_x5seeds": 16040
+   },
+   "other (crop/scale/shift or box count differs)": {
+    "recall50": 45.87095353446377,
+    "gt_boxes_x5seeds": 22705
+   },
+   "rot180 (both flips)": {
+    "recall50": 41.95180722891566,
+    "gt_boxes_x5seeds": 4150
+   },
+   "rot90 ccw": {
+    "recall50": 48.50299401197605,
+    "gt_boxes_x5seeds": 3340
+   },
+   "rot90 cw": {
+    "recall50": 43.251231527093594,
+    "gt_boxes_x5seeds": 4060
+   },
+   "vflip": {
+    "recall50": 49.84192439862543,
+    "gt_boxes_x5seeds": 14550
+   }
+  },
+  "B": {
+   "hflip": {
+    "recall50": 38.76190476190476,
+    "gt_boxes_x5seeds": 2100
+   },
+   "identity": {
+    "recall50": 35.23745819397993,
+    "gt_boxes_x5seeds": 7475
+   },
+   "original": {
+    "recall50": 40.2555910543131,
+    "gt_boxes_x5seeds": 3130
+   },
+   "other (crop/scale/shift or box count differs)": {
+    "recall50": 39.43852855759923,
+    "gt_boxes_x5seeds": 5165
+   },
+   "rot180 (both flips)": {
+    "recall50": 35.45454545454545,
+    "gt_boxes_x5seeds": 660
+   },
+   "rot90 ccw": {
+    "recall50": 33.442622950819676,
+    "gt_boxes_x5seeds": 1220
+   },
+   "rot90 cw": {
+    "recall50": 30.6046511627907,
+    "gt_boxes_x5seeds": 1075
+   },
+   "vflip": {
+    "recall50": 35.25096525096525,
+    "gt_boxes_x5seeds": 2590
+   }
+  }
+ }
+}

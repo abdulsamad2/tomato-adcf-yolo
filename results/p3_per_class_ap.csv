@@ -1,0 +1,361 @@
+ap50,ap50_95,checkpoint_step,class_id,class_name,model,seed
+0.191076,0.082468,6300,2,Late Blight,yolo11n,0
+0.457256,0.234951,6300,3,Leaf Miner,yolo11n,0
+0.525647,0.29642,6300,4,Magnesium Deficiency,yolo11n,0
+0.059496,0.029986,6300,5,Nitrogen Deficiency,yolo11n,0
+0.275121,0.132509,6300,6,Potassium Deficiency,yolo11n,0
+0.538852,0.233233,6300,7,Spotted Wilt Virus,yolo11n,0
+0.52144,0.275347,11970,2,Late Blight,yolo11n,0
+0.497814,0.257171,11970,3,Leaf Miner,yolo11n,0
+0.544717,0.318261,11970,4,Magnesium Deficiency,yolo11n,0
+0.049197,0.026849,11970,5,Nitrogen Deficiency,yolo11n,0
+0.281018,0.149595,11970,6,Potassium Deficiency,yolo11n,0
+0.579528,0.266528,11970,7,Spotted Wilt Virus,yolo11n,0
+0.530907,0.25425,18270,2,Late Blight,yolo11n,0
+0.510559,0.261213,18270,3,Leaf Miner,yolo11n,0
+0.569529,0.340407,18270,4,Magnesium Deficiency,yolo11n,0
+0.117677,0.052567,18270,5,Nitrogen Deficiency,yolo11n,0
+0.254078,0.140725,18270,6,Potassium Deficiency,yolo11n,0
+0.612282,0.275089,18270,7,Spotted Wilt Virus,yolo11n,0
+0.58328,0.267219,24570,2,Late Blight,yolo11n,0
+0.503031,0.25426,24570,3,Leaf Miner,yolo11n,0
+0.576307,0.329133,24570,4,Magnesium Deficiency,yolo11n,0
+0.102069,0.045196,24570,5,Nitrogen Deficiency,yolo11n,0
+0.314729,0.184654,24570,6,Potassium Deficiency,yolo11n,0
+0.600458,0.264767,24570,7,Spotted Wilt Virus,yolo11n,0
+0.394723,0.17579,6300,2,Late Blight,yolo11n,1
+0.446016,0.232641,6300,3,Leaf Miner,yolo11n,1
+0.542926,0.311314,6300,4,Magnesium Deficiency,yolo11n,1
+0.017558,0.009542,6300,5,Nitrogen Deficiency,yolo11n,1
+0.144899,0.078573,6300,6,Potassium Deficiency,yolo11n,1
+0.568818,0.257138,6300,7,Spotted Wilt Virus,yolo11n,1
+0.528532,0.236585,11970,2,Late Blight,yolo11n,1
+0.500705,0.256049,11970,3,Leaf Miner,yolo11n,1
+0.551814,0.313246,11970,4,Magnesium Deficiency,yolo11n,1
+0.170427,0.092124,11970,5,Nitrogen Deficiency,yolo11n,1
+0.275658,0.152451,11970,6,Potassium Deficiency,yolo11n,1
+0.580459,0.259919,11970,7,Spotted Wilt Virus,yolo11n,1
+0.518229,0.226321,18270,2,Late Blight,yolo11n,1
+0.504228,0.259619,18270,3,Leaf Miner,yolo11n,1
+0.585554,0.341069,18270,4,Magnesium Deficiency,yolo11n,1
+0.084348,0.045228,18270,5,Nitrogen Deficiency,yolo11n,1
+0.446506,0.215101,18270,6,Potassium Deficiency,yolo11n,1
+0.60963,0.272593,18270,7,Spotted Wilt Virus,yolo11n,1
+0.552714,0.251327,24570,2,Late Blight,yolo11n,1
+0.502627,0.253964,24570,3,Leaf Miner,yolo11n,1
+0.563784,0.338426,24570,4,Magnesium Deficiency,yolo11n,1
+0.082339,0.046413,24570,5,Nitrogen Deficiency,yolo11n,1
+0.356363,0.178161,24570,6,Potassium Deficiency,yolo11n,1
+0.605927,0.264315,24570,7,Spotted Wilt Virus,yolo11n,1
+0.353814,0.160223,6300,2,Late Blight,yolo11n,2
+0.456886,0.236101,6300,3,Leaf Miner,yolo11n,2
+0.558355,0.323106,6300,4,Magnesium Deficiency,yolo11n,2
+0.049454,0.022401,6300,5,Nitrogen Deficiency,yolo11n,2
+0.195934,0.102702,6300,6,Potassium Deficiency,yolo11n,2
+0.537295,0.242813,6300,7,Spotted Wilt Virus,yolo11n,2
+0.535875,0.260411,11970,2,Late Blight,yolo11n,2
+0.505995,0.261313,11970,3,Leaf Miner,yolo11n,2
+0.528015,0.308621,11970,4,Magnesium Deficiency,yolo11n,2
+0.122142,0.057718,11970,5,Nitrogen Deficiency,yolo11n,2
+0.262357,0.139798,11970,6,Potassium Deficiency,yolo11n,2
+0.599092,0.276559,11970,7,Spotted Wilt Virus,yolo11n,2
+0.553688,0.286513,18270,2,Late Blight,yolo11n,2
+0.502509,0.257316,18270,3,Leaf Miner,yolo11n,2
+0.568545,0.339622,18270,4,Magnesium Deficiency,yolo11n,2
+0.071801,0.034789,18270,5,Nitrogen Deficiency,yolo11n,2
+0.249927,0.151976,18270,6,Potassium Deficiency,yolo11n,2
+0.607442,0.276023,18270,7,Spotted Wilt Virus,yolo11n,2
+0.61821,0.306249,24570,2,Late Blight,yolo11n,2
+0.501191,0.255276,24570,3,Leaf Miner,yolo11n,2
+0.541638,0.317757,24570,4,Magnesium Deficiency,yolo11n,2
+0.106856,0.056811,24570,5,Nitrogen Deficiency,yolo11n,2
+0.316998,0.195845,24570,6,Potassium Deficiency,yolo11n,2
+0.58356,0.26447,24570,7,Spotted Wilt Virus,yolo11n,2
+0.457857,0.203414,6300,2,Late Blight,yolo11n,3
+0.453217,0.235962,6300,3,Leaf Miner,yolo11n,3
+0.527069,0.290376,6300,4,Magnesium Deficiency,yolo11n,3
+0.068616,0.042289,6300,5,Nitrogen Deficiency,yolo11n,3
+0.305754,0.151794,6300,6,Potassium Deficiency,yolo11n,3
+0.546945,0.245797,6300,7,Spotted Wilt Virus,yolo11n,3
+0.566893,0.287984,11970,2,Late Blight,yolo11n,3
+0.497973,0.257595,11970,3,Leaf Miner,yolo11n,3
+0.545486,0.31416,11970,4,Magnesium Deficiency,yolo11n,3
+0.091108,0.047611,11970,5,Nitrogen Deficiency,yolo11n,3
+0.28551,0.158322,11970,6,Potassium Deficiency,yolo11n,3
+0.597044,0.267136,11970,7,Spotted Wilt Virus,yolo11n,3
+0.585663,0.279619,18270,2,Late Blight,yolo11n,3
+0.503946,0.260205,18270,3,Leaf Miner,yolo11n,3
+0.567597,0.340466,18270,4,Magnesium Deficiency,yolo11n,3
+0.093594,0.04912,18270,5,Nitrogen Deficiency,yolo11n,3
+0.219811,0.121657,18270,6,Potassium Deficiency,yolo11n,3
+0.572152,0.260177,18270,7,Spotted Wilt Virus,yolo11n,3
+0.600851,0.28071,24570,2,Late Blight,yolo11n,3
+0.507801,0.254293,24570,3,Leaf Miner,yolo11n,3
+0.551225,0.322085,24570,4,Magnesium Deficiency,yolo11n,3
+0.13564,0.078237,24570,5,Nitrogen Deficiency,yolo11n,3
+0.283558,0.162957,24570,6,Potassium Deficiency,yolo11n,3
+0.573224,0.253053,24570,7,Spotted Wilt Virus,yolo11n,3
+0.487587,0.238653,6300,2,Late Blight,yolo11n,4
+0.474249,0.245951,6300,3,Leaf Miner,yolo11n,4
+0.552505,0.306112,6300,4,Magnesium Deficiency,yolo11n,4
+0.0608,0.028895,6300,5,Nitrogen Deficiency,yolo11n,4
+0.295107,0.134281,6300,6,Potassium Deficiency,yolo11n,4
+0.548099,0.241951,6300,7,Spotted Wilt Virus,yolo11n,4
+0.5327,0.257187,11970,2,Late Blight,yolo11n,4
+0.504074,0.26127,11970,3,Leaf Miner,yolo11n,4
+0.583133,0.338754,11970,4,Magnesium Deficiency,yolo11n,4
+0.049475,0.022538,11970,5,Nitrogen Deficiency,yolo11n,4
+0.273839,0.151349,11970,6,Potassium Deficiency,yolo11n,4
+0.59467,0.271495,11970,7,Spotted Wilt Virus,yolo11n,4
+0.600845,0.308025,18270,2,Late Blight,yolo11n,4
+0.49624,0.254252,18270,3,Leaf Miner,yolo11n,4
+0.554677,0.32621,18270,4,Magnesium Deficiency,yolo11n,4
+0.098166,0.040098,18270,5,Nitrogen Deficiency,yolo11n,4
+0.369542,0.175351,18270,6,Potassium Deficiency,yolo11n,4
+0.599693,0.272548,18270,7,Spotted Wilt Virus,yolo11n,4
+0.55658,0.264945,24570,2,Late Blight,yolo11n,4
+0.505119,0.253481,24570,3,Leaf Miner,yolo11n,4
+0.581959,0.338528,24570,4,Magnesium Deficiency,yolo11n,4
+0.100477,0.052297,24570,5,Nitrogen Deficiency,yolo11n,4
+0.360604,0.198186,24570,6,Potassium Deficiency,yolo11n,4
+0.588287,0.263474,24570,7,Spotted Wilt Virus,yolo11n,4
+0.354857,0.17847,6300,2,Late Blight,yolo11m,0
+0.541873,0.278654,6300,3,Leaf Miner,yolo11m,0
+0.598955,0.353993,6300,4,Magnesium Deficiency,yolo11m,0
+0.019515,0.007153,6300,5,Nitrogen Deficiency,yolo11m,0
+0.319951,0.180464,6300,6,Potassium Deficiency,yolo11m,0
+0.574628,0.25542,6300,7,Spotted Wilt Virus,yolo11m,0
+0.530692,0.264524,11970,2,Late Blight,yolo11m,0
+0.539461,0.264702,11970,3,Leaf Miner,yolo11m,0
+0.570642,0.34155,11970,4,Magnesium Deficiency,yolo11m,0
+0.117199,0.085634,11970,5,Nitrogen Deficiency,yolo11m,0
+0.37929,0.198661,11970,6,Potassium Deficiency,yolo11m,0
+0.612184,0.264213,11970,7,Spotted Wilt Virus,yolo11m,0
+0.593996,0.291249,18270,2,Late Blight,yolo11m,0
+0.507802,0.246903,18270,3,Leaf Miner,yolo11m,0
+0.549602,0.336143,18270,4,Magnesium Deficiency,yolo11m,0
+0.144711,0.052749,18270,5,Nitrogen Deficiency,yolo11m,0
+0.422416,0.215935,18270,6,Potassium Deficiency,yolo11m,0
+0.582551,0.240954,18270,7,Spotted Wilt Virus,yolo11m,0
+0.573421,0.285174,24570,2,Late Blight,yolo11m,0
+0.49872,0.239566,24570,3,Leaf Miner,yolo11m,0
+0.504607,0.306142,24570,4,Magnesium Deficiency,yolo11m,0
+0.136414,0.056531,24570,5,Nitrogen Deficiency,yolo11m,0
+0.363929,0.194403,24570,6,Potassium Deficiency,yolo11m,0
+0.565035,0.23666,24570,7,Spotted Wilt Virus,yolo11m,0
+0.512146,0.271368,6300,2,Late Blight,yolo11m,1
+0.535465,0.273807,6300,3,Leaf Miner,yolo11m,1
+0.611586,0.359256,6300,4,Magnesium Deficiency,yolo11m,1
+0.123179,0.057573,6300,5,Nitrogen Deficiency,yolo11m,1
+0.402527,0.206926,6300,6,Potassium Deficiency,yolo11m,1
+0.616426,0.292396,6300,7,Spotted Wilt Virus,yolo11m,1
+0.56657,0.298745,11970,2,Late Blight,yolo11m,1
+0.542437,0.26833,11970,3,Leaf Miner,yolo11m,1
+0.564386,0.321666,11970,4,Magnesium Deficiency,yolo11m,1
+0.115145,0.075955,11970,5,Nitrogen Deficiency,yolo11m,1
+0.373568,0.210643,11970,6,Potassium Deficiency,yolo11m,1
+0.62912,0.273245,11970,7,Spotted Wilt Virus,yolo11m,1
+0.572349,0.269224,18270,2,Late Blight,yolo11m,1
+0.517731,0.249664,18270,3,Leaf Miner,yolo11m,1
+0.511699,0.307269,18270,4,Magnesium Deficiency,yolo11m,1
+0.09777,0.049226,18270,5,Nitrogen Deficiency,yolo11m,1
+0.336565,0.178693,18270,6,Potassium Deficiency,yolo11m,1
+0.593364,0.253707,18270,7,Spotted Wilt Virus,yolo11m,1
+0.583254,0.278914,24570,2,Late Blight,yolo11m,1
+0.490012,0.233752,24570,3,Leaf Miner,yolo11m,1
+0.501022,0.290156,24570,4,Magnesium Deficiency,yolo11m,1
+0.152783,0.067907,24570,5,Nitrogen Deficiency,yolo11m,1
+0.336068,0.18028,24570,6,Potassium Deficiency,yolo11m,1
+0.562155,0.243489,24570,7,Spotted Wilt Virus,yolo11m,1
+0.614486,0.309505,6300,2,Late Blight,yolo11m,2
+0.545442,0.278814,6300,3,Leaf Miner,yolo11m,2
+0.59676,0.357479,6300,4,Magnesium Deficiency,yolo11m,2
+0.046747,0.020567,6300,5,Nitrogen Deficiency,yolo11m,2
+0.3105,0.162545,6300,6,Potassium Deficiency,yolo11m,2
+0.613749,0.283364,6300,7,Spotted Wilt Virus,yolo11m,2
+0.542879,0.286127,11970,2,Late Blight,yolo11m,2
+0.546057,0.272382,11970,3,Leaf Miner,yolo11m,2
+0.600135,0.34254,11970,4,Magnesium Deficiency,yolo11m,2
+0.172096,0.097611,11970,5,Nitrogen Deficiency,yolo11m,2
+0.286596,0.134473,11970,6,Potassium Deficiency,yolo11m,2
+0.607551,0.26768,11970,7,Spotted Wilt Virus,yolo11m,2
+0.539908,0.285246,18270,2,Late Blight,yolo11m,2
+0.503008,0.242596,18270,3,Leaf Miner,yolo11m,2
+0.598806,0.361097,18270,4,Magnesium Deficiency,yolo11m,2
+0.138058,0.0532,18270,5,Nitrogen Deficiency,yolo11m,2
+0.282122,0.161441,18270,6,Potassium Deficiency,yolo11m,2
+0.567561,0.243228,18270,7,Spotted Wilt Virus,yolo11m,2
+0.538638,0.301145,24570,2,Late Blight,yolo11m,2
+0.493494,0.234167,24570,3,Leaf Miner,yolo11m,2
+0.543054,0.324226,24570,4,Magnesium Deficiency,yolo11m,2
+0.16106,0.054594,24570,5,Nitrogen Deficiency,yolo11m,2
+0.350566,0.191761,24570,6,Potassium Deficiency,yolo11m,2
+0.536166,0.220954,24570,7,Spotted Wilt Virus,yolo11m,2
+0.595033,0.289235,6300,2,Late Blight,yolo11m,3
+0.535418,0.27959,6300,3,Leaf Miner,yolo11m,3
+0.54015,0.317871,6300,4,Magnesium Deficiency,yolo11m,3
+0.045183,0.027722,6300,5,Nitrogen Deficiency,yolo11m,3
+0.178794,0.099221,6300,6,Potassium Deficiency,yolo11m,3
+0.596362,0.263754,6300,7,Spotted Wilt Virus,yolo11m,3
+0.533331,0.243188,11970,2,Late Blight,yolo11m,3
+0.538036,0.265897,11970,3,Leaf Miner,yolo11m,3
+0.52088,0.287979,11970,4,Magnesium Deficiency,yolo11m,3
+0.092068,0.047156,11970,5,Nitrogen Deficiency,yolo11m,3
+0.237147,0.146982,11970,6,Potassium Deficiency,yolo11m,3
+0.594888,0.264786,11970,7,Spotted Wilt Virus,yolo11m,3
+0.534795,0.2748,18270,2,Late Blight,yolo11m,3
+0.524973,0.254816,18270,3,Leaf Miner,yolo11m,3
+0.556973,0.329387,18270,4,Magnesium Deficiency,yolo11m,3
+0.1395,0.089165,18270,5,Nitrogen Deficiency,yolo11m,3
+0.33397,0.185784,18270,6,Potassium Deficiency,yolo11m,3
+0.575929,0.248176,18270,7,Spotted Wilt Virus,yolo11m,3
+0.521601,0.291181,24570,2,Late Blight,yolo11m,3
+0.495781,0.235523,24570,3,Leaf Miner,yolo11m,3
+0.500909,0.291882,24570,4,Magnesium Deficiency,yolo11m,3
+0.166088,0.080149,24570,5,Nitrogen Deficiency,yolo11m,3
+0.278375,0.163287,24570,6,Potassium Deficiency,yolo11m,3
+0.551644,0.231881,24570,7,Spotted Wilt Virus,yolo11m,3
+0.539673,0.240971,6300,2,Late Blight,yolo11m,4
+0.54894,0.279785,6300,3,Leaf Miner,yolo11m,4
+0.597131,0.366833,6300,4,Magnesium Deficiency,yolo11m,4
+0.086937,0.044346,6300,5,Nitrogen Deficiency,yolo11m,4
+0.179799,0.106726,6300,6,Potassium Deficiency,yolo11m,4
+0.627578,0.297956,6300,7,Spotted Wilt Virus,yolo11m,4
+0.56115,0.266563,11970,2,Late Blight,yolo11m,4
+0.539634,0.265016,11970,3,Leaf Miner,yolo11m,4
+0.558655,0.325474,11970,4,Magnesium Deficiency,yolo11m,4
+0.102764,0.051978,11970,5,Nitrogen Deficiency,yolo11m,4
+0.331825,0.21405,11970,6,Potassium Deficiency,yolo11m,4
+0.591994,0.268688,11970,7,Spotted Wilt Virus,yolo11m,4
+0.575753,0.270513,18270,2,Late Blight,yolo11m,4
+0.506828,0.246341,18270,3,Leaf Miner,yolo11m,4
+0.563675,0.336372,18270,4,Magnesium Deficiency,yolo11m,4
+0.178875,0.092458,18270,5,Nitrogen Deficiency,yolo11m,4
+0.313254,0.181255,18270,6,Potassium Deficiency,yolo11m,4
+0.589558,0.258005,18270,7,Spotted Wilt Virus,yolo11m,4
+0.574251,0.287338,24570,2,Late Blight,yolo11m,4
+0.487802,0.233127,24570,3,Leaf Miner,yolo11m,4
+0.530127,0.309104,24570,4,Magnesium Deficiency,yolo11m,4
+0.16581,0.068189,24570,5,Nitrogen Deficiency,yolo11m,4
+0.265958,0.16112,24570,6,Potassium Deficiency,yolo11m,4
+0.567741,0.247014,24570,7,Spotted Wilt Virus,yolo11m,4
+0.390361,0.199647,6300,2,Late Blight,yolo11s,0
+0.512871,0.261967,6300,3,Leaf Miner,yolo11s,0
+0.550608,0.331743,6300,4,Magnesium Deficiency,yolo11s,0
+0.071946,0.047067,6300,5,Nitrogen Deficiency,yolo11s,0
+0.328586,0.148311,6300,6,Potassium Deficiency,yolo11s,0
+0.613051,0.275394,6300,7,Spotted Wilt Virus,yolo11s,0
+0.616223,0.286728,11970,2,Late Blight,yolo11s,0
+0.517396,0.258208,11970,3,Leaf Miner,yolo11s,0
+0.564397,0.328283,11970,4,Magnesium Deficiency,yolo11s,0
+0.148682,0.066853,11970,5,Nitrogen Deficiency,yolo11s,0
+0.449441,0.240018,11970,6,Potassium Deficiency,yolo11s,0
+0.598755,0.271377,11970,7,Spotted Wilt Virus,yolo11s,0
+0.542176,0.261353,18270,2,Late Blight,yolo11s,0
+0.504538,0.24916,18270,3,Leaf Miner,yolo11s,0
+0.548945,0.326161,18270,4,Magnesium Deficiency,yolo11s,0
+0.174852,0.079041,18270,5,Nitrogen Deficiency,yolo11s,0
+0.490761,0.269326,18270,6,Potassium Deficiency,yolo11s,0
+0.581296,0.259386,18270,7,Spotted Wilt Virus,yolo11s,0
+0.588932,0.282056,24570,2,Late Blight,yolo11s,0
+0.499724,0.243569,24570,3,Leaf Miner,yolo11s,0
+0.515534,0.304702,24570,4,Magnesium Deficiency,yolo11s,0
+0.1475,0.0561,24570,5,Nitrogen Deficiency,yolo11s,0
+0.419508,0.227591,24570,6,Potassium Deficiency,yolo11s,0
+0.582845,0.254027,24570,7,Spotted Wilt Virus,yolo11s,0
+0.453774,0.210828,6300,2,Late Blight,yolo11s,1
+0.513379,0.261678,6300,3,Leaf Miner,yolo11s,1
+0.592265,0.345674,6300,4,Magnesium Deficiency,yolo11s,1
+0.062205,0.025489,6300,5,Nitrogen Deficiency,yolo11s,1
+0.328499,0.177942,6300,6,Potassium Deficiency,yolo11s,1
+0.587116,0.26859,6300,7,Spotted Wilt Virus,yolo11s,1
+0.544195,0.277348,11970,2,Late Blight,yolo11s,1
+0.527186,0.267729,11970,3,Leaf Miner,yolo11s,1
+0.542593,0.309173,11970,4,Magnesium Deficiency,yolo11s,1
+0.080016,0.036488,11970,5,Nitrogen Deficiency,yolo11s,1
+0.418256,0.23273,11970,6,Potassium Deficiency,yolo11s,1
+0.59602,0.264883,11970,7,Spotted Wilt Virus,yolo11s,1
+0.573711,0.27636,18270,2,Late Blight,yolo11s,1
+0.521717,0.259772,18270,3,Leaf Miner,yolo11s,1
+0.547144,0.318938,18270,4,Magnesium Deficiency,yolo11s,1
+0.141639,0.07844,18270,5,Nitrogen Deficiency,yolo11s,1
+0.402938,0.2349,18270,6,Potassium Deficiency,yolo11s,1
+0.57422,0.254434,18270,7,Spotted Wilt Virus,yolo11s,1
+0.560042,0.273181,24570,2,Late Blight,yolo11s,1
+0.499361,0.241335,24570,3,Leaf Miner,yolo11s,1
+0.487292,0.278763,24570,4,Magnesium Deficiency,yolo11s,1
+0.137848,0.075561,24570,5,Nitrogen Deficiency,yolo11s,1
+0.418818,0.230224,24570,6,Potassium Deficiency,yolo11s,1
+0.558551,0.241699,24570,7,Spotted Wilt Virus,yolo11s,1
+0.529336,0.253777,6300,2,Late Blight,yolo11s,2
+0.493503,0.248982,6300,3,Leaf Miner,yolo11s,2
+0.611045,0.348918,6300,4,Magnesium Deficiency,yolo11s,2
+0.076174,0.035264,6300,5,Nitrogen Deficiency,yolo11s,2
+0.42079,0.197833,6300,6,Potassium Deficiency,yolo11s,2
+0.608716,0.268929,6300,7,Spotted Wilt Virus,yolo11s,2
+0.537518,0.258604,11970,2,Late Blight,yolo11s,2
+0.539063,0.273972,11970,3,Leaf Miner,yolo11s,2
+0.594242,0.348433,11970,4,Magnesium Deficiency,yolo11s,2
+0.155859,0.088617,11970,5,Nitrogen Deficiency,yolo11s,2
+0.334662,0.217442,11970,6,Potassium Deficiency,yolo11s,2
+0.606608,0.265489,11970,7,Spotted Wilt Virus,yolo11s,2
+0.545875,0.288474,18270,2,Late Blight,yolo11s,2
+0.514036,0.254782,18270,3,Leaf Miner,yolo11s,2
+0.535546,0.320471,18270,4,Magnesium Deficiency,yolo11s,2
+0.127004,0.066911,18270,5,Nitrogen Deficiency,yolo11s,2
+0.380872,0.192701,18270,6,Potassium Deficiency,yolo11s,2
+0.578896,0.260541,18270,7,Spotted Wilt Virus,yolo11s,2
+0.542901,0.250222,24570,2,Late Blight,yolo11s,2
+0.497848,0.245081,24570,3,Leaf Miner,yolo11s,2
+0.503486,0.288413,24570,4,Magnesium Deficiency,yolo11s,2
+0.176678,0.07518,24570,5,Nitrogen Deficiency,yolo11s,2
+0.422246,0.21507,24570,6,Potassium Deficiency,yolo11s,2
+0.560633,0.251705,24570,7,Spotted Wilt Virus,yolo11s,2
+0.441719,0.205388,6300,2,Late Blight,yolo11s,3
+0.510897,0.262156,6300,3,Leaf Miner,yolo11s,3
+0.593613,0.337138,6300,4,Magnesium Deficiency,yolo11s,3
+0.087608,0.048543,6300,5,Nitrogen Deficiency,yolo11s,3
+0.144952,0.074358,6300,6,Potassium Deficiency,yolo11s,3
+0.554876,0.25621,6300,7,Spotted Wilt Virus,yolo11s,3
+0.603888,0.254213,11970,2,Late Blight,yolo11s,3
+0.534828,0.264234,11970,3,Leaf Miner,yolo11s,3
+0.570898,0.327569,11970,4,Magnesium Deficiency,yolo11s,3
+0.095709,0.058783,11970,5,Nitrogen Deficiency,yolo11s,3
+0.183921,0.117493,11970,6,Potassium Deficiency,yolo11s,3
+0.584694,0.268825,11970,7,Spotted Wilt Virus,yolo11s,3
+0.552645,0.279281,18270,2,Late Blight,yolo11s,3
+0.518705,0.256457,18270,3,Leaf Miner,yolo11s,3
+0.543919,0.312467,18270,4,Magnesium Deficiency,yolo11s,3
+0.115714,0.076839,18270,5,Nitrogen Deficiency,yolo11s,3
+0.196655,0.115417,18270,6,Potassium Deficiency,yolo11s,3
+0.574556,0.251457,18270,7,Spotted Wilt Virus,yolo11s,3
+0.508662,0.239697,24570,2,Late Blight,yolo11s,3
+0.494568,0.239354,24570,3,Leaf Miner,yolo11s,3
+0.538249,0.30966,24570,4,Magnesium Deficiency,yolo11s,3
+0.119699,0.04342,24570,5,Nitrogen Deficiency,yolo11s,3
+0.266297,0.164937,24570,6,Potassium Deficiency,yolo11s,3
+0.571816,0.254803,24570,7,Spotted Wilt Virus,yolo11s,3
+0.595553,0.283743,6300,2,Late Blight,yolo11s,4
+0.515763,0.26217,6300,3,Leaf Miner,yolo11s,4
+0.56269,0.32932,6300,4,Magnesium Deficiency,yolo11s,4
+0.127464,0.061936,6300,5,Nitrogen Deficiency,yolo11s,4
+0.241245,0.124992,6300,6,Potassium Deficiency,yolo11s,4
+0.587072,0.278587,6300,7,Spotted Wilt Virus,yolo11s,4
+0.576165,0.279762,11970,2,Late Blight,yolo11s,4
+0.524731,0.264844,11970,3,Leaf Miner,yolo11s,4
+0.524264,0.304255,11970,4,Magnesium Deficiency,yolo11s,4
+0.139323,0.08262,11970,5,Nitrogen Deficiency,yolo11s,4
+0.246442,0.169201,11970,6,Potassium Deficiency,yolo11s,4
+0.603741,0.263476,11970,7,Spotted Wilt Virus,yolo11s,4
+0.584192,0.297226,18270,2,Late Blight,yolo11s,4
+0.518752,0.253525,18270,3,Leaf Miner,yolo11s,4
+0.51934,0.302138,18270,4,Magnesium Deficiency,yolo11s,4
+0.25245,0.125587,18270,5,Nitrogen Deficiency,yolo11s,4
+0.262612,0.16253,18270,6,Potassium Deficiency,yolo11s,4
+0.573535,0.245333,18270,7,Spotted Wilt Virus,yolo11s,4
+0.594379,0.288944,24570,2,Late Blight,yolo11s,4
+0.498671,0.241684,24570,3,Leaf Miner,yolo11s,4
+0.505145,0.280421,24570,4,Magnesium Deficiency,yolo11s,4
+0.129241,0.068846,24570,5,Nitrogen Deficiency,yolo11s,4
+0.317278,0.1779,24570,6,Potassium Deficiency,yolo11s,4
+0.55696,0.239173,24570,7,Spotted Wilt Virus,yolo11s,4

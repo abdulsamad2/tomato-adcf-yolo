@@ -1,0 +1,147 @@
+{
+ "per_variant": {
+  "A": {
+   "n_runs": 2,
+   "b1_med": 8.825,
+   "b16_med": 8.364,
+   "b1_mean": 9.64,
+   "b16_mean": 8.997,
+   "b1_sd": 2.044,
+   "b16_sd": 1.712,
+   "b16_img_per_s": 1912.8,
+   "peak_mem_MB": 362.9,
+   "conv2d": 88,
+   "modules": 24,
+   "GFLOPs": 4.15,
+   "params_M": 2.5914,
+   "b16_ratio": 1.0,
+   "b1_ratio": 1.0
+  },
+  "B": {
+   "n_runs": 1,
+   "b1_med": 6.954,
+   "b16_med": 6.826,
+   "b1_mean": 7.802,
+   "b16_mean": 7.476,
+   "b1_sd": 2.053,
+   "b16_sd": 1.355,
+   "b16_img_per_s": 2344.0,
+   "peak_mem_MB": 359.9,
+   "conv2d": 70,
+   "modules": 21,
+   "GFLOPs": 3.77,
+   "params_M": 1.8513,
+   "b16_ratio": 0.8161,
+   "b1_ratio": 0.788
+  },
+  "C": {
+   "n_runs": 1,
+   "b1_med": 7.351,
+   "b16_med": 7.522,
+   "b1_mean": 8.13,
+   "b16_mean": 8.22,
+   "b1_sd": 1.899,
+   "b16_sd": 1.734,
+   "b16_img_per_s": 2127.1,
+   "peak_mem_MB": 362.4,
+   "conv2d": 75,
+   "modules": 19,
+   "GFLOPs": 3.122,
+   "params_M": 2.4777,
+   "b16_ratio": 0.8993,
+   "b1_ratio": 0.833
+  },
+  "C_lean": {
+   "n_runs": 1,
+   "b1_med": 7.077,
+   "b16_med": 6.844,
+   "b1_mean": 7.578,
+   "b16_mean": 7.232,
+   "b1_sd": 1.407,
+   "b16_sd": 1.125,
+   "b16_img_per_s": 2337.8,
+   "peak_mem_MB": 362.1,
+   "conv2d": 71,
+   "modules": 18,
+   "GFLOPs": 2.96,
+   "params_M": 2.3992,
+   "b16_ratio": 0.8183,
+   "b1_ratio": 0.8019
+  },
+  "B_disc": {
+   "n_runs": 1,
+   "b1_med": 8.279,
+   "b16_med": 7.781,
+   "b1_mean": 9.041,
+   "b16_mean": 8.339,
+   "b1_sd": 1.881,
+   "b16_sd": 1.367,
+   "b16_img_per_s": 2056.3,
+   "peak_mem_MB": 362.1,
+   "conv2d": 80,
+   "modules": 24,
+   "GFLOPs": 4.04,
+   "params_M": 2.3779,
+   "b16_ratio": 0.9303,
+   "b1_ratio": 0.9381
+  },
+  "C_disc": {
+   "n_runs": 1,
+   "b1_med": 8.119,
+   "b16_med": 7.777,
+   "b1_mean": 8.82,
+   "b16_mean": 8.232,
+   "b1_sd": 1.739,
+   "b16_sd": 1.241,
+   "b16_img_per_s": 2057.3,
+   "peak_mem_MB": 362.7,
+   "conv2d": 80,
+   "modules": 24,
+   "GFLOPs": 3.48,
+   "params_M": 2.555,
+   "b16_ratio": 0.9298,
+   "b1_ratio": 0.92
+  }
+ },
+ "gate_before": {
+  "util_pct": 0,
+  "mem_MB": 496,
+  "temp_C": 42,
+  "sm_MHz": 210,
+  "throttle": "0x0000000000000001"
+ },
+ "gate_after": {
+  "util_pct": 67,
+  "mem_MB": 1243,
+  "temp_C": 75,
+  "sm_MHz": 2580,
+  "throttle": "0x0000000000000000"
+ },
+ "reference_drift_pct": -2.37,
+ "predictors": {
+  "conv2d": {
+   "pearson_r": 0.9804,
+   "pearson_p": 0.0005726045579458717,
+   "spearman_rho": 0.9856,
+   "spearman_p": 0.0003090856678496653
+  },
+  "modules": {
+   "pearson_r": 0.7489,
+   "pearson_p": 0.08663801993956623,
+   "spearman_rho": 0.759,
+   "spearman_p": 0.08014122805832388
+  },
+  "GFLOPs": {
+   "pearson_r": 0.5947,
+   "pearson_p": 0.2131158569404471,
+   "spearman_rho": 0.6571,
+   "spearman_p": 0.1561749271137024
+  },
+  "params_M": {
+   "pearson_r": 0.7151,
+   "pearson_p": 0.11017131397723184,
+   "spearman_rho": 0.6571,
+   "spearman_p": 0.1561749271137024
+  }
+ }
+}

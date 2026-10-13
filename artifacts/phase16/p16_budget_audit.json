@@ -1,0 +1,226 @@
+{
+ "w100": {
+  "params": 2591400,
+  "GFLOPs_512": 4.15,
+  "head_box_mid_channels": [
+   64,
+   64,
+   64
+  ],
+  "head_cls_mid_channels": [
+   64,
+   128,
+   256
+  ],
+  "head_in_channels": [
+   64,
+   128,
+   256
+  ],
+  "rows": {
+   "stem": 5136,
+   "bb_P2": 6640,
+   "bb_P3": 63072,
+   "bb_P4": 234752,
+   "bb_P5": 641536,
+   "bb_P5_SPPF": 164608,
+   "bb_P5_C2PSA": 249728,
+   "neck": 0,
+   "neck_td_P4": 111296,
+   "neck_out_P3": 32096,
+   "neck_bu_P3to4": 36992,
+   "neck_out_P4": 86720,
+   "neck_bu_P4to5": 147712,
+   "neck_out_P5": 378880,
+   "head_box_P3": 78144,
+   "head_cls_P3": 10376,
+   "head_box_P4": 115008,
+   "head_cls_P4": 15176,
+   "head_box_P5": 188736,
+   "head_cls_P5": 24776,
+   "head_dfl": 16
+  },
+  "groups": {
+   "backbone_P5_total": 1055872,
+   "backbone_P3P4": 297824,
+   "neck_total": 793696,
+   "head_box_total": 381888,
+   "head_cls_total": 50328
+  },
+  "group_pct": {
+   "backbone_P5_total": 40.7,
+   "backbone_P3P4": 11.5,
+   "neck_total": 30.6,
+   "head_box_total": 14.7,
+   "head_cls_total": 1.9
+  }
+ },
+ "w075": {
+  "params": 1565628,
+  "GFLOPs_512": 2.707,
+  "head_box_mid_channels": [
+   64,
+   64,
+   64
+  ],
+  "head_cls_mid_channels": [
+   48,
+   96,
+   192
+  ],
+  "head_in_channels": [
+   48,
+   96,
+   192
+  ],
+  "rows": {
+   "stem": 3968,
+   "bb_P2": 3780,
+   "bb_P3": 35592,
+   "bb_P4": 132288,
+   "bb_P5": 361344,
+   "bb_P5_SPPF": 92736,
+   "bb_P5_C2PSA": 141216,
+   "neck": 0,
+   "neck_td_P4": 62736,
+   "neck_out_P3": 18120,
+   "neck_bu_P3to4": 20832,
+   "neck_out_P4": 48912,
+   "neck_bu_P4to5": 83136,
+   "neck_out_P5": 213504,
+   "head_box_P3": 68928,
+   "head_cls_P3": 6248,
+   "head_box_P4": 96576,
+   "head_cls_P4": 9080,
+   "head_box_P5": 151872,
+   "head_cls_P5": 14744,
+   "head_dfl": 16
+  },
+  "groups": {
+   "backbone_P5_total": 595296,
+   "backbone_P3P4": 167880,
+   "neck_total": 447240,
+   "head_box_total": 317376,
+   "head_cls_total": 30072
+  },
+  "group_pct": {
+   "backbone_P5_total": 38.0,
+   "backbone_P3P4": 10.7,
+   "neck_total": 28.6,
+   "head_box_total": 20.3,
+   "head_cls_total": 1.9
+  }
+ },
+ "w050": {
+  "params": 811144,
+  "GFLOPs_512": 1.549,
+  "head_box_mid_channels": [
+   64,
+   64,
+   64
+  ],
+  "head_cls_mid_channels": [
+   32,
+   64,
+   128
+  ],
+  "head_in_channels": [
+   32,
+   64,
+   128
+  ],
+  "rows": {
+   "stem": 1416,
+   "bb_P2": 1720,
+   "bb_P3": 15920,
+   "bb_P4": 59008,
+   "bb_P5": 161024,
+   "bb_P5_SPPF": 41344,
+   "bb_P5_C2PSA": 63424,
+   "neck": 0,
+   "neck_td_P4": 28000,
+   "neck_out_P3": 8112,
+   "neck_bu_P3to4": 9280,
+   "neck_out_P4": 21856,
+   "neck_bu_P4to5": 36992,
+   "neck_out_P5": 95232,
+   "head_box_P3": 59712,
+   "head_cls_P3": 3144,
+   "head_box_P4": 78144,
+   "head_cls_P4": 4520,
+   "head_box_P5": 115008,
+   "head_cls_P5": 7272,
+   "head_dfl": 16
+  },
+  "groups": {
+   "backbone_P5_total": 265792,
+   "backbone_P3P4": 74928,
+   "neck_total": 199472,
+   "head_box_total": 252864,
+   "head_cls_total": 14936
+  },
+  "group_pct": {
+   "backbone_P5_total": 32.8,
+   "backbone_P3P4": 9.2,
+   "neck_total": 24.6,
+   "head_box_total": 31.2,
+   "head_cls_total": 1.8
+  }
+ },
+ "w035": {
+  "params": 537478,
+  "GFLOPs_512": 1.16,
+  "head_box_mid_channels": [
+   64,
+   64,
+   64
+  ],
+  "head_cls_mid_channels": [
+   24,
+   48,
+   96
+  ],
+  "head_in_channels": [
+   24,
+   48,
+   96
+  ],
+  "rows": {
+   "stem": 1416,
+   "bb_P2": 1038,
+   "bb_P3": 9012,
+   "bb_P4": 33312,
+   "bb_P5": 90816,
+   "bb_P5_SPPF": 23328,
+   "bb_P5_C2PSA": 36048,
+   "neck": 0,
+   "neck_td_P4": 15816,
+   "neck_out_P3": 4596,
+   "neck_bu_P3to4": 5232,
+   "neck_out_P4": 12360,
+   "neck_bu_P4to5": 20832,
+   "neck_out_P5": 53760,
+   "head_box_P3": 55104,
+   "head_cls_P3": 1976,
+   "head_box_P4": 68928,
+   "head_cls_P4": 2816,
+   "head_box_P5": 96576,
+   "head_cls_P5": 4496,
+   "head_dfl": 16
+  },
+  "groups": {
+   "backbone_P5_total": 150192,
+   "backbone_P3P4": 42324,
+   "neck_total": 112596,
+   "head_box_total": 220608,
+   "head_cls_total": 9288
+  },
+  "group_pct": {
+   "backbone_P5_total": 27.9,
+   "backbone_P3P4": 7.9,
+   "neck_total": 20.9,
+   "head_box_total": 41.0,
+   "head_cls_total": 1.7
+  }
+ }
+}
