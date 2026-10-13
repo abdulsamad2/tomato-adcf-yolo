@@ -19,7 +19,7 @@ Obtain the data from the authors, follow their terms, and cite their paper.
 
 ## Leakage structure of the released split
 
-This is computed from file names and labels only (`experiments/posthoc/ph_leakage.py` → `artifacts/posthoc/leakage.json`).
+This is computed from file names and labels only (`experiments/9_posthoc/ph_leakage.py` → `artifacts/posthoc/leakage.json`).
 
 | Property | Value |
 |---|---|

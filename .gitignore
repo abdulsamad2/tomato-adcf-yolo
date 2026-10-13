@@ -3,25 +3,34 @@ __pycache__/
 *.pyc
 .pytest_cache/
 
-# datasets (third-party Tomato-Village; never committed, see DATASET.md)
+# third-party dataset (never committed, see DATASET.md)
 /data/
 
-# training outputs and weights (large; weights are published as a GitHub Release)
+# training outputs, weights and caches (weights: GitHub Release, see docs/WEIGHTS.md)
 /runs/
 /runs_*/
 /results_now/
 /Ultralytics/
+/weights/
 *.pt
 *.onnx
 *.engine
 *.npz
 
-# figures that contain dataset images (not redistributable)
-results/dataset/label_preview.png
-results/gates*/
+# results: only the tables the paper reports are tracked
+/results/*
+!/results/p3_stats.json
+!/results/p3_efficiency.json
+!/results/p4_stats.json
+!/results/p15_*
+!/results/p16_*
+!/results/p17_*
+!/results/pretrain_inflation.json
+!/results/clean_test_table.*
 
-# local config backups
-configs/*.bak*
-
+# local working files
+/docs/archive/
+/configs/*.bak*
+/configs/timing.yaml
 .DS_Store
-~$*.docx
+~$*

@@ -1,7 +1,7 @@
 [project]
 name = "tomato-adcf-yolo"
 version = "0.1.0"
-description = "Adaptive Detail–Context Fusion (ADCF) in the YOLO neck for tomato leaf disease detection on Tomato-Village"
+description = "Source-family exposure in tomato disease detection: family-aware evaluation, width right-sizing and localization distillation for YOLO11 on Tomato-Village"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
